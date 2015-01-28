@@ -4,21 +4,21 @@
 
 Chaque controller a son propre fichier de routing.
 
-app/config/routing.yml
+*app/config/routing.yml*
 ```YAML
 ndc_hello_bundle:
     resource: "@NDCHelloBundle/Resources/config/routing.yml"
     prefix:   /
 ```
 
-src/NDC/HelloBundle/Resources/config/routing.yml
+*src/NDC/HelloBundle/Resources/config/routing.yml*
 ```YAML
 ndc_hello_bundle_controller_name:
     resource: routing/controllerName.yml
     prefix: /my/prefix
 ```
 
-src/NDC/HelloBundle/Resources/config/routing/controllerName.yml
+*src/NDC/HelloBundle/Resources/config/routing/controllerName.yml*
 ```YAML
 hello_controller_name_action:
     pattern: /my/route
@@ -54,12 +54,12 @@ Ne pas oublier d'enregistrer le bundle dans app/config/config.yml
 ```YAML
 jms_di_extra:
     locations:
-        bundles: [NDCMyBundle]
+        bundles: [NDCHelloBundle]
 ```
 
 ### Annotation @Template
 
-Utiliser l'annotation @Template pour render une view.
+Utiliser l'annotation *@Template* pour render une view.
 
 ```PHP
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
@@ -75,4 +75,28 @@ class MyController extends Controller
         );
     }
 }
+```
+
+## Entities
+
+* Les entités sont mapées en YAML.
+* Le nom de la table commence toujour par *ndc_* et est en snack_case
+* Le repository est dans le dossier **Repository** du bundle et pas dans le dossier **Entity**
+* Le nom des champs est en camelCase et le nom des colones en snack_case
+
+```YAML
+NDC\HelloBundle\Entity\MyEntity:
+    type: entity
+    table: ndc_my_entity
+    repositoryClass: NDC\HelloBundle\Repository\MyEntityRepository
+    id:
+        id:
+            type: integer
+            id: true
+            generator:
+                strategy: AUTO
+    fields:
+        myField:
+            column: my_field
+            type: integer
 ```
