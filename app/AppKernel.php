@@ -16,7 +16,7 @@ class AppKernel extends Kernel
             new Symfony\Bundle\AsseticBundle\AsseticBundle(),
             new Doctrine\Bundle\DoctrineBundle\DoctrineBundle(),
             new Sensio\Bundle\FrameworkExtraBundle\SensioFrameworkExtraBundle(),
-            
+
             // JMS
             new JMS\DiExtraBundle\JMSDiExtraBundle($this),
             new JMS\AopBundle\JMSAopBundle(),
@@ -25,6 +25,12 @@ class AppKernel extends Kernel
 
             // KNP
             new Knp\Bundle\PaginatorBundle\KnpPaginatorBundle(),
+
+            // FOS
+            new FOS\UserBundle\FOSUserBundle(),
+
+            // NDC
+            new NDC\UserBundle\NDCUserBundle(),
         );
 
         if (in_array($this->getEnvironment(), array('dev', 'test'))) {
