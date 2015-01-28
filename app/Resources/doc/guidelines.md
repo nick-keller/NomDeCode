@@ -1,27 +1,26 @@
 # Guidelines
 
-## Noms des routes
+## Routing
 
-### app/config/routing.yml
+Chaque controller a son propre fichier de routing.
 
+app/config/routing.yml
 ```
-ndc_**BUNDLE**_bundle:
-    resource: "@NDC**NAME**Bundle/Resources/config/routing.yml"
+ndc_hello_bundle:
+    resource: "@NDCHelloBundle/Resources/config/routing.yml"
     prefix:   /
 ```
 
-### src/**BUNDLE**Bundle/Resources/config/routing.yml
-
+src/NDC/HelloBundle/Resources/config/routing.yml
 ```
-ndc_**NAME**_bundle_**CONTROLLER**:
-    resource: routing/**CONTROLLER**.yml
+ndc_hello_bundle_controller_name:
+    resource: routing/controllerName.yml
     prefix: /my/prefix
 ```
 
-### src/**BUNDLE**Bundle/Resources/config/routing/**CONTROLLER**.yml
-
+src/NDC/HelloBundle/Resources/config/routing/controllerName.yml
 ```
-**BUNDLE**_**CONTROLLER**_**ACTION**:
+hello_controller_name_action:
     pattern: /my/route
-    defaults: { _controller: my:action }
+    defaults: { _controller: HelloBundle:ControllerName:action }
 ```
