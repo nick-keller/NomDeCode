@@ -1,0 +1,4 @@
+services:
+#    ndc_blog.example:
+#        class: NDC\BlogBundle\Example
+#        arguments: [@service_id, "plain_value", %parameter%]
