@@ -1,0 +1,15 @@
+NDC\BlogBundle\Entity\Article:
+    type: entity
+    table: ndc_article
+    repositoryClass: NDC\BlogBundle\Repository\ArticleRepository
+    id:
+        id:
+            type: integer
+            id: true
+            generator:
+                strategy: AUTO
+    fields:
+        title:
+            type: string
+            length: 255
+
