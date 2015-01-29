@@ -1,4 +1,4 @@
-ndc_blog:
+ndc_blog_bundle:
     resource: "@NDCBlogBundle/Resources/config/routing.yml"
     prefix:   /
 

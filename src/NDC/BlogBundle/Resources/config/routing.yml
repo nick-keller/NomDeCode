@@ -1,3 +1,0 @@
-ndc_blog_homepage:
-    path:     /hello/{name}
-    defaults: { _controller: NDCBlogBundle:Default:index }
