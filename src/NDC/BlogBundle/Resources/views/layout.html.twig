@@ -1,0 +1,10 @@
+{% extends '::admin.html.twig' %}
+
+{% block breadcrumb %}
+    {{ parent() }}
+    <li>
+        <a href="{{ path('blog_article_admin_index') }}">
+            Articles
+        </a>
+    </li>
+{% endblock %}

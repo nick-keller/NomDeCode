@@ -1,3 +1,9 @@
 ndc_blog_bundle_article_admin:
     resource: routing/articleAdmin.yml
     prefix: /admin/articles
+
+ndc_admin_index:
+    path: /admin
+    defaults:
+        _controller: FrameworkBundle:Template:template
+        template: '::admin.html.twig'
