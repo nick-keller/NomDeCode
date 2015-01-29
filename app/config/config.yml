@@ -67,7 +67,7 @@ swiftmailer:
 jms_di_extra:
     locations:
         all_bundles: false
-        bundles: []
+        bundles: [NDCBlogBundle]
         directories: ["%kernel.root_dir%/../src"]
     automatic_controller_injections:
         properties:
