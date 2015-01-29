@@ -29,8 +29,12 @@ class AppKernel extends Kernel
             // FOS
             new FOS\UserBundle\FOSUserBundle(),
 
+            // Doctrine
+            new Stof\DoctrineExtensionsBundle\StofDoctrineExtensionsBundle(),
+
             // NDC
             new NDC\UserBundle\NDCUserBundle(),
+            new NDC\BlogBundle\NDCBlogBundle(),
         );
 
         if (in_array($this->getEnvironment(), array('dev', 'test'))) {
