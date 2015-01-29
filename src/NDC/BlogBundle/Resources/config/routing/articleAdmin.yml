@@ -1,3 +1,7 @@
 blog_article_admin_index:
     pattern: /
     defaults: { _controller: NDCBlogBundle:ArticleAdmin:index }
+
+blog_article_admin_add:
+    pattern: /add
+    defaults: { _controller: NDCBlogBundle:ArticleAdmin:add }
