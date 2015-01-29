@@ -1,45 +1,86 @@
-/* Font-faces */
-@font-face {
-    font-family: 'ms-light';
-	src: url('../fonts/montserrat/montserrat-light-webfont.eot');    
-	src: url('../fonts/montserrat/montserrat-light-webfont.eot?#iefix') format('embedded-opentype'),         
-	url('../fonts/montserrat/montserrat-light-webfont.woff2') format('woff2'),         
-	url('../fonts/montserrat/montserrat-light-webfont.woff') format('woff'),         
-	url('../fonts/montserrat/montserrat-light-webfont.ttf') format('truetype'),         
-	url('../fonts/montserrat/montserrat-light-webfont.svg#montserratlight') format('svg');    
-	font-weight: normal;    
-	font-style: normal;
+@import "typography";
+@import "colors";
+
+html, body {
+	height: 100%;
 }
 
-@font-face {
-    font-family: 'ms-regular';    
-	src: url('../fonts/montserrat/montserrat-regular-webfont.eot');    
-	src: url('../fonts/montserrat/montserrat-regular-webfont.eot?#iefix') format('embedded-opentype'),         
-	url('../fonts/montserrat/montserrat-regular-webfont.woff2') format('woff2'),         
-	url('../fonts/montserrat/montserrat-regular-webfont.woff') format('woff'),         
-	url('../fonts/montserrat/montserrat-regular-webfont.ttf') format('truetype'),    
-	url('../fonts/montserrat/montserrat-regular-webfont.svg#montserratregular') format('svg');
-	font-weight: normal;
-    font-style: normal;
+html {
+	font-size: $font-size-base;
 }
-
-@font-face {
-    font-family: 'ds-regular';    
-	src: url('../fonts/droidserif/droidserif-regular-webfont.eot');    
-	src: url('../fonts/droidserif/droidserif-regular-webfont.eot?#iefix') format('embedded-opentype'),         
-	url('../fonts/droidserif/droidserif-regular-webfont.woff2') format('woff2'),         
-	url('../fonts/droidserif/droidserif-regular-webfont.woff') format('woff'),         
-	url('../fonts/droidserif/droidserif-regular-webfont.ttf') format('truetype'),         
-	url('../fonts/droidserif/droidserif-regular-webfont.svg#droid_serifregular') format('svg');
-	font-weight: normal;
-    font-style: normal;
-}
-
-/* Variables */
-$font-family-headline: 'ms-regular', Arial, Helvetica, sans-serif;
-$font-family-date: 'ms-light', Arial, Helvetica, sans-serif;
-$font-family-content: 'ds-regular', Times, serif;
 
 body {
-	background-color: red;
+	background-color: $background-color-base;
+	color: $font-color-base;
+
+	font-family: $font-family-base;
+}
+
+section.vignettes, article {
+	float: left;
+	height: 100vh;
+}
+
+section.vignettes {
+	width: 30%;
+}
+
+$height-author: 80px;
+$size-photo-author: 100px;
+article {
+	background-color: $background-color-article;
+	width: 70%;
+
+	header {
+		height: 40vh;
+		position: relative;
+		background-size: cover;
+
+		.author {
+			position: absolute;
+			bottom: 0;
+			left: 0;
+			right: 0;
+			height: $height-author;
+			background-color: $color-author;
+
+			.author-info {
+				width: 75%;
+				margin: auto;
+				position: relative;
+				font-size: 1.2rem;
+				color: #fff;
+
+				img.photo {					
+					width: $size-photo-author;
+					height: $size-photo-author;
+					border-radius: 50%;
+					margin-top: $height-author - ($size-photo-author/2);
+				}
+
+				& > span {
+					position: absolute;
+					line-height: $height-author;
+				}
+
+				.name {
+					margin-left: 20px;
+					font-family: $font-family-headline;
+				}
+
+				.date {
+					right: 0;
+					color: #e7e7e7;
+					font-family: $font-family-date;
+					font-size: 1rem;
+					font-style: italic;
+				}
+			}
+		}
+	}
+
+	.content {
+		width: 50%;
+		margin: auto;
+	}
 }
