@@ -1,4 +1,7 @@
 services:
-#    ndc_blog.example:
-#        class: NDC\BlogBundle\Example
-#        arguments: [@service_id, "plain_value", %parameter%]
+    ndc_blog.date_extension:
+    class: NDC\BlogBundle\Twig\DateExtension
+    arguments:
+        - @translator
+    tags:
+        - { name: twig.extension }
