@@ -9,6 +9,8 @@ $font-size-headline-vignette: 2rem;
 $font-size-headline-article: 2.5rem;
 $size-icon-category: 30px;
 
+$width-article: 75%;
+
 // sizes for media queries
 $size-limit-little-screen: 960px;
 
@@ -31,15 +33,16 @@ body {
 section.vignettes, article {
 	float: left;
 	height: 100vh;
+	overflow:hidden;
 }
 
 section.vignettes {
-	width: 25%;
+	width: 100% - $width-article;
 }
 
 article {
 	background-color: $background-color-article;
-	width: 75%;
+	width: $width-article;
 
 	a {
 		text-decoration: none;
@@ -59,6 +62,15 @@ article {
 			right: 0;
 			height: $height-author;
 			background-color: $color-author;
+			transition: background-color 0.2s ease;
+
+			&.fixed {
+				width: $width-article;
+				position: fixed;
+				top: 0;
+				margin-left: 100% - $width-article;
+ 				z-index: 10;
+			}
 
 			.info {
 				margin: auto;
@@ -66,8 +78,8 @@ article {
 				font-size: 1.2rem;
 				color: #fff;
 
-				width: 75%;
-				@media screen and (max-width: $size-limit-little-screen) { width: 90%; }
+				width: $width-article;
+				@media screen and (max-width: $size-limit-little-screen) { width: $width-article + 15%; }
 
 				img.photo {					
 					width: $size-photo-author;
@@ -116,8 +128,9 @@ article {
 
 	.content {
 		margin: auto;
+		padding-left: 5%;
 
-		width: 50%;
+		width: 55%;
 		@media screen and (max-width: $size-limit-little-screen) {
 			width: 70%;
 			padding-left: 10%;

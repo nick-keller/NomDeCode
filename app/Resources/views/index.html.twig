@@ -21,23 +21,23 @@
 {% set article = {
 	'author': author,
 	'categories': categories,
-	'date': "now",
+	'date': date(),
 	'illustration': 'https://dl.dropboxusercontent.com/u/18517066/nomdecode/fond.jpg',
 	'title': 'Le plus beau titre possible, gros bisous les enfants',
-	'content': 'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Suscipit hic labore reprehenderit ad vel, consequuntur repellat. Tempore accusamus impedit nam vitae obcaecati reprehenderit omnis, numquam iusto, vel quod neque sed sapiente tenetur ullam. Nostrum error deleniti dolorem non explicabo voluptatum ratione pariatur sint cupiditate eos, optio ab et quis totam.'
+	'content': 'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Suscipit hic labore reprehenderit ad vel, consequuntur repellat. Tempore accusamus impedit nam vitae obcaecati reprehenderit omnis, numquam iusto, vel quod neque sed sapiente tenetur ullam. Nostrum error deleniti dolorem non explicabo voluptatum ratione pariatur sint cupiditate eos, optio ab et quis totam.Lorem ipsum dolor sit amet, consectetur adipisicing elit. Suscipit hic labore reprehenderit ad vel, consequuntur repellat. Tempore accusamus impedit nam vitae obcaecati reprehenderit omnis, numquam iusto, vel quod neque sed sapiente tenetur ullam. Nostrum error deleniti dolorem non explicabo voluptatum ratione pariatur sint cupiditate eos, optio ab et quis totam.Lorem ipsum dolor sit amet, consectetur adipisicing elit. Suscipit hic labore reprehenderit ad vel, consequuntur repellat. Tempore accusamus impedit nam vitae obcaecati reprehenderit omnis, numquam iusto, vel quod neque sed sapiente tenetur ullam. Nostrum error deleniti dolorem non explicabo voluptatum ratione pariatur sint cupiditate eos, optio ab et quis totam.Lorem ipsum dolor sit amet, consectetur adipisicing elit. Suscipit hic labore reprehenderit ad vel, consequuntur repellat. Tempore accusamus impedit nam vitae obcaecati reprehenderit omnis, numquam iusto, vel quod neque sed sapiente tenetur ullam. Nostrum error deleniti dolorem non explicabo voluptatum ratione pariatur sint cupiditate eos, optio ab et quis totam.Lorem ipsum dolor sit amet, consectetur adipisicing elit. Suscipit hic labore reprehenderit ad vel, consequuntur repellat. Tempore accusamus impedit nam vitae obcaecati reprehenderit omnis, numquam iusto, vel quod neque sed sapiente tenetur ullam. Nostrum error deleniti dolorem non explicabo voluptatum ratione pariatur sint cupiditate eos, optio ab et quis totam.Lorem ipsum dolor sit amet, consectetur adipisicing elit. Suscipit hic labore reprehenderit ad vel, consequuntur repellat. Tempore accusamus impedit nam vitae obcaecati reprehenderit omnis, numquam iusto, vel quod neque sed sapiente tenetur ullam. Nostrum error deleniti dolorem non explicabo voluptatum ratione pariatur sint cupiditate eos, optio ab et quis totam.Lorem ipsum dolor sit amet, consectetur adipisicing elit. Suscipit hic labore reprehenderit ad vel, consequuntur repellat. Tempore accusamus impedit nam vitae obcaecati reprehenderit omnis, numquam iusto, vel quod neque sed sapiente tenetur ullam. Nostrum error deleniti dolorem non explicabo voluptatum ratione pariatur sint cupiditate eos, optio ab et quis totam.Lorem ipsum dolor sit amet, consectetur adipisicing elit. Suscipit hic labore reprehenderit ad vel, consequuntur repellat. Tempore accusamus impedit nam vitae obcaecati reprehenderit omnis, numquam iusto, vel quod neque sed sapiente tenetur ullam. Nostrum error deleniti dolorem non explicabo voluptatum ratione pariatur sint cupiditate eos, optio ab et quis totam.Lorem ipsum dolor sit amet, consectetur adipisicing elit. Suscipit hic labore reprehenderit ad vel, consequuntur repellat. Tempore accusamus impedit nam vitae obcaecati reprehenderit omnis, numquam iusto, vel quod neque sed sapiente tenetur ullam. Nostrum error deleniti dolorem non explicabo voluptatum ratione pariatur sint cupiditate eos, optio ab et quis totam.Lorem ipsum dolor sit amet, consectetur adipisicing elit. Suscipit hic labore reprehenderit ad vel, consequuntur repellat. Tempore accusamus impedit nam vitae obcaecati reprehenderit omnis, numquam iusto, vel quod neque sed sapiente tenetur ullam. Nostrum error deleniti dolorem non explicabo voluptatum ratione pariatur sint cupiditate eos, optio ab et quis totam.Lorem ipsum dolor sit amet, consectetur adipisicing elit. Suscipit hic labore reprehenderit ad vel, consequuntur repellat. Tempore accusamus impedit nam vitae obcaecati reprehenderit omnis, numquam iusto, vel quod neque sed sapiente tenetur ullam. Nostrum error deleniti dolorem non explicabo voluptatum ratione pariatur sint cupiditate eos, optio ab et quis totam.Lorem ipsum dolor sit amet, consectetur adipisicing elit. Suscipit hic labore reprehenderit ad vel, consequuntur repellat. Tempore accusamus impedit nam vitae obcaecati reprehenderit omnis, numquam iusto, vel quod neque sed sapiente tenetur ullam. Nostrum error deleniti dolorem non explicabo voluptatum ratione pariatur sint cupiditate eos, optio ab et quis totam.'
 } %}
 
 {% set article_listed = {
 	'author': author,
 	'categories': categories,
-	'date': "now",
+	'date': date(),
 	'illustration': 'https://dl.dropboxusercontent.com/u/18517066/nomdecode/fond.jpg',
 	'title': 'Nostalgie : essai de jeu isométrique en Java avec Canvas'
 } %}
 
 
 <section class="vignettes">
-	{% for i in 0..4 %}
+	{% for i in 0..50 %}
 		<div class="vignette">
 			<div class="illustration" style="background-image:url({{ article_listed.illustration }});"></div>
 			<div class="title"><span>{{ article_listed.title }}</span></div>
@@ -48,11 +48,11 @@
 </section>
 <article>
 	<header style="background-image:url({{ article.illustration }});">
-		<div class="author" style="background-color:{{ article.author.color|opacity(0.7) }};">
+		<div class="author" style="background-color:{{ article.author.color|opacity(0.7) }};" data-bg-transparency="{{ article.author.color|opacity(0.7) }}">
 			<div class="info">
 				<a href="#"><img src="{{ article.author.photo }}" alt="" class="photo"></a>
 				<span><a href="#" class="name">{{ article.author.name }}</a></span>
-				<span class="date">{{ article.date|date("d/m/Y") }}</span>
+				<span class="date">{{ article.date|fullDate }}</span>
 				<div class="categories">
 					{% for category in categories %}
 						<a href="#"><img src="{{ category.img }}" alt=""></a>
@@ -66,5 +66,36 @@
 		<div class="text">{{ article.content }}</div>
 	</div>
 </article>
+{% endblock %}
 
+{% block stylesheets %}
+{{ parent() }}
+<link rel="stylesheet" href="{{ asset('css/scrollbar.css') }}">
+{% endblock %}
+
+{% block javascripts %}
+{{ parent() }}
+<script src="{{ asset('js/scrollbar.min.js') }}"></script>
+<script>
+var $bgAuthor = $('article header .author');
+
+function replaceRegexOpacity(str, opacity) {
+	return str.replace(/(rgba\(([0-9 ]+,){3}) *([0-9\.]+) *(\))/, "$1 "+opacity+"$4");
+}
+
+$("article, .vignettes").mCustomScrollbar({
+	scrollInertia: 0,
+    callbacks:{
+        whileScrolling:function(){
+        	if (-this.mcs.top > $("header").height()-$("header .author").height() ) {
+		        $bgAuthor.addClass('fixed');
+		        $bgAuthor.css("backgroundColor", replaceRegexOpacity($bgAuthor.css("backgroundColor"), 1));
+		    } else {
+		        $bgAuthor.removeClass('fixed');
+		        $bgAuthor.css("backgroundColor", $bgAuthor.attr("data-bg-transparency"));
+		    }
+        }
+    }
+});
+</script>
 {% endblock %}
