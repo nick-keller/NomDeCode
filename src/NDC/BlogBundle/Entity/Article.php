@@ -36,6 +36,19 @@ class Article
     private $updatedAt;
 
     /**
+     * @var \Doctrine\Common\Collections\Collection
+     */
+    private $techs;
+
+    /**
+     * Constructor
+     */
+    public function __construct()
+    {
+        $this->techs = new \Doctrine\Common\Collections\ArrayCollection();
+    }
+
+    /**
      * Get id
      *
      * @return integer
@@ -135,5 +148,38 @@ class Article
         $this->updatedAt = $updatedAt;
 
         return $this;
+    }
+
+    /**
+     * Add techs
+     *
+     * @param \NDC\BlogBundle\Entity\Tech $techs
+     * @return Article
+     */
+    public function addTech(\NDC\BlogBundle\Entity\Tech $techs)
+    {
+        $this->techs[] = $techs;
+
+        return $this;
+    }
+
+    /**
+     * Remove techs
+     *
+     * @param \NDC\BlogBundle\Entity\Tech $techs
+     */
+    public function removeTech(\NDC\BlogBundle\Entity\Tech $techs)
+    {
+        $this->techs->removeElement($techs);
+    }
+
+    /**
+     * Get techs
+     *
+     * @return \Doctrine\Common\Collections\Collection
+     */
+    public function getTechs()
+    {
+        return $this->techs;
     }
 }
