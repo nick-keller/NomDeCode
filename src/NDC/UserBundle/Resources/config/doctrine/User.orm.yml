@@ -1,0 +1,15 @@
+NDC\UserBundle\Entity\User:
+    type: entity
+    table: ndc_user
+    repositoryClass: NDC\UserBundle\Repository\UserRepository
+    id:
+        id:
+            type: integer
+            id: true
+            generator:
+                strategy: AUTO
+
+    fields:
+        color:
+            type: string
+            length: 6

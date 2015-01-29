@@ -1,0 +1,5 @@
+services:
+    ndc_user.color_extension:
+        class: NDC\UserBundle\Twig\ColorExtension
+        tags:
+            - { name: twig.extension }
