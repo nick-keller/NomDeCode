@@ -13,3 +13,26 @@ NDC\BlogBundle\Entity\Article:
             type: string
             length: 255
 
+        createdAt:
+            column: created_at
+            type: date
+            gedmo:
+                timestampable:
+                    on: create
+
+        updatedAt:
+            column: updated_at
+            type: datetime
+            gedmo:
+                timestampable:
+                    on: update
+
+
+    manyToOne:
+        author:
+            targetEntity: NDC\UserBundle\Entity\User
+            fetch: EAGER
+            nullable: false
+            gedmo:
+                blameable:
+                    on: create
