@@ -6,7 +6,7 @@
 {% set author = {
 	'photo': 'https://dl.dropboxusercontent.com/u/18517066/nomdecode/author.png',
 	'name': 'Jean-Elie',
-	'color': '#655492'
+	'color': '655492'
 } %}
 {% set categories = [
 	{
@@ -48,11 +48,16 @@
 </section>
 <article>
 	<header style="background-image:url({{ article.illustration }});">
-		<div class="author" style="background-color:{{ article.author.color }};">
-			<div class="author-info">
-				<img src="{{ article.author.photo }}" alt="" class="photo">
-				<span class="name">{{ article.author.name }}</span>
+		<div class="author" style="background-color:{{ article.author.color|opacity(0.7) }};">
+			<div class="info">
+				<a href="#"><img src="{{ article.author.photo }}" alt="" class="photo"></a>
+				<span><a href="#" class="name">{{ article.author.name }}</a></span>
 				<span class="date">{{ article.date|date("d/m/Y") }}</span>
+				<div class="categories">
+					{% for category in categories %}
+						<a href="#"><img src="{{ category.img }}" alt=""></a>
+					{% endfor %}
+				</div>
 			</div>
 		</div>
 	</header>
