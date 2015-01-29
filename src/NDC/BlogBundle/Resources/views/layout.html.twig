@@ -2,9 +2,13 @@
 
 {% block breadcrumb %}
     {{ parent() }}
-    <li>
-        <a href="{{ path('blog_article_admin_index') }}">
-            Articles
-        </a>
-    </li>
+    {{ helper.breadcrumb('blog_article_admin_index', 'Articles') }}
+{% endblock %}
+
+{% block search %}
+    {{ helper.search('blog_article_admin_index') }}
+{% endblock %}
+
+{% block actions %}
+    {{ helper.action('blog_article_admin_index', 'plus', 'Ajouter') }}
 {% endblock %}
