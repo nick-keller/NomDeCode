@@ -32,7 +32,7 @@ class ArticleAdminController extends Controller
         $articles = $this->paginator->paginate(
             $this->em->getRepository('NDCBlogBundle:Article')->queryAll(),
             $request->query->get('page', 1),
-            50
+            30
         );
 
         return array(
@@ -48,6 +48,14 @@ class ArticleAdminController extends Controller
         $article = new Article;
         $article->setAuthor($this->getUser());
 
+        return $this->handleForm($article, $request);
+    }
+
+    /**
+     * @Template
+     */
+    public function editAction(Article $article, Request $request)
+    {
         return $this->handleForm($article, $request);
     }
 
@@ -70,6 +78,7 @@ class ArticleAdminController extends Controller
 
         return array(
             'form' => $form->createView(),
+            'article' => $article,
         );
     }
 } 

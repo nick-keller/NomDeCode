@@ -28,6 +28,9 @@ class ArticleType extends AbstractType
                 'multiple' => true,
                 'expanded' => true,
             ))
+            ->add('createdAt', 'datetime', array(
+                'label' => 'Créé le',
+            ))
             ->add('Enregistrer', 'submit')
         ;
     }

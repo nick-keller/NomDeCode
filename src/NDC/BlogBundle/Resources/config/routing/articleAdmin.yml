@@ -5,3 +5,7 @@ blog_article_admin_index:
 blog_article_admin_add:
     pattern: /add
     defaults: { _controller: NDCBlogBundle:ArticleAdmin:add }
+
+blog_article_admin_edit:
+    pattern: /{id}/edit
+    defaults: { _controller: NDCBlogBundle:ArticleAdmin:edit }
