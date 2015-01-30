@@ -52,6 +52,10 @@
     {% endif %}
 {% endmacro %}
 
+{% macro tech(tech) %}
+    <div class="tech" style="background-color: #{{ tech.color }};background-image: url({{ asset(tech.webPath) }});"></div>
+{% endmacro %}
+
 {% import _self as helper %}
 
 <html lang="fr">
@@ -64,11 +68,7 @@
 
     {% block stylesheets %}
         <link href="{{ asset('css/bootstrap.min.css') }}" rel="stylesheet">
-        <style type="text/css">
-            body{
-                margin-top: 70px;
-            }
-        </style>
+        <link href="{{ asset('css/admin.css') }}" rel="stylesheet">
     {% endblock %}
 </head>
 
