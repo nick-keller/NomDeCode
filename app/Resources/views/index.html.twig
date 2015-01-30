@@ -71,36 +71,40 @@
 	</code></pre>'
 } %}
 
+<section class="left">
+	<nav>
+		<div class="logo"></div>
+		
+	</nav>
 
-<section class="vignettes scrollbar-left">
-	<div class="opacity-cache"></div>
-	{% for i in 0..12 %}
-		{% set this_color = random(colors) %}
-		<div class="vignette" data-article-id="{{ i }}">
-			<a href="#article">
-				<div class="illustration" style="background-color:#{{ this_color }};"></div>
-				<div class="title"><span>{{ article_listed.title }}</span></div>
-			</a>
-			<div class="triangle" style="border-color:transparent transparent #{{ this_color }} transparent;"></div>
-			<div class="author">
-				<a href="#author" class="photo">
-					<img src="{{ article_listed.author.photo }}" alt="">
+	<section class="vignettes scrollbar-left">
+		<div class="opacity-cache"></div>
+		{% for i in 0..40 %}
+			{% set this_color = random(colors) %}
+			<div class="vignette" data-article-id="{{ i }}">
+				<a href="#article">
+					<div class="illustration" style="background-color:#{{ this_color }};"></div>
+					<div class="title"><span>{{ article_listed.title }}</span></div>
 				</a>
+				<div class="triangle" style="border-color:transparent transparent #{{ this_color }} transparent;"></div>
+				<div class="author">
+					<a href="#author" class="photo">
+						<img src="{{ article_listed.author.photo }}" alt="">
+					</a>
+				</div>
+				<div class="categories">
+					{% for category in categories %}
+						<a href="#cat"><img src="{{ category.img }}" alt=""></a>
+					{% endfor %}
+				</div>
 			</div>
-			<div class="categories">
-				{% for category in categories %}
-					<a href="#cat"><img src="{{ category.img }}" alt=""></a>
-				{% endfor %}
-			</div>
-		</div>
-	{% endfor %}
+		{% endfor %}
+	</section>
 </section>
 
 <article>
 	{% include 'article.html.twig' %}
 </article>
-
-{# <a href="#" class="menu-button"><div><span></span></div></a> #}
 {% endblock %}
 
 {% block stylesheets %}
@@ -136,11 +140,19 @@ function replaceRegexOpacity(str, opacity) {
 // scrollbars and author colored bar opacity
 $(".vignettes").mCustomScrollbar({
 	scrollInertia: 0,
-	theme:"minimal"
+	theme:"minimal",
+	mouseWheel:
+		{
+			scrollAmount: 100
+		}
 });
 $("article").mCustomScrollbar({
 	scrollInertia: 0,
 	theme:"minimal",
+	mouseWheel:
+		{
+			scrollAmount: 100
+		},
     callbacks:{
         whileScrolling:function(){
         	var ratio_header = -this.mcs.top/headerHeight;
@@ -148,6 +160,7 @@ $("article").mCustomScrollbar({
         		ratio_header = ratio_header.map(0, 1, parseFloat(maxTransparency), 1);
 		        $bgAuthor.removeClass('fixed');
 		        $bgAuthor.css("background-color", replaceRegexOpacity($bgAuthor.attr("data-bg-transparency"), ratio_header));
+		        $("header").css("background-position", "0 "+ parseFloat(-this.mcs.top)/2 +"px");
 		    } else {
 		        $bgAuthor.addClass('fixed');
 		        $bgAuthor.css("background-color", replaceRegexOpacity($bgAuthor.css("backgroundColor"), 1));
@@ -163,9 +176,9 @@ $(".vignettes").on('click', '.vignette', function () {
 });
 
 
-/*
+//*
 // opacity cache over vignettes
-$(".vignettes").hover(
+$(".vignettes, nav").hover(
 	function() {
 		$(".opacity-cache").removeClass("active");
 	}, function() {
