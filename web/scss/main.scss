@@ -1,13 +1,14 @@
 @import "typography";
 @import "colors";
 
+
 // variables
-$height-author: 80px;
+$height-author: 64px;
 $size-photo-author-vignette: 40px;
-$size-photo-author-article: 100px;
+$size-photo-author-article: 90px;
 $font-size-base: 1rem;
 $font-size-headline-vignette: 1.2rem;
-$font-size-headline-article: 2.5rem;
+$font-size-headline-article: 3rem;
 $size-icon-category: 30px;
 $width-icon-menu: 28px;
 // IF WIDTH CHANGED IN PERCENTAGE -> EDIT WIDTH OF VIGNETTES IN VW
@@ -106,6 +107,8 @@ section.vignettes {
 
 			span {
 				width: 70%;
+				overflow: hidden;
+				height: $font-size-headline-vignette*3 + $font-size-headline-vignette*1.2;
 			}
 		}
 
@@ -273,6 +276,11 @@ article {
 			font-weight: bold;
 			line-height: 95%;
 			color: #666;
+		}
+
+		img {
+			align: center;
+			width: 100%;
 		}
 	}
 }
