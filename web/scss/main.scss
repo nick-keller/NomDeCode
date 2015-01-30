@@ -20,6 +20,9 @@ $width-vignettes: 100% - $width-article;
 // sizes for media queries
 $size-limit-little-screen: 1160px;
 
+// imports needing variables
+@import "article_theme";
+
 
 // mixins
 @mixin author-photo($diameter) {
@@ -59,7 +62,7 @@ nav {
 	width: $width-left-menu;
 	background-color: $background-color-menu;
 	z-index: 20;
-	
+
 	.logo {
 		height: $width-left-menu;
 		background-color: $background-color-menu-icone;
@@ -307,21 +310,6 @@ article {
 		@media screen and (max-width: $size-limit-little-screen) {
 			width: 70%;
 			padding-left: 15%;
-		}
-
-		.title {
-			margin-top: 70px;
-			margin-bottom: 40px;
-			font-family: $font-family-headline;
-			font-size: $font-size-headline-article;
-			font-weight: bold;
-			line-height: 95%;
-			color: #666;
-		}
-
-		img {
-			align: center;
-			width: 100%;
 		}
 	}
 }

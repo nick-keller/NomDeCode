@@ -1,0 +1,54 @@
+$padding-inline: 2px 4px;
+
+article .content {
+	a {
+		color: #1290ff;
+	}
+
+	h1.title {
+		margin-top: 70px;
+		margin-bottom: 40px;
+		font-family: $font-family-headline;
+		font-size: $font-size-headline-article;
+		font-weight: bold;
+		line-height: 95%;
+		color: #666;
+	}
+
+	img {
+		align: center;
+		width: 100%;
+	}
+
+	// inline code
+	code {
+		padding: $padding-inline;
+		font-size: 90%;
+		color: #c7254e;
+		background-color: #f9f2f4;
+		border-radius: 4px;
+	}
+
+	// block of code
+	pre {
+		background: #23241f;
+
+		code {
+			padding: 0;
+			font-size: inherit;
+			color: #f8f8f2;
+			background: #23241f;
+		}
+	}
+
+	mark {
+		padding: $padding-inline;
+		background-color: #fcf8e3;
+	}
+
+	blockquote {
+		padding: 5px 20px;
+		margin: 0 0 20px;
+		border-left: 5px solid #eee;
+	}
+}

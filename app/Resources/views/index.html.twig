@@ -62,11 +62,26 @@
 	   <li>Aliquam tincidunt mauris eu risus.</li>
 	</ul>
 
-	<pre><code>
-	#header h1 a { 
-		display: block; 
-		width: 300px; 
-		height: 80px; 
+	<pre><code class="javascript">
+	function mapFromImage(img) {
+	    var c = document.createElement("canvas");
+	    var ctx = c.getContext("2d");
+	    c.width = img.width;
+	    c.height = img.height;
+	    ctx.drawImage(img,0,0);
+	    var imgData = ctx.getImageData(0,0,c.width,c.height);ctx.getImageData(0,0,c.width,c.height);ctx.getImageData(0,0,c.width,c.height);
+
+	    plan = [];
+	    for (var y = 0; y < c.height; y++) {
+	      plan[y] = [];
+	        for (var x = 0; x < c.width ; x++) { 
+	            data = getPixel(imgData, x, y);
+	            plan[y][x] = couleurVersTile(data);
+	        }
+	    };
+	    ctx.putImageData(imgData,0,0);
+
+	    return plan;
 	}
 	</code></pre>'
 } %}
@@ -117,6 +132,9 @@
 {% block javascripts %}
 {{ parent() }}
 <script src="{{ asset('js/scrollbar.min.js') }}"></script>
+<link rel="stylesheet" href="js/highlight/styles/monokai_sublime.css" />
+<script type="text/javascript" src="js/highlight/highlight.pack.js"></script>
+<script type="text/javascript">hljs.initHighlightingOnLoad();</script>
 <script>
 Number.prototype.map=function(a,b,c,d){return c+(d-c)*((this-a)/(b-a))};
 
