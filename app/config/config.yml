@@ -73,6 +73,7 @@ jms_di_extra:
         properties:
             em: @doctrine.orm.entity_manager
             paginator: @knp_paginator
+            session: @session
 
 # Paginator Configuration
 knp_paginator:

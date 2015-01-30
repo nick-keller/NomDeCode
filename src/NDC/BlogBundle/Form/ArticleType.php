@@ -18,8 +18,16 @@ class ArticleType extends AbstractType
             ->add('title', 'text', array(
                 'label' => 'Titre'
             ))
-            ->add('author')
-            ->add('techs')
+            ->add('author', 'entity', array(
+                'label' => 'Auteur',
+                'class' => 'NDC\UserBundle\Entity\User',
+            ))
+            ->add('techs', 'entity', array(
+                'label' => 'Technos',
+                'class' => 'NDC\BlogBundle\Entity\Tech',
+                'multiple' => true,
+                'expanded' => true,
+            ))
             ->add('Enregistrer', 'submit')
         ;
     }

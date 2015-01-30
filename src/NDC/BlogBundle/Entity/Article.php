@@ -53,6 +53,11 @@ class Article
         $this->techs = new \Doctrine\Common\Collections\ArrayCollection();
     }
 
+    public function __toString()
+    {
+        return $this->title;
+    }
+
     /**
      * Get id
      *

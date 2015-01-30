@@ -23,7 +23,7 @@ NDC\BlogBundle\Entity\Article:
 
         createdAt:
             column: created_at
-            type: date
+            type: datetime
             gedmo:
                 timestampable:
                     on: create
