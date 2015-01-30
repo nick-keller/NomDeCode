@@ -74,6 +74,7 @@ jms_di_extra:
             em: @doctrine.orm.entity_manager
             paginator: @knp_paginator
             session: @session
+            uploadableManager: @stof_doctrine_extensions.uploadable.manager
 
 # Paginator Configuration
 knp_paginator:

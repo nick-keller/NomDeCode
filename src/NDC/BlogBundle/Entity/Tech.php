@@ -29,6 +29,13 @@ class Tech
      */
     private $slug;
 
+    private $file;
+
+    /**
+     * @var string
+     */
+    private $path;
+
     public function __toString()
     {
         return $this->name;
@@ -109,6 +116,50 @@ class Tech
     public function setSlug($slug)
     {
         $this->slug = $slug;
+
+        return $this;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getFile()
+    {
+        return $this->file;
+    }
+
+    /**
+     * @param mixed $file
+     */
+    public function setFile($file)
+    {
+        $this->file = $file;
+    }
+
+    /**
+     * Get path
+     *
+     * @return string
+     */
+    public function getPath()
+    {
+        return $this->path;
+    }
+
+    public function getWebPath()
+    {
+        return substr($this->path, strpos($this->path, 'app/../web/') + 11);
+    }
+
+    /**
+     * Set path
+     *
+     * @param string $path
+     * @return Tech
+     */
+    public function setPath($path)
+    {
+        $this->path = $path;
 
         return $this;
     }

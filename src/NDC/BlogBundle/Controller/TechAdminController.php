@@ -9,6 +9,7 @@ use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Doctrine\ORM\EntityManager;
 use Knp\Component\Pager\Paginator;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
+use Stof\DoctrineExtensionsBundle\Uploadable\UploadableManager;
 use Symfony\Component\HttpFoundation\Request;
 
 class TechAdminController extends Controller
@@ -22,6 +23,11 @@ class TechAdminController extends Controller
      * @var Paginator
      */
     private $paginator;
+
+    /**
+     * @var UploadableManager
+     */
+    private $uploadableManager;
 
     /**
      * @Template
@@ -66,6 +72,8 @@ class TechAdminController extends Controller
 
             if($form->isValid()){
                 $this->em->persist($tech);
+                if($tech->getFile())
+                    $this->uploadableManager->markEntityToUpload($tech, $tech->getFile());
                 $this->em->flush();
 
                 $this->addFlash('success', 'Techno mis-à-jour.');

@@ -21,6 +21,9 @@ class TechType extends AbstractType
             ->add('color', 'text', array(
                 'label' => 'Couleur',
             ))
+            ->add('file', 'file', array(
+                'label' => 'Fichier'
+            ))
             ->add('Enregistrer', 'submit')
         ;
     }
