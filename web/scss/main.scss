@@ -3,16 +3,29 @@
 
 // variables
 $height-author: 80px;
-$size-photo-author: 100px;
-$font-size-base: 100%;
-$font-size-headline-vignette: 2rem;
+$size-photo-author-vignette: 40px;
+$size-photo-author-article: 100px;
+$font-size-base: 1rem;
+$font-size-headline-vignette: 1.2rem;
 $font-size-headline-article: 2.5rem;
 $size-icon-category: 30px;
-
+$width-icon-menu: 28px;
+// IF WIDTH CHANGED IN PERCENTAGE -> EDIT WIDTH OF VIGNETTES IN VW
 $width-article: 75%;
+$width-vignettes: 100% - $width-article;
 
 // sizes for media queries
-$size-limit-little-screen: 960px;
+$size-limit-little-screen: 1160px;
+
+
+// mixins
+@mixin author-photo($diameter) {
+	width: $diameter;
+	height: $diameter;
+	border-radius: 50%;
+}
+
+
 
 // rules
 html, body {
@@ -37,7 +50,112 @@ section.vignettes, article {
 }
 
 section.vignettes {
-	width: 100% - $width-article;
+	width: $width-vignettes;
+	display: flex;
+	flex-direction: column;
+	align-items: stretch;
+
+	.opacity-cache {
+		position: absolute;
+		top: 0;
+		bottom: 0;
+		right: 0;
+		left: 0;
+		pointer-events: none;
+		background-color: rgba(26, 34, 37, 0);
+		transition: all 0.2s ease;
+		z-index: 10;
+
+		&.active {
+			background-color: rgba(26, 34, 37, 0.5);
+		}
+	}
+
+	.vignette {
+		position: relative;
+		height: 130px;
+		min-height: 130px;
+		margin: auto 15%;
+		margin-top: 50px;
+		background-color: #fff;
+		font-family: $font-family-headline;
+		font-size: $font-size-headline-vignette;
+		font-weight: bold;
+		@media screen and (max-width: $size-limit-little-screen) {
+			margin: auto 8%;
+			margin-top: 40px;
+			font-size: $font-size-headline-vignette*0.8;
+		}
+
+		.illustration {
+			background-color: #333;
+			height: 100%;
+			width: 15px;
+		}
+
+		.title {
+			position: absolute;
+			top: 0;
+			bottom: 0;
+			left: 0;
+			right: 0;
+			display: flex;
+			justify-content: center;
+			align-items: center;
+			overflow: hidden;
+
+			span {
+				width: 70%;
+			}
+		}
+
+		.triangle {
+			position: absolute;
+			width: 0;
+			height: 0;
+			border-bottom: 55px solid red;
+			border-left: 55px solid transparent;
+			bottom: 0;
+			right: 0;
+			pointer-events: none;
+		}
+
+		.author {
+			position: absolute;
+			right: 0;
+			bottom: 0;
+			width: $size-photo-author-vignette;
+			height: $size-photo-author-vignette;
+			margin-bottom: $size-photo-author-vignette/4;
+			margin-right: $size-photo-author-vignette/4;
+
+
+			.photo {
+				display: inline-block;
+
+				img {
+					@include author-photo($size-photo-author-vignette);
+				}
+			}
+		}
+
+		.categories {
+			position: absolute;
+			right: 0;
+			top: 0;
+			display: flex;
+			height: $size-icon-category;
+			margin-top: - $size-icon-category/2;
+			a {
+				margin-right: $size-icon-category/2;
+				position: relative; 	
+				img {
+					width: $size-icon-category;
+					height: $size-icon-category;
+				}
+			}
+		}
+	}
 }
 
 article {
@@ -55,6 +173,10 @@ article {
 		position: relative;
 		background-size: cover;
 
+		&.no-illustration {
+			height: $height-author;
+		}
+
 		.author {
 			position: absolute;
 			bottom: 0;
@@ -62,30 +184,35 @@ article {
 			right: 0;
 			height: $height-author;
 			background-color: $color-author;
-			transition: background-color 0.2s ease;
+			font-family: $font-family-author;
 
 			&.fixed {
 				width: $width-article;
 				position: fixed;
 				top: 0;
 				margin-left: 100% - $width-article;
- 				z-index: 10;
+				z-index: 10;
 			}
 
 			.info {
 				margin: auto;
 				position: relative;
-				font-size: 1.2rem;
+				font-size: $font-size-base*1.3;
 				color: #fff;
 
 				width: $width-article;
-				@media screen and (max-width: $size-limit-little-screen) { width: $width-article + 15%; }
+				@media screen and (max-width: $size-limit-little-screen) {
+					width: $width-article + 17%;
+				}
 
-				img.photo {					
-					width: $size-photo-author;
-					height: $size-photo-author;
-					border-radius: 50%;
-					margin-top: $height-author - ($size-photo-author/2);
+				.photo {
+					display: inline-block;
+
+					img {
+						@include author-photo($size-photo-author-article);
+						margin-top: $height-author - ($size-photo-author-article/2);
+						display: inline-block;
+					}
 				}
 
 				& > span {
@@ -95,26 +222,27 @@ article {
 
 				.name {
 					margin-left: 20px;
-					font-family: $font-family-headline;
 					white-space: nowrap;
 				}
 
 				.date {
 					right: 0;
-					font-family: $font-family-date;
-					font-size: 1rem;
+					font-size: $font-size-base;
 					font-style: italic;
+					font-weight: lighter;
 				}
 
 				.categories {
+					position: absolute;
 					display: flex;
 					flex-direction: column;
 					width: $size-icon-category;
 					margin-top: $size-icon-category/4;
-					margin-left: ($size-photo-author - $size-icon-category)/2;
+					margin-left: ($size-photo-author-article - $size-icon-category)/2;
 
 					a {
 						margin-top: $size-icon-category/2;
+						position: relative;
 
 						img {
 							width: $size-icon-category;
@@ -128,12 +256,13 @@ article {
 
 	.content {
 		margin: auto;
+		padding-bottom: 80px;
 		padding-left: 5%;
 
 		width: 55%;
 		@media screen and (max-width: $size-limit-little-screen) {
 			width: 70%;
-			padding-left: 10%;
+			padding-left: 15%;
 		}
 
 		.title {
@@ -141,7 +270,58 @@ article {
 			margin-bottom: 40px;
 			font-family: $font-family-headline;
 			font-size: $font-size-headline-article;
+			font-weight: bold;
 			line-height: 95%;
+			color: #666;
 		}
+	}
+}
+
+.menu-button {
+	display: block;
+	width: $width-icon-menu;
+	height: $width-icon-menu;
+	position: absolute;
+	left: 0;
+	top: 0;
+	margin-left: $width-vignettes;
+	margin-top: $width-icon-menu*1.5;
+	z-index: 15;
+
+	div {
+		width: $width-icon-menu;
+		height: $width-icon-menu;
+		padding: $width-icon-menu/1.5;
+		margin-left: - $width-icon-menu*1.6;
+		background-color: #3bab9d;
+		border-radius: 50%;
+		border: solid 8px $background-color-base;
+	}
+
+	span:after,
+	span:before {
+		content: "";
+		position: absolute;
+		left: 0;
+		top: -9px;
+	}
+	span:after{
+		top: 9px;
+	}
+	span {
+		position: relative;
+		display: block;
+		margin-top: 11px;
+	}
+
+	span,
+	span:after,
+	span:before {
+		width: 100%;
+		height: 4px;
+		background-color: $background-color-base;
+		transition: all 0.3s;
+		backface-visibility: hidden;
+		border-radius: 1px;
 	}
 }

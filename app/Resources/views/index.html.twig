@@ -3,10 +3,12 @@
 {% block body %}
 
 <!-- fake data -->
+
+{% set colors = ['655492', 'C15B68', '80CED7', '76C46F'] %}
 {% set author = {
 	'photo': 'https://dl.dropboxusercontent.com/u/18517066/nomdecode/author.png',
 	'name': 'Jean-Elie',
-	'color': '655492'
+	'color': colors[0]
 } %}
 {% set categories = [
 	{
@@ -16,17 +18,12 @@
 	{
 		'name': "PHP",
 		'img': 'https://dl.dropboxusercontent.com/u/18517066/nomdecode/categories/php.png'
+	},
+	{
+		'name': "JS",
+		'img': 'https://dl.dropboxusercontent.com/u/18517066/nomdecode/categories/js.png'
 	}
 ] %}
-{% set article = {
-	'author': author,
-	'categories': categories,
-	'date': date(),
-	'illustration': 'https://dl.dropboxusercontent.com/u/18517066/nomdecode/fond.jpg',
-	'title': 'Le plus beau titre possible, gros bisous les enfants',
-	'content': 'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Suscipit hic labore reprehenderit ad vel, consequuntur repellat. Tempore accusamus impedit nam vitae obcaecati reprehenderit omnis, numquam iusto, vel quod neque sed sapiente tenetur ullam. Nostrum error deleniti dolorem non explicabo voluptatum ratione pariatur sint cupiditate eos, optio ab et quis totam.Lorem ipsum dolor sit amet, consectetur adipisicing elit. Suscipit hic labore reprehenderit ad vel, consequuntur repellat. Tempore accusamus impedit nam vitae obcaecati reprehenderit omnis, numquam iusto, vel quod neque sed sapiente tenetur ullam. Nostrum error deleniti dolorem non explicabo voluptatum ratione pariatur sint cupiditate eos, optio ab et quis totam.Lorem ipsum dolor sit amet, consectetur adipisicing elit. Suscipit hic labore reprehenderit ad vel, consequuntur repellat. Tempore accusamus impedit nam vitae obcaecati reprehenderit omnis, numquam iusto, vel quod neque sed sapiente tenetur ullam. Nostrum error deleniti dolorem non explicabo voluptatum ratione pariatur sint cupiditate eos, optio ab et quis totam.Lorem ipsum dolor sit amet, consectetur adipisicing elit. Suscipit hic labore reprehenderit ad vel, consequuntur repellat. Tempore accusamus impedit nam vitae obcaecati reprehenderit omnis, numquam iusto, vel quod neque sed sapiente tenetur ullam. Nostrum error deleniti dolorem non explicabo voluptatum ratione pariatur sint cupiditate eos, optio ab et quis totam.Lorem ipsum dolor sit amet, consectetur adipisicing elit. Suscipit hic labore reprehenderit ad vel, consequuntur repellat. Tempore accusamus impedit nam vitae obcaecati reprehenderit omnis, numquam iusto, vel quod neque sed sapiente tenetur ullam. Nostrum error deleniti dolorem non explicabo voluptatum ratione pariatur sint cupiditate eos, optio ab et quis totam.Lorem ipsum dolor sit amet, consectetur adipisicing elit. Suscipit hic labore reprehenderit ad vel, consequuntur repellat. Tempore accusamus impedit nam vitae obcaecati reprehenderit omnis, numquam iusto, vel quod neque sed sapiente tenetur ullam. Nostrum error deleniti dolorem non explicabo voluptatum ratione pariatur sint cupiditate eos, optio ab et quis totam.Lorem ipsum dolor sit amet, consectetur adipisicing elit. Suscipit hic labore reprehenderit ad vel, consequuntur repellat. Tempore accusamus impedit nam vitae obcaecati reprehenderit omnis, numquam iusto, vel quod neque sed sapiente tenetur ullam. Nostrum error deleniti dolorem non explicabo voluptatum ratione pariatur sint cupiditate eos, optio ab et quis totam.Lorem ipsum dolor sit amet, consectetur adipisicing elit. Suscipit hic labore reprehenderit ad vel, consequuntur repellat. Tempore accusamus impedit nam vitae obcaecati reprehenderit omnis, numquam iusto, vel quod neque sed sapiente tenetur ullam. Nostrum error deleniti dolorem non explicabo voluptatum ratione pariatur sint cupiditate eos, optio ab et quis totam.Lorem ipsum dolor sit amet, consectetur adipisicing elit. Suscipit hic labore reprehenderit ad vel, consequuntur repellat. Tempore accusamus impedit nam vitae obcaecati reprehenderit omnis, numquam iusto, vel quod neque sed sapiente tenetur ullam. Nostrum error deleniti dolorem non explicabo voluptatum ratione pariatur sint cupiditate eos, optio ab et quis totam.Lorem ipsum dolor sit amet, consectetur adipisicing elit. Suscipit hic labore reprehenderit ad vel, consequuntur repellat. Tempore accusamus impedit nam vitae obcaecati reprehenderit omnis, numquam iusto, vel quod neque sed sapiente tenetur ullam. Nostrum error deleniti dolorem non explicabo voluptatum ratione pariatur sint cupiditate eos, optio ab et quis totam.Lorem ipsum dolor sit amet, consectetur adipisicing elit. Suscipit hic labore reprehenderit ad vel, consequuntur repellat. Tempore accusamus impedit nam vitae obcaecati reprehenderit omnis, numquam iusto, vel quod neque sed sapiente tenetur ullam. Nostrum error deleniti dolorem non explicabo voluptatum ratione pariatur sint cupiditate eos, optio ab et quis totam.Lorem ipsum dolor sit amet, consectetur adipisicing elit. Suscipit hic labore reprehenderit ad vel, consequuntur repellat. Tempore accusamus impedit nam vitae obcaecati reprehenderit omnis, numquam iusto, vel quod neque sed sapiente tenetur ullam. Nostrum error deleniti dolorem non explicabo voluptatum ratione pariatur sint cupiditate eos, optio ab et quis totam.'
-} %}
-
 {% set article_listed = {
 	'author': author,
 	'categories': categories,
@@ -34,23 +31,49 @@
 	'illustration': 'https://dl.dropboxusercontent.com/u/18517066/nomdecode/fond.jpg',
 	'title': 'Nostalgie : essai de jeu isométrique en Java avec Canvas'
 } %}
+{% set article = {
+	'author': author,
+	'categories': categories,
+	'date': date(),
+	'illustration': 'https://dl.dropboxusercontent.com/u/18517066/nomdecode/fond.jpg',
+	'title': 'Le plus beau titre possible, gros bisous les enfants',
+	'content': 'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Suscipit hic labore reprehenderit ad vel, consequuntur rep<br>ellat. Tempore accusamus impedit nam vitae obcaecati reprehenderit omnis, numquam iusto, vel quod neque sed sapiente tenetur ullam. Nostrum error deleniti dolorem non explicabo voluptatum ratione pariatur sint cupiditate eos, optio ab et quis totam.Lorem ipsum dolor sit amet, consectetur adipisicing elit. Suscipit hic labore reprehenderit ad vel, consequuntur repellat. Tempore accusamus impedit nam vitae obcaecati reprehenderit omnis, numquam iusto, vel quod neque sed sapiente tenetur ullam. Nostrum error deleniti dolorem non explicabo voluptatum ratione pariatur sint cupiditate eos, optio ab et quis<br> totam.Lorem ipsum dolor sit amet, consectetur adipisicing elit. Suscipit hic labore reprehenderit ad vel, consequuntur repellat. Tempore accusamus impedit nam vitae obcaecati reprehenderit omnis, numquam iusto, vel quod neque sed sapiente t<br>enetur ullam. Nostrum error deleniti dolorem non explicabo voluptatum ratione pariatur sint cupiditate eos, optio ab et quis totam.Lorem ipsum dolor sit amet, consectetur adipisicing elit. Suscipit hic labore reprehenderit ad vel, consequunt<br>ur repellat. Tempore accusamus impedit nam vitae obcaecati reprehenderit omnis, numquam iusto, vel quod neque sed sapiente tenetur ullam. Nostrum error deleniti dolorem non explicabo voluptatum ratione pariatur sint cupiditate eos, optio ab et quis totam.Lorem ipsum dolor sit amet, consectetur adipisicing elit. Suscipit hic labore reprehenderit ad vel, consequuntur repellat. Tempore accusamus impedit nam vitae obcaecati reprehenderit omnis, numquam iusto, vel quod neque sed sapiente tenetur ullam. Nostrum error deleniti dolorem non e<br><br>xplicabo voluptatum ratione pariatur sint cupiditate eos, optio ab et quis totam.Lorem ipsum dolor sit amet, consectetur adipisicing elit. Suscipit hic labore reprehenderit ad vel, consequuntur repellat. Tempore accusamus impedit nam vitae obcaecati reprehenderit omnis, numquam iusto, vel quod neque sed sapiente tenetur ullam. Nostrum error deleniti dolorem non explicabo vo<br>luptatum ratione pariatur sint cupiditate eos, optio ab et quis totam.Lorem ipsum dolor sit amet, consectetur adipisicing elit. Suscipit hic labore reprehenderit ad vel, consequuntur repellat. Tempore accusamus impedit nam vitae obcaecati reprehenderit omnis, numquam iusto, vel quod neque sed sapiente tenetur ullam. Nostrum error deleniti dolorem non explicabo voluptatum ratione pariatur sint cupiditate eos, optio ab et quis totam.Lorem ipsum dolor sit amet, consectetur adipisicing elit. Suscipit hic labore reprehenderit ad vel, consequuntur repellat. Tem<br><br>pore accusamus impedit nam vitae obcaecati reprehenderit omnis, numquam iusto, vel quod neque sed sapiente tenetur ullam. Nostrum error deleniti dolorem non explicabo voluptatum ratione pariatur sint cupiditate eos, optio ab et quis totam.Lorem ipsum dolor sit amet, consectetur adipisicing elit. Suscipit hic labore reprehenderit ad vel, consequuntur repellat. Tempore accusamus impedit nam vitae obcaecati reprehenderit omnis, numquam iusto, vel quod neque sed sapiente tenetur ullam. Nostrum error deleniti dolorem non explicabo voluptatum ratione pariatur sint cupiditate eos, optio ab et quis totam.Lorem ipsum dolor sit amet, consectetur adipisicing elit. Suscipit hic labore reprehenderit ad vel, consequuntur repellat. Tempore accusamus impedit nam vitae obcaecati reprehenderit omnis, numquam iusto, vel quod neque sed sapiente tenetur ullam. Nostrum error deleniti dolorem non explicabo voluptatum ratione pariatur sint cupi<br><br>ditate eos, optio ab et quis totam.Lorem ipsum dolor sit amet, consectetur adipisicing elit. Suscipit hic labore reprehenderit ad vel, consequuntur repellat. Tempore accusamus impedit nam vitae obcaecati reprehenderit omnis, numquam iusto, vel quod neque sed sapiente tenetur ullam. Nostrum error deleniti dolorem non explicabo voluptatum ratione pariatur sint cupiditate eos, optio ab et quis totam.Lorem ipsum dolor sit amet, consectetur adipisicing elit. Suscipit hic labore reprehenderit ad vel, consequuntur repellat. Tempore accusamus impedit nam vitae obcaecati reprehenderit omnis, numquam iusto, vel quod n<br><br>eque sed sapiente tenetur ullam. Nostrum error deleniti dolorem non explicabo voluptatum ratione pariatur sint cupiditate eos, optio ab et quis totam.'
+} %}
 
 
-<section class="vignettes">
-	{% for i in 0..50 %}
+<section class="vignettes scrollbar-left">
+	<div class="opacity-cache"></div>
+	{% for i in 0..8 %}
+		{% set this_color = random(colors) %}
+
 		<div class="vignette">
-			<div class="illustration" style="background-image:url({{ article_listed.illustration }});"></div>
+			<div class="illustration" style="background-color:#{{ this_color }};"></div>
 			<div class="title"><span>{{ article_listed.title }}</span></div>
-			<div class="author"></div>
-			<div class="categories"></div>
+			<div class="triangle" style="border-color:transparent transparent #{{ this_color }} transparent;"></div>
+			<div class="author">
+				<a href="#" class="photo">
+					<img src="{{ article_listed.author.photo }}" alt="">
+				</a>
+			</div>
+			<div class="categories">
+				{% for category in categories %}
+					<a href="#"><img src="{{ category.img }}" alt=""></a>
+				{% endfor %}
+			</div>
 		</div>
 	{% endfor %}
 </section>
+
 <article>
-	<header style="background-image:url({{ article.illustration }});">
-		<div class="author" style="background-color:{{ article.author.color|opacity(0.7) }};" data-bg-transparency="{{ article.author.color|opacity(0.7) }}">
+	{% if article.illustration is null %}
+		<header class="no-illustration">
+			<div class="author" style="background-color:#{{ article.author.color }};" data-bg-transparency="{{ article.author.color|opacity(0.6) }}" data-max-transparency="0.6">
+	{% else %}
+		<header style="background-image:url({{ article.illustration }});">
+			<div class="author" style="background-color:{{ article.author.color|opacity(0.6) }};" data-bg-transparency="{{ article.author.color|opacity(0.6) }}" data-max-transparency="0.6">
+	{% endif %}
 			<div class="info">
-				<a href="#"><img src="{{ article.author.photo }}" alt="" class="photo"></a>
+				<a href="#" class="photo"><img src="{{ article.author.photo }}" alt=""></a>
 				<span><a href="#" class="name">{{ article.author.name }}</a></span>
 				<span class="date">{{ article.date|fullDate }}</span>
 				<div class="categories">
@@ -63,39 +86,73 @@
 	</header>
 	<div class="content">
 		<div class="title">{{ article.title }}</div>
-		<div class="text">{{ article.content }}</div>
+		<div class="text">{{ article.content|raw }}</div>
 	</div>
 </article>
+
+<a href="#" class="menu-button"><div><span></span></div></a>
 {% endblock %}
 
 {% block stylesheets %}
 {{ parent() }}
 <link rel="stylesheet" href="{{ asset('css/scrollbar.css') }}">
+<link href='http://fonts.googleapis.com/css?family=Roboto+Slab:700,400' rel='stylesheet' type='text/css'>
+<link href='http://fonts.googleapis.com/css?family=Roboto:400,300' rel='stylesheet' type='text/css'>
 {% endblock %}
 
 {% block javascripts %}
 {{ parent() }}
 <script src="{{ asset('js/scrollbar.min.js') }}"></script>
 <script>
-var $bgAuthor = $('article header .author');
+Number.prototype.map=function(a,b,c,d){return c+(d-c)*((this-a)/(b-a))};
+
+var $bgAuthor = $('article header .author'),
+	headerHeight,
+	maxTransparency = $bgAuthor.attr("data-max-transparency");
+defineHeaderHeight();
+
+$(window).resize(function() {
+	defineHeaderHeight();
+});
+
+function defineHeaderHeight() {
+	headerHeight = $("header").height()-$("header .author").height();
+}
 
 function replaceRegexOpacity(str, opacity) {
 	return str.replace(/(rgba\(([0-9 ]+,){3}) *([0-9\.]+) *(\))/, "$1 "+opacity+"$4");
 }
 
-$("article, .vignettes").mCustomScrollbar({
+// scrollbars and author colored bar opacity
+$(".vignettes").mCustomScrollbar({
 	scrollInertia: 0,
+	theme:"minimal"
+});
+$("article").mCustomScrollbar({
+	scrollInertia: 0,
+	theme:"minimal",
     callbacks:{
         whileScrolling:function(){
-        	if (-this.mcs.top > $("header").height()-$("header .author").height() ) {
+        	var ratio_header = -this.mcs.top/headerHeight;
+        	if (ratio_header < 1) {
+        		ratio_header = ratio_header.map(0, 1, parseFloat(maxTransparency), 1);
+		        $bgAuthor.removeClass('fixed');
+		        $bgAuthor.css("backgroundColor", replaceRegexOpacity($bgAuthor.attr("data-bg-transparency"), ratio_header));
+		    } else {
 		        $bgAuthor.addClass('fixed');
 		        $bgAuthor.css("backgroundColor", replaceRegexOpacity($bgAuthor.css("backgroundColor"), 1));
-		    } else {
-		        $bgAuthor.removeClass('fixed');
-		        $bgAuthor.css("backgroundColor", $bgAuthor.attr("data-bg-transparency"));
 		    }
         }
     }
 });
+
+// opacity cache over vignettes
+$(".vignettes").hover(
+	function() {
+		$(".opacity-cache").removeClass("active");
+	}, function() {
+		$(".opacity-cache").addClass("active");
+	}
+);
 </script>
 {% endblock %}

@@ -366,7 +366,7 @@ yx-axis
 	}
 	
 	/* RTL direction/left-side scrollbar */
-	.mCS-dir-rtl > .mCSB_outside + .mCS-minimal.mCSB_scrollTools_vertical{
+	.scrollbar-left > .mCSB_outside + .mCS-minimal.mCSB_scrollTools_vertical{
 		left: 0; 
 		right: auto;
 	}
@@ -379,11 +379,17 @@ yx-axis
 	
 	.mCS-minimal.mCSB_scrollTools .mCSB_dragger .mCSB_dragger_bar{
 		background-color: #fff; background-color: rgba(255,255,255,0.4);
-		filter: "alpha(opacity=40)"; -ms-filter: "alpha(opacity=40)"; 
+		filter: "alpha(opacity=40)"; -ms-filter: "alpha(opacity=40)";
+
+		background-color:rgba(37, 37, 37, 0.6);
+		filter: "alpha(opacity=60)"; -ms-filter: "alpha(opacity=60)";
 	}
 	
 	.mCS-minimal.mCSB_scrollTools .mCSB_dragger:active .mCSB_dragger_bar,
 	.mCS-minimal.mCSB_scrollTools .mCSB_dragger.mCSB_dragger_onDrag .mCSB_dragger_bar{
 		background-color: #fff; background-color: rgba(255,255,255,0.6);
-		filter: "alpha(opacity=60)"; -ms-filter: "alpha(opacity=60)"; 
+		filter: "alpha(opacity=60)"; -ms-filter: "alpha(opacity=60)";
+
+		background-color:rgba(37, 37, 37, 0.8);
+		filter: "alpha(opacity=80)"; -ms-filter: "alpha(opacity=80)";
 	}
