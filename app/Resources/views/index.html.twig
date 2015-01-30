@@ -29,7 +29,7 @@
 	'categories': categories,
 	'date': date(),
 	'illustration': 'https://dl.dropboxusercontent.com/u/18517066/nomdecode/fond.jpg',
-	'title': 'Nostalgie : essai de jeu isométrique en Java avec Canvas et voilà un titre à rallonge'
+	'title': 'Le plus beau titre possible, gros bisous les enfants'
 } %}
 {% set article = {
 	'author': author,
@@ -74,21 +74,22 @@
 
 <section class="vignettes scrollbar-left">
 	<div class="opacity-cache"></div>
-	{% for i in 0..8 %}
+	{% for i in 0..12 %}
 		{% set this_color = random(colors) %}
-
-		<div class="vignette">
-			<div class="illustration" style="background-color:#{{ this_color }};"></div>
-			<div class="title"><span>{{ article_listed.title }}</span></div>
+		<div class="vignette" data-article-id="{{ i }}">
+			<a href="#article">
+				<div class="illustration" style="background-color:#{{ this_color }};"></div>
+				<div class="title"><span>{{ article_listed.title }}</span></div>
+			</a>
 			<div class="triangle" style="border-color:transparent transparent #{{ this_color }} transparent;"></div>
 			<div class="author">
-				<a href="#" class="photo">
+				<a href="#author" class="photo">
 					<img src="{{ article_listed.author.photo }}" alt="">
 				</a>
 			</div>
 			<div class="categories">
 				{% for category in categories %}
-					<a href="#"><img src="{{ category.img }}" alt=""></a>
+					<a href="#cat"><img src="{{ category.img }}" alt=""></a>
 				{% endfor %}
 			</div>
 		</div>
@@ -96,32 +97,10 @@
 </section>
 
 <article>
-	{% if article.illustration is null %}
-		<header class="no-illustration">
-			<div class="author" style="background-color:#{{ article.author.color }};" data-bg-transparency="{{ article.author.color|opacity(0.6) }}" data-max-transparency="0.6">
-	{% else %}
-		<header style="background-image:url({{ article.illustration }});">
-			<div class="author" style="background-color:{{ article.author.color|opacity(0.6) }};" data-bg-transparency="{{ article.author.color|opacity(0.6) }}" data-max-transparency="0.6">
-	{% endif %}
-			<div class="info">
-				<a href="#" class="photo"><img src="{{ article.author.photo }}" alt=""></a>
-				<span><a href="#" class="name">{{ article.author.name }}</a></span>
-				<span class="date">{{ article.date|fullDate }}</span>
-				<div class="categories">
-					{% for category in categories %}
-						<a href="#"><img src="{{ category.img }}" alt=""></a>
-					{% endfor %}
-				</div>
-			</div>
-		</div>
-	</header>
-	<div class="content">
-		<div class="title">{{ article.title }}</div>
-		<div class="text">{{ article.content|raw }}</div>
-	</div>
+	{% include 'article.html.twig' %}
 </article>
 
-<a href="#" class="menu-button"><div><span></span></div></a>
+{# <a href="#" class="menu-button"><div><span></span></div></a> #}
 {% endblock %}
 
 {% block stylesheets %}
@@ -168,15 +147,23 @@ $("article").mCustomScrollbar({
         	if (ratio_header < 1) {
         		ratio_header = ratio_header.map(0, 1, parseFloat(maxTransparency), 1);
 		        $bgAuthor.removeClass('fixed');
-		        $bgAuthor.css("backgroundColor", replaceRegexOpacity($bgAuthor.attr("data-bg-transparency"), ratio_header));
+		        $bgAuthor.css("background-color", replaceRegexOpacity($bgAuthor.attr("data-bg-transparency"), ratio_header));
 		    } else {
 		        $bgAuthor.addClass('fixed');
-		        $bgAuthor.css("backgroundColor", replaceRegexOpacity($bgAuthor.css("backgroundColor"), 1));
+		        $bgAuthor.css("background-color", replaceRegexOpacity($bgAuthor.css("backgroundColor"), 1));
 		    }
         }
     }
 });
 
+
+$(".vignettes").on('click', '.vignette', function () {
+	$(".vignettes .vignette").removeClass("selected");
+	$(this).addClass("selected");
+});
+
+
+/*
 // opacity cache over vignettes
 $(".vignettes").hover(
 	function() {
@@ -185,5 +172,6 @@ $(".vignettes").hover(
 		$(".opacity-cache").addClass("active");
 	}
 );
+//*/
 </script>
 {% endblock %}
