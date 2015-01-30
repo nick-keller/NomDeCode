@@ -25,6 +25,16 @@ class Tech
     private $color;
 
     /**
+     * @var string
+     */
+    private $slug;
+
+    public function __toString()
+    {
+        return $this->name;
+    }
+
+    /**
      * Get id
      *
      * @return integer
@@ -76,6 +86,29 @@ class Tech
     public function setColor($color)
     {
         $this->color = $color;
+
+        return $this;
+    }
+
+    /**
+     * Get slug
+     *
+     * @return string
+     */
+    public function getSlug()
+    {
+        return $this->slug;
+    }
+
+    /**
+     * Set slug
+     *
+     * @param string $slug
+     * @return Tech
+     */
+    public function setSlug($slug)
+    {
+        $this->slug = $slug;
 
         return $this;
     }

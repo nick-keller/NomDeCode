@@ -13,6 +13,14 @@ NDC\BlogBundle\Entity\Tech:
             type: string
             length: 100
 
+        slug:
+            type: string
+            length: 100
+            gedmo:
+                slug:
+                    fields:
+                        - name
+
         color:
             type: string
             length: 6

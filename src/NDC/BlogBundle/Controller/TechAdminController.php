@@ -3,15 +3,15 @@
 
 namespace NDC\BlogBundle\Controller;
 
-use NDC\BlogBundle\Entity\Article;
-use NDC\BlogBundle\Form\ArticleType;
+use NDC\BlogBundle\Entity\Tech;
+use NDC\BlogBundle\Form\TechType;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Doctrine\ORM\EntityManager;
 use Knp\Component\Pager\Paginator;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
 use Symfony\Component\HttpFoundation\Request;
 
-class ArticleAdminController extends Controller
+class TechAdminController extends Controller
 {
     /**
      * @var EntityManager
@@ -28,14 +28,14 @@ class ArticleAdminController extends Controller
      */
     public function indexAction(Request $request)
     {
-        $articles = $this->paginator->paginate(
-            $this->em->getRepository('NDCBlogBundle:Article')->queryAll(),
+        $tech = $this->paginator->paginate(
+            $this->em->getRepository('NDCBlogBundle:Tech')->queryAll(),
             $request->query->get('page', 1),
             30
         );
 
         return array(
-            'articles' => $articles,
+            'techs' => $tech,
         );
     }
 
@@ -44,40 +44,39 @@ class ArticleAdminController extends Controller
      */
     public function addAction(Request $request)
     {
-        $article = new Article;
-        $article->setAuthor($this->getUser());
+        $tech = new Tech;
 
-        return $this->handleForm($article, $request);
+        return $this->handleForm($tech, $request);
     }
 
     /**
      * @Template
      */
-    public function editAction(Article $article, Request $request)
+    public function editAction(Tech $tech, Request $request)
     {
-        return $this->handleForm($article, $request);
+        return $this->handleForm($tech, $request);
     }
 
-    private function handleForm(Article $article, Request $request = null)
+    private function handleForm(Tech $tech, Request $request = null)
     {
-        $form = $this->createForm(new ArticleType, $article);
+        $form = $this->createForm(new TechType, $tech);
 
         if($request != null && $request->isMethod('POST')){
             $form->handleRequest($request);
 
             if($form->isValid()){
-                $this->em->persist($article);
+                $this->em->persist($tech);
                 $this->em->flush();
 
-                $this->addFlash('success', 'Article mis-à-jour.');
+                $this->addFlash('success', 'Techno mis-à-jour.');
 
-                return $this->redirect($this->generateUrl('blog_article_admin_index'));
+                return $this->redirect($this->generateUrl('blog_tech_admin_index'));
             }
         }
 
         return array(
             'form' => $form->createView(),
-            'article' => $article,
+            'tech' => $tech,
         );
     }
 } 
