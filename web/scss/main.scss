@@ -24,6 +24,7 @@ $size-limit-little-screen: 1160px;
 @import "article_theme";
 
 
+
 // mixins
 @mixin author-photo($diameter) {
 	width: $diameter;
@@ -217,9 +218,9 @@ article {
 	header {
 		height: $height-header;
 		position: relative;
-		background-size: cover;
 		min-height: $height-header;
-		background: transparent;
+		background-size: cover;
+		background-position: 50% 0px;
 
 		&.no-illustration {
 			height: $height-author;
