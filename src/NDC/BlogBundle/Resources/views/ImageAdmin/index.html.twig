@@ -3,7 +3,7 @@
 {% block body %}
 
     <div class="row">
-        <div class="col-sm-4 col-md-3">
+        <div class="col-md-3">
             <div class="panel panel-default">
                 <div class="panel-heading">
                     <i class="glyphicon glyphicon-plus"></i>
@@ -16,7 +16,7 @@
             </div>
         </div>
         {% for image in images %}
-            <div class="col-sm-4 col-md-3">
+            <div class="col-md-3">
                 <div class="thumbnail">
                     <img src="{{ asset(image.webPath) }}">
                     <div class="caption">
@@ -31,6 +31,9 @@
                     </div>
                 </div>
             </div>
+            {% if (loop.index +1) %4 == 0 %}
+    </div><div class="row">
+            {% endif %}
         {% endfor %}
     </div>
 {% endblock %}
