@@ -12,4 +12,9 @@ use Doctrine\ORM\EntityRepository;
  */
 class ImageRepository extends EntityRepository
 {
+    public function queryAll()
+    {
+        return $this->createQueryBuilder('i')
+            ->orderBy('i.id', 'DESC');
+    }
 }

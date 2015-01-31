@@ -16,6 +16,7 @@ class ImageType extends AbstractType
     {
         $builder
             ->add('file', 'file')
+            ->add('Enregistrer', 'submit')
         ;
     }
     

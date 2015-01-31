@@ -57,6 +57,11 @@ class Image
         return $this->path;
     }
 
+    public function getWebPath()
+    {
+        return substr($this->path, strpos($this->path, 'app/../web/') + 11);
+    }
+
     /**
      * Set path
      *
