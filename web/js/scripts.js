@@ -40,7 +40,7 @@ $("article").mCustomScrollbar({
         		ratio_header = ratio_header.map(0, 1, parseFloat(maxTransparency), 1);
 		        $bgAuthor.removeClass('fixed');
 		        $bgAuthor.css("background-color", replaceRegexOpacity($bgAuthor.attr("data-bg-transparency"), ratio_header));
-		        $("header").css("background-position-y", parseFloat(-this.mcs.top)/2 +"px");
+		        $("header").css("background-position", "50% "+parseFloat(-this.mcs.top)/2 +"px");
 		    } else {
 		        $bgAuthor.addClass('fixed');
 		        $bgAuthor.css("background-color", replaceRegexOpacity($bgAuthor.css("backgroundColor"), 1));
@@ -58,7 +58,7 @@ $(".vignettes").on('click', '.vignette', function () {
 
 //*
 // opacity cache over vignettes
-$(".vignettes, nav").hover(
+$("section.left").hover(
 	function() {
 		$(".opacity-cache").removeClass("active");
 	}, function() {

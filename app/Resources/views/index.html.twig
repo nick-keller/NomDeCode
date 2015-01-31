@@ -68,8 +68,7 @@
 	</ul>
             
 
-	<pre class="line-numbers"><code class="language-javascript">
-function mapFromImage(img) {
+	<pre><code class="javascript">function mapFromImage(img) {
     var c = document.createElement("canvas");
     var ctx = c.getContext("2d");
     c.width = img.width;
@@ -88,7 +87,25 @@ function mapFromImage(img) {
     ctx.putImageData(imgData,0,0);
 
     return plan;
-}</code></pre>'
+}</code></pre>
+
+<pre><code class="css">@media screen and (-webkit-min-device-pixel-ratio: 0) {
+  body:first-of-type pre::after {
+    content: "highlight: " attr(class);
+  }
+  body {
+    background: linear-gradient(45deg, blue, red);
+  }
+}</code></pre>
+
+<pre class="line-numbers"><code class="php">/**
+ * @Template
+ */
+public function editAction(Article $article, Request $request)
+{
+    return $this->handleForm($article, $request);
+}
+</code></pre>'
 } %}
 
 <section class="left">
@@ -130,7 +147,7 @@ function mapFromImage(img) {
 {% block stylesheets %}
 {{ parent() }}
 <link rel="stylesheet" href="{{ asset('css/scrollbar.css') }}">
-<link rel="stylesheet" href="{{ asset('css/prism.css') }}">
+<link rel="stylesheet" href="{{ asset('css/monokai_sublime.highlight_theme.css') }}">
 <link href='http://fonts.googleapis.com/css?family=Roboto+Slab:700,400' rel='stylesheet' type='text/css'>
 <link href='http://fonts.googleapis.com/css?family=Roboto:700,400,300' rel='stylesheet' type='text/css'>
 {% endblock %}
@@ -138,6 +155,8 @@ function mapFromImage(img) {
 {% block javascripts %}
 {{ parent() }}
 <script src="{{ asset('js/scrollbar.min.js') }}"></script>
-<script src="{{ asset('js/prism.min.js') }}"></script>
 <script src="{{ asset('js/scripts.js') }}"></script>
+
+<script src="{{ asset('js/highlight.pack.js') }}"></script>
+<script>hljs.initHighlightingOnLoad();</script>
 {% endblock %}

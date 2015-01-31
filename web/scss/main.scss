@@ -20,9 +20,11 @@ $width-vignettes: 100% - $width-article;
 // sizes for media queries
 $size-limit-little-screen: 1160px;
 
+// article content layout variables
+$padding-inline: 2px 4px;
+$margin-for-blocks: 0.5rem;
 // imports needing variables
 @import "article_theme";
-
 
 
 // mixins
@@ -252,6 +254,12 @@ article {
 				width: $width-article;
 				@media screen and (max-width: $size-limit-little-screen) {
 					width: $width-article + 17%;
+				}
+
+				pointer-events: none;
+
+				& > * {
+					pointer-events: auto;
 				}
 
 				.photo {
