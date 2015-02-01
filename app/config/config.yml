@@ -110,3 +110,15 @@ stof_doctrine_extensions:
             softdeleteable: true
             uploadable: true
             sortable: true
+
+fos_rest:
+    param_fetcher_listener: true
+    body_listener: true
+    format_listener: true
+    view:
+        view_response_listener: 'force'
+        formats:
+            json : true
+    routing_loader:
+        default_format: json
+        include_format: false
