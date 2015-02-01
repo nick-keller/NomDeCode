@@ -28,6 +28,7 @@ class AppKernel extends Kernel
 
             // FOS
             new FOS\UserBundle\FOSUserBundle(),
+            new FOS\RestBundle\FOSRestBundle(),
 
             // Doctrine
             new Stof\DoctrineExtensionsBundle\StofDoctrineExtensionsBundle(),
