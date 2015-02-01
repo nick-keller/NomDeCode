@@ -118,9 +118,8 @@ public function editAction(Article $article, Request $request)
 		<div class="opacity-cache"></div>
 		{% for i in 0..40 %}
 			{% set this_color = random(colors) %}
-			<div class="vignette" data-article-id="{{ i }}">
+			<div class="vignette" data-article-id="{{ i }}" style="border-color:#{{ this_color }};">
 				<a href="#article">
-					<div class="illustration" style="background-color:#{{ this_color }};"></div>
 					<div class="title"><span>{{ article_listed.title }}</span></div>
 				</a>
 				<div class="triangle" style="border-color:transparent transparent #{{ this_color }} transparent;"></div>

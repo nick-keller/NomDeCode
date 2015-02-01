@@ -105,13 +105,15 @@ section.left {
 		}
 
 		.vignette {
+			$transition-vignette: all 0.2s ease-in-out;
 			position: relative;
 			height: 130px;
 			min-height: 130px;
 			background-color: #fff;
 			font-weight: bold;
-			transition: all 0.1s ease-in-out;
+			transition: $transition-vignette;
 			font-family: $font-family-base;
+			border-left: 15px solid #333;
 
 			margin: auto 12%;
 			margin-top: 50px;
@@ -122,20 +124,30 @@ section.left {
 				font-size: $font-size-headline-vignette*0.8;
 			}
 
+			& * {
+				transition: $transition-vignette;
+			}
+
 			&:hover, &.selected {
+				/*
 				$transform-scale-vignette-hover: 1.1;
 			    -webkit-transform: scale($transform-scale-vignette-hover,$transform-scale-vignette-hover);
 			    transform: scale($transform-scale-vignette-hover,$transform-scale-vignette-hover);
+				*/
+				
+				/*
+				.categories {
+					margin-top: - $size-icon-category*1.2;
+				}
+
+				.title span {
+					margin-top: -2rem;
+				}
+				*/
 			}
 
 			&.selected {
 
-			}
-
-			.illustration {
-				background-color: #333;
-				height: 100%;
-				width: 15px;
 			}
 
 			.title {
@@ -145,12 +157,13 @@ section.left {
 				left: 0;
 				right: 0;
 				display: flex;
+    			flex-direction: column;
 				justify-content: center;
 				align-items: center;
 				overflow: hidden;
 
 				span {
-					width: 70%;
+					width: 75%;
 					overflow: hidden;
 					max-height: $font-size-headline-vignette*3 + $font-size-headline-vignette*1.2;
 				}
