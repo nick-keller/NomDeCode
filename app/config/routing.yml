@@ -1,9 +1,3 @@
-index:
-    path: /
-    defaults:
-        _controller: FrameworkBundle:Template:template
-        template:    '::index.html.twig'
-
 ndc_blog_bundle:
     resource: "@NDCBlogBundle/Resources/config/routing.yml"
     prefix:   /

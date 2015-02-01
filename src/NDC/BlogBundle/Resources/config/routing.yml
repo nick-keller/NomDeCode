@@ -14,3 +14,7 @@ ndc_blog_bundle_tech_admin:
 ndc_blog_bundle_image_admin:
     resource: routing/imageAdmin.yml
     prefix: /admin/images
+
+ndc_blog_bundle_blog:
+    resource: routing/blog.yml
+    prefix: /
