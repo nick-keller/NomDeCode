@@ -13,9 +13,9 @@
 	<section class="vignettes scrollbar-left">
 		{# <div class="opacity-cache"></div> #}
 		{% for article in articles %}
-			{% set this_color = random(colors) %}
-			{# {% set this_color = article.author.color %} #}
-			<div class="vignette" style="border-color:#{{ this_color }};" data-get="{{ path('blog_article', {id: article.id}) }}">
+			{# {% set this_color = random(colors) %} #}
+			{% set this_color = article.author.color %}
+			<div class="vignette" style="border-color:#{{ this_color }};" data-article-id="{{ article.id }}" data-get="{{ path('blog_article', {id: article.id}) }}">
 				<a href="#article">
 					<div class="title"><span>{{ article.title }}</span></div>
 				</a>
@@ -35,7 +35,7 @@
 	</section>
 </section>
 
-<article>
+<article data-article-id="{{ articles[0].id }}">
 	{{ render(controller('NDCBlogBundle:Blog:article', { 'id': articles[0].id })) }}
 </article>
 {% endblock %}

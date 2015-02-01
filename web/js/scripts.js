@@ -60,19 +60,23 @@ setArticleScrollbar();
 
 // selectable vignettes
 $(".vignettes").on('click', '.vignette', function () {
+	var $vignette = $(this);
 	$(".vignettes .vignette").removeClass("selected");
 	$(this).addClass("selected");
 
-	// we select "article div:first div:first" because of scrollbar javascript
-	var $article_content = $("article div:first div:first");
-	$article_content.fadeOut(200);
-	$article_content.load($(this).attr("data-get"), function() {
-		$("article").mCustomScrollbar("scrollTo","top");
-		$article_content.fadeIn(200);
-		$("article pre code").each(function(i, block) {
-			hljs.highlightBlock(block);
+	if($("article").attr("data-article-id") !== $vignette.attr("data-article-id")) {
+		// we select "article div:first div:first" because of scrollbar javascript
+		var $article_content = $("article div:first div:first");
+		$article_content.fadeOut(200);
+		$article_content.load($(this).attr("data-get"), function() {
+			$("article").mCustomScrollbar("scrollTo","top");
+			$("article").attr("data-article-id", $vignette.attr("data-article-id"));
+			$article_content.fadeIn(200);
+			$("article pre code").each(function(i, block) {
+				hljs.highlightBlock(block);
+			});
 		});
-	});
+	}
 });
 
 //*
