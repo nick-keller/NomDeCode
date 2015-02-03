@@ -62,4 +62,21 @@ class ImageAdminController extends Controller
             'form' => $form->createView(),
         );
     }
+
+    /**
+     * @Template
+     */
+    public function browseAction(Request $request)
+    {
+        $images = $this->paginator->paginate(
+            $this->em->getRepository('NDCBlogBundle:Image')->queryAll(),
+            $request->query->get('page', 1),
+            30
+        );
+
+        return array(
+            'images' => $images,
+            'funcNum' => $request->query->get('CKEditorFuncNum'),
+        );
+    }
 } 
