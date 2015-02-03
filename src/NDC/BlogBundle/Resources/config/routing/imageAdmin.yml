@@ -5,3 +5,8 @@ blog_image_admin_index:
 blog_image_admin_browse:
     pattern: /browse
     defaults: { _controller: NDCBlogBundle:ImageAdmin:browse }
+
+blog_image_admin_upload:
+    pattern: /upload
+    methods: post
+    defaults: { _controller: NDCBlogBundle:ImageAdmin:upload }
