@@ -1,3 +1,23 @@
+{% extends '::base.html.twig' %}
+
+{% block body %}
+
+<header class="article">
+	<input type="text" class="search" placeholder="Chercher...">
+	<div class="top">
+		<img src="https://dl.dropboxusercontent.com/u/18517066/nomdecode/jollyt.png" alt="">
+	</div>
+	<div class="text">
+		<h1>Sigma Educational Center - landing page</h1>
+		<span>jeudi 5 février - 5 commentaires</span>
+	</div>
+</header>
+<article>
+	
+</article>
+
+
+<!--
 {# {% if article.illustration is null %} #}
 {% if false %}
 	<header class="no-illustration">
@@ -22,3 +42,11 @@
 	<h1 class="title">{{ article.title }}</h1>
 	<div class="text">{{ article.html|raw }}</div>
 </div>
+-->
+{% endblock %}
+
+{% block javascripts %}
+{{ parent() }}
+<script src="{{ asset('js/highlight.pack.js') }}"></script>
+<script>hljs.initHighlightingOnLoad();</script>
+{% endblock %}

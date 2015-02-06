@@ -11,9 +11,13 @@
     </head>
     <body>
         {% block body %}{% endblock %}
+
+        <footer></footer>
+
         {% block javascripts %}
             <script src="{{ asset('js/jquery.min.js') }}"></script>
             <script src="{{ asset('js/velocity.min.js') }}"></script>
+            <script src="{{ asset('js/scripts.js') }}"></script>
         {% endblock %}
     </body>
 </html>
