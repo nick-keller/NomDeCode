@@ -1,83 +1,35 @@
 {% extends '::base.html.twig' %}
 
 {% block body %}
-
-{% set colors = ['655492', 'C15B68', '80CED7', '76C46F'] %}
-
 <header>
 	<input type="text" class="search" placeholder="Chercher...">
 	<div class="img">
 		<img src="https://dl.dropboxusercontent.com/u/18517066/nomdecode/illu.png" alt="">
 	</div>
 </header>
-<section class="articles_list">
+<section class="container articles_list">
 	{% for article in articles %}
 		<div class="article">
-			<h2>Sigma Educational Center - landing page</h2>
-			<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Natus ratione, commodi, hic quas harum aliquam quos nostrum culpa totam quidem rerum esse laboriosam. Consectetur quae in quis sed vel praesentium</p>
+			<a href="{{ path('blog_article', { 'id': article.id, 'slug': article.slug }) }}">
+				<h2>{{ article.title|capitalize }}</h2>
+				<p class="long-text">{{ article.html|striptags|slice(0, 230) }}{% if article.html|striptags|length > 230 %}...{% endif %}</p>
+			</a>
 			<div class="information">
-				<a class="author" href="#">
+				<a href="#author">
 					<img src="{{ article.author.photo|default('https://dl.dropboxusercontent.com/u/18517066/nomdecode/author.png') }}" class="author-img">
 				</a>
-				<a class="author" href="#">
+				<a class="author" href="#author">
 					<span class="author" style="color:#{{ article.author.colori|default("ed706e") }};">Jean-Elie</span>
 				</a>
 				<span class="date">{{ article.createdAt|fullDate|lower }}</span>
 				{% for tech in article.techs %}
-					<a href="#" class="category" style="background-color:#{{ tech.color }};background-image:url({{ asset(tech.webPath) }});"></a>
+					<a href="#category" class="category" style="background-color:#{{ tech.color }};background-image:url({{ asset(tech.webPath) }});"></a>
 				{% endfor %}
 				<span class="comments">5 commentaires</span>
 			</div>
-	    </div>
+		</div>
 	{% endfor %}
 </section>
-
-
-<!--
-
-<section class="left">
-	<nav>
-		<div class="logo"></div>
-		
-	</nav>
-
-	<section class="vignettes scrollbar-left">
-		{# <div class="opacity-cache"></div> #}
-		{% for article in articles %}
-			{# {% set this_color = random(colors) %} #}
-			{% set this_color = article.author.color %}
-			<div class="vignette" style="border-color:#{{ this_color }};" data-article-id="{{ article.id }}" data-get="{{ path('blog_article', {id: article.id}) }}">
-				<a href="#article">
-					<div class="title"><span>{{ article.title }}</span></div>
-				</a>
-				<div class="triangle" style="border-color:transparent transparent #{{ this_color }} transparent;"></div>
-				<div class="author">
-					<a href="#author" class="photo">
-						<img src="{{ article.author.photo|default('https://dl.dropboxusercontent.com/u/18517066/nomdecode/author.png') }}" alt="">
-					</a>
-				</div>
-				<div class="categories">
-					{% for tech in article.techs %}
-						<a href="#" style="background-color:#{{ tech.color }};"><img src="{{ asset(tech.webPath) }}" alt=""></a>
-					{% endfor %}
-				</div>
-			</div>
-		{% endfor %}
-	</section>
-</section>
-
-<article data-article-id="{{ articles[0].id }}">
-	{# {{ render(controller('NDCBlogBundle:Blog:article', { 'id': articles[0].id })) }} #}
-</article>
--->
-
-{% endblock %}
-
-{% block stylesheets %}
-{{ parent() }}
-<link rel="stylesheet" href="{{ asset('css/monokai_sublime.highlight_theme.css') }}">
-<link href='http://fonts.googleapis.com/css?family=Source+Sans+Pro:700,400' rel='stylesheet' type='text/css'>
-<link href='http://fonts.googleapis.com/css?family=Droid+Serif:700,400,300' rel='stylesheet' type='text/css'>
 {% endblock %}
 
 {% block javascripts %}

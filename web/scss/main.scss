@@ -2,17 +2,19 @@
 
 
 // variables
-$height-header: 75vh;
+$height-header: 72vh;
 $size-photo-author-index: 40px;
-$size-photo-author-article: 90px;
+$size-photo-author-article: 70px;
 $font-size-base: 1rem;
 $font-size-article: 1.2em;
-$line-height-article: 1.15em;
+$line-height-article: 1.2em;
 $font-size-headline-index: 2.3rem;
 $font-size-headline-article: 3rem;
 $size-icon-category: 30px;
+$border-radius-common: 6px; // comments and buttons
 // IF WIDTH CHANGED IN PERCENTAGE -> EDIT WIDTH OF VIGNETTES IN VW
 $width-article: 740px;
+$margin-section: 12vh;
 
 //fonts
 $font-family-base: 'Source Sans Pro', Arial, Helvetica, sans-serif;
@@ -36,6 +38,20 @@ $margin-for-blocks: 0.5rem;
 	border-radius: 50%;
 }
 
+@mixin post-information() {
+	.author {
+		text-transform: initial;
+		font-weight: bold;
+		font-size: $font-size-base*1.2;
+		padding-left: 4px;
+	}
+
+	.date {
+		text-transform: uppercase;
+		padding-left: 10px;
+	}
+}
+
 // rules
 html, body {
 	height: 100%;
@@ -50,6 +66,11 @@ body {
 	color: $font-color-base;
 
 	font-family: $font-family-base;
+}
+
+h1 {
+	text-align: center;
+	font-size: $font-size-headline-article;
 }
 
 a {
@@ -67,6 +88,13 @@ input[type=text] {
 	height: 30px;
 }
 
+.long-text {
+	font-family: $font-family-article;
+	font-size: $font-size-article;
+	line-height: $line-height-article;
+	color: $font-color-article;
+}
+
 a.category {
 	width: $size-icon-category;
 	height: $size-icon-category;
@@ -80,6 +108,11 @@ a.category {
 	background-position: center center;
 	background-size: $size-icon-category*0.8;
 	background-repeat: no-repeat;
+}
+
+.container {
+	width: $width-article;
+	margin: auto;
 }
 
 header {
@@ -110,7 +143,8 @@ header {
 		right: 30vw;
 
 		img {
-			height: 100%;
+			max-height: 100%;
+			max-width: 100%;
 		}
 	}
 
@@ -118,36 +152,28 @@ header {
 		background-color: $background-color-base;
 
 		.top {
-			background-color: #6ae2ed;
+			background-color: #333;
 			height: 70vh;
 			overflow: hidden;
 
 			img {
 				display: block;
 				margin: auto;
-				margin-top: 12vh;
+				margin-top: $margin-section;
 			}
 		}
 
 		.text {
-			height: 24vh;
-			margin: 3vh auto;
+			height: 100vh - $height-header - 5vh;
+			margin: 3vh auto 2vh;
 			display: flex;
 			flex-direction: column;
 			justify-content: space-around;
 			align-items: center;
 
-			h1 {
-				font-size: $font-size-headline-article;
-			}
-
 			span {
 				text-transform: uppercase;
 				color: $font-color-muted;
-			}
-
-			& > h1, & > span {
-				width: $width-article;
 			}
 
 			& > * {
@@ -159,17 +185,21 @@ header {
 	}
 }
 
+article {
+  	@extend .container;
+	margin-bottom: $margin-section;
+}
+
 footer {
 	height: 10vh;
 	background-color: $background-color-header;
 }
 
 section.articles_list {
-	width: $width-article;
-	margin: 12vh auto;
+	margin: $margin-section auto;
 	
 	.article {
-		margin-bottom: 10vh;
+		margin-bottom: $margin-section;
 
 		h2 {
 			font-size: $font-size-headline-index;
@@ -178,10 +208,6 @@ section.articles_list {
 		}
 
 		p {
-			font-family: $font-family-article;
-			font-size: $font-size-article;
-			line-height: $line-height-article;
-			color: $font-color-article;
 			margin-bottom: 5px;
 		}
 
@@ -191,7 +217,7 @@ section.articles_list {
 			color: $font-color-muted;
 			text-transform: uppercase;
 
-			& * {
+			* {
 				vertical-align: middle;
 				line-height: $size-photo-author-index;
 			}
@@ -204,14 +230,7 @@ section.articles_list {
 				@include author-photo($size-photo-author-index);
 			}
 
-			.author {
-				font-weight: bold;
-				padding-left: 6px;
-			}
-
-			.date {
-				padding-left: 10px;
-			}
+			@include post-information();
 			
 			.comments {
 				float: right;
@@ -222,6 +241,53 @@ section.articles_list {
 				margin-top: ($size-photo-author-index - $size-icon-category)/2;
 				display: inline-block;
 				float: right;
+			}
+		}
+	}
+}
+
+section.comments {
+	padding-top: $margin-section/2;
+	padding-bottom: $margin-section;
+
+	&.light {
+		color: #fff;
+	}
+
+	.comment {
+		margin-bottom: $margin-section/3;
+
+		img.author-img {
+			@include author-photo($size-photo-author-article);
+			margin-top: - $size-photo-author-article/8;
+		}
+
+		@include post-information();
+
+		* {
+			vertical-align: middle;
+		}
+
+		.html {
+			margin-left: $size-photo-author-article + 10px;
+		}
+
+		.author {
+			padding-left: 10px;
+		}
+
+		.html {
+			background-color: #fff;
+			padding: 1rem;
+			border-radius: $border-radius-common;
+			border-top-left-radius: 0;
+
+			p:first-child {
+				margin-top: 0;
+			}
+
+			p:last-child {
+				margin-bottom: 0;
 			}
 		}
 	}
