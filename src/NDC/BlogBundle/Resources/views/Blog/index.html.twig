@@ -10,20 +10,20 @@
 <section class="container articles_list">
 	{% for article in articles %}
 		<div class="article">
-			<a href="{{ path('blog_article', { 'id': article.id, 'slug': article.slug }) }}">
+			<a href="{{ path('blog_article', { 'id': article.id, 'slug': article.slug }) }}" title="{{ article.title|capitalize }}">
 				<h2>{{ article.title|capitalize }}</h2>
 				<p class="long-text">{{ article.html|striptags|slice(0, 230) }}{% if article.html|striptags|length > 230 %}...{% endif %}</p>
 			</a>
 			<div class="information">
-				<a href="#author">
+				<a href="#author" title="Rédacteur : {{ article.author.username }}">
 					<img src="{{ article.author.photo|default('https://dl.dropboxusercontent.com/u/18517066/nomdecode/author.png') }}" class="author-img">
 				</a>
-				<a class="author" href="#author">
-					<span class="author" style="color:#{{ article.author.colori|default("ed706e") }};">Jean-Elie</span>
+				<a class="author" href="#author" title="Rédacteur : {{ article.author.username }}">
+					<span class="author" style="color:#{{ article.author.colori|default("ed706e") }};">{{ article.author.username }}</span>
 				</a>
 				<span class="date">{{ article.createdAt|fullDate|lower }}</span>
 				{% for tech in article.techs %}
-					<a href="#category" class="category" style="background-color:#{{ tech.color }};background-image:url({{ asset(tech.webPath) }});"></a>
+					<a href="#category" class="category" style="background-color:#{{ tech.color }};background-image:url({{ asset(tech.webPath) }});" title="{{ tech.name }}"></a>
 				{% endfor %}
 				<span class="comments">5 commentaires</span>
 			</div>

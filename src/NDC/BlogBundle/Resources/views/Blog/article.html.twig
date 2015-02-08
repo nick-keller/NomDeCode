@@ -6,8 +6,7 @@
 
 <header class="article">
 	<input type="text" class="search" placeholder="Chercher...">
-	<div class="top" style="background-color:#{{ article.techs[0].color }};">
-		<img src="https://dl.dropboxusercontent.com/u/18517066/nomdecode/jollyt.png" alt="">
+	<div class="top" style="background-color:#{{ article.techs[0].color }};background-image:url(https://dl.dropboxusercontent.com/u/18517066/nomdecode/jollyt.png);">
 	</div>
 	<div class="container text">
 		<h1>{{ article.title|capitalize }}</h1>
@@ -15,7 +14,7 @@
 	</div>
 </header>
 <article class="long-text">{{ article.html|raw }}</article>
-<section class="comments {% if article.techs[0].color|lightness < 55 %}light{% endif %}" style="background-color:#{{ article.techs[0].color }};">
+<section class="comments">
 	<div class="container">
 		<h1>Commentaires</h1>
 		<div class="comment">
@@ -50,6 +49,7 @@
 
 {% block javascripts %}
 {{ parent() }}
+<script src="{{ asset('js/scripts-article.js') }}"></script>
 <script src="{{ asset('js/highlight.pack.js') }}"></script>
 <script>hljs.initHighlightingOnLoad();</script>
 {% endblock %}

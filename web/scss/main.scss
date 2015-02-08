@@ -1,6 +1,5 @@
 @import "colors";
 
-
 // variables
 $height-header: 72vh;
 $size-photo-author-index: 40px;
@@ -153,14 +152,10 @@ header {
 
 		.top {
 			background-color: #333;
+			background-position: 50% $margin-section;
+			background-repeat: no-repeat;
 			height: 70vh;
 			overflow: hidden;
-
-			img {
-				display: block;
-				margin: auto;
-				margin-top: $margin-section;
-			}
 		}
 
 		.text {
@@ -174,6 +169,10 @@ header {
 			span {
 				text-transform: uppercase;
 				color: $font-color-muted;
+			}
+
+			h1 {
+				width: $width-article;	
 			}
 
 			& > * {
@@ -191,8 +190,8 @@ article {
 }
 
 footer {
-	height: 10vh;
-	background-color: $background-color-header;
+	height: 120px;
+	background-color: $font-color-article;
 }
 
 section.articles_list {
@@ -249,6 +248,7 @@ section.articles_list {
 section.comments {
 	padding-top: $margin-section/2;
 	padding-bottom: $margin-section;
+	background-color: $background-color-header;
 
 	&.light {
 		color: #fff;
