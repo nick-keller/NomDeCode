@@ -14,6 +14,18 @@
 	</div>
 </header>
 <article class="long-text">{{ article.html|raw }}</article>
+<div class="article-author">
+	<div class="container">
+			<a class="author" href="#author" title="Rédacteur : {{ article.author.username|capitalize }}">{{ article.author.username|capitalize }}</a>
+			<a href="#author" title="Rédacteur : {{ article.author.username|capitalize }}">
+				<img src="{{ article.author.photo|default('https://dl.dropboxusercontent.com/u/18517066/nomdecode/author.png') }}" class="author-img">
+			</a>
+			<a class="author-link author-link-github" href="#" title="Page Github de {{ article.author.username|capitalize }}" target="_blank"><i class="fa fa-github-alt"></i></a>
+			<a class="author-link author-link-facebook" href="#" title="Page Facebook de {{ article.author.username|capitalize }}" target="_blank"><i class="fa fa-facebook"></i></a>
+			<a class="author-link author-link-linkedin" href="#" title="Page LinkedIn de {{ article.author.username|capitalize }}" target="_blank"><i class="fa fa-linkedin"></i></a>
+			<a class="author-link author-link-twitter" href="#" title="Page Twitter de {{ article.author.username|capitalize }}" target="_blank"><i class="fa fa-twitter"></i></a>
+	</div>
+</div>
 <section class="comments">
 	<div class="container">
 		<h1>Commentaires</h1>
@@ -21,7 +33,7 @@
 			<a href="#author">
 				<img src="{{ article.author.photo|default('https://dl.dropboxusercontent.com/u/18517066/nomdecode/author.png') }}" class="author-img">
 			</a>
-			<a class="author" href="#author">Jean-Elie</a>
+			<a class="author" href="#author">{{ article.author.username|capitalize }}</a>
 			<span class="date">{{ article.createdAt|fullDate }}</span>
 			<div class="html long-text">
 				<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Libero impedit, molestias repellendus sit. Libero, excepturi? Quas molestias nobis porro itaque, impedit eligendi beatae cum soluta quo numquam! Iure facere odio magnam aliquam reprehenderit eum sunt sapiente expedita molestiae praesentium minima pariatur libero eos rerum quaerat.</p>
@@ -32,7 +44,7 @@
 			<a href="#author">
 				<img src="{{ article.author.photo|default('https://dl.dropboxusercontent.com/u/18517066/nomdecode/author.png') }}" class="author-img">
 			</a>
-			<a class="author" href="#author">Jean-Elie</a>
+			<a class="author" href="#author">{{ article.author.username|capitalize }}</a>
 			<span class="date">{{ article.createdAt|fullDate }}</span>
 			<div class="html long-text">
 				<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Libero impedit, molestias repellendus sit. Libero, excepturi? Quas molestias nobis porro itaque, impedit eligendi beatae cum soluta quo numquam! Iure facere odio magnam aliquam reprehenderit eum sunt sapiente expedita molestiae praesentium minima pariatur libero eos rerum quaerat.</p>
