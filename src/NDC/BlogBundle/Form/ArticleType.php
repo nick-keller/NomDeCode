@@ -37,7 +37,7 @@ class ArticleType extends AbstractType
                     'data-ckeditor' => '',
                 )
             ))
-            ->add('Enregistrer', 'submit')
+            ->add('Enregistrer et quitter', 'submit')
         ;
     }
     

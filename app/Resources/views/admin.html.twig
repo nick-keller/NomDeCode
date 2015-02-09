@@ -108,6 +108,10 @@
                     </ul>
                 </li>
             </ul>
+
+            <ul class="nav navbar-nav navbar-right">
+                <li><a href="/">Accueil du blog</a></li>
+            </ul>
         </div>
     </div>
 </nav>
@@ -160,25 +164,30 @@
 <script type="text/javascript">
     $(function(){
         $('[data-ckeditor]').ckeditor({
-            extraAllowedContent: 'code pre h1 h2 h3 h4',
-            contentsCss: '{{ asset('css/bootstrap.min.css') }}',
-            extraPlugins: 'resize,codesnippet,basicstyles,elementspath,justify,blockquote,codeTag,format,image,filebrowser',
-            format_tags: 'p;h1;h2;h3;h4',
+            height: '900px',
+            extraAllowedContent: 'code pre h2 h3 h4',
+            contentsCss: ['{{ asset('css/bootstrap.min.css') }}', '{{ asset('ckeditor/theme.css') }}'],
+            extraPlugins: 'resize,removeformat,codesnippet,basicstyles,elementspath,justify,blockquote,codeTag,format,image,filebrowser',
+            format_tags: 'p;h2;h3;h4',
             removePlugins: 'about',
             codeSnippet_languages: {
                 php: 'PHP',
                 javascript: 'JavaScript',
                 html: 'HTML',
+                css: 'CSS',
+                scss: 'SCSS',
+                twig: 'Twig',
                 yaml: 'YAML'
             },
             filebrowserImageBrowseUrl: '{{ path('blog_image_admin_browse') }}',
             filebrowserImageUploadUrl: '{{ path('blog_image_admin_upload') }}',
             justifyClasses: ['text-left', 'text-center', 'text-right', 'text-justify' ],
+            codeSnippet_theme: 'monokai_sublime',
             toolbar: [
                     ['Format'],
                     ['Image'],
                     ['Bold', 'Italic', 'Underline','Strike','-','RemoveFormat'],
-                    ['JustifyLeft','JustifyCenter','JustifyRight','JustifyBlock'],
+                    /*['JustifyLeft','JustifyCenter','JustifyRight','JustifyBlock'],*/
                     [ 'NumberedList','BulletedList','-','Blockquote'],
                     ['CodeSnippet', 'Code']
             ]
