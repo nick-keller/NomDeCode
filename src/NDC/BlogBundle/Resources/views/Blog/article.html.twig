@@ -4,15 +4,17 @@
 
 {% block body %}
 
-<header class="article">
-	<input type="text" class="search" placeholder="Chercher...">
-	<div class="top" style="background-color:#{{ article.techs[0].color }};background-image:url(https://dl.dropboxusercontent.com/u/18517066/nomdecode/jollyt.png);">
-	</div>
-	<div class="container text">
-		<h1>{{ article.title|capitalize }}</h1>
-		<span>{{ article.createdAt|fullDate }} - 5 commentaires</span>
-	</div>
-</header>
+{% embed "::header.html.twig" %}
+	{% block class %}article{% endblock %}
+	{% block content %}
+		<div class="top" style="background-color:#{{ article.techs[0].color }};background-image:url(https://dl.dropboxusercontent.com/u/18517066/nomdecode/jollyt.png);"></div>
+		<div class="container text">
+			<h1>{{ article.title|capitalize }}</h1>
+			<span>{{ article.createdAt|fullDate }} - 5 commentaires</span>
+		</div>
+	{% endblock %}
+{% endembed %}
+
 <article class="long-text">{{ article.html|raw }}</article>
 <div class="article-author">
 	<div class="container">

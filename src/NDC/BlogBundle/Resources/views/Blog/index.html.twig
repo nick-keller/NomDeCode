@@ -1,12 +1,15 @@
 {% extends '::base.html.twig' %}
 
 {% block body %}
-<header>
-	<input type="text" class="search" placeholder="Chercher...">
-	<div class="img">
-		<img src="https://dl.dropboxusercontent.com/u/18517066/nomdecode/illu.png" alt="">
-	</div>
-</header>
+
+{% embed "::header.html.twig" %}
+	{% block content %}
+		<div class="illustration">
+			<img src="https://dl.dropboxusercontent.com/u/18517066/nomdecode/illu.png" alt="">
+		</div>
+	{% endblock %}
+{% endembed %}
+
 <section class="container articles_list">
 	{% for article in articles %}
 		<div class="article">
