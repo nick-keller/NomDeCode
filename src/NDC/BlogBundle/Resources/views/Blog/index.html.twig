@@ -25,7 +25,7 @@
 					<span class="author">{{ article.author.username|capitalize }}</span>
 				</a>
 				<span class="date">{{ article.createdAt|fullDate|lower }}</span>
-				<a href="#category" class="category" style="background-color:#{{ tech.color }};background-image:url({{ asset(tech.webPath) }});" title="{{ tech.name }}"></a>
+				<a href="#category" class="category" style="background-color:#{{ article.tech.color }};background-image:url({{ asset(article.tech.webPath) }});" title="{{ article.tech.name }}"></a>
 				<span class="comments">5 commentaires</span>
 			</div>
 		</div>
