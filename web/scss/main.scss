@@ -43,7 +43,7 @@ $margin-for-blocks: 0.5rem;
 		color: $font-color-article;
 		text-transform: initial;
 		font-weight: bold;
-		font-size: $font-size-base*1.3;
+		font-size: $font-size-base*1.25;
 		padding-left: 4px;
 	}
 
@@ -133,6 +133,7 @@ a.category {
 header {
 	height: 100vh;
 	background-color: $background-color-header;
+	background-image: url(img/pattern-illustration.png);
 
 	input[type=text].search {
 		$color-over-header: white;
@@ -141,8 +142,8 @@ header {
 		color: $color-over-header;
 
 		position: absolute;
-		right: 6vw;
-		top: 7vh;
+		right: 8vw;
+		top: 10vh;
 		width: 15vw;
 		&::-webkit-input-placeholder { color: $color-over-header; }
 		&:-moz-placeholder { color: $color-over-header; }
@@ -152,8 +153,8 @@ header {
 
 	.logo {
 		position: absolute;
-		left: 6vw;
-		top: 5vh;
+		left: 8vw;
+		top: 8vh;
 		width: 150px;
 
 		img {
