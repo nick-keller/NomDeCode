@@ -47,6 +47,26 @@ class UserType extends AbstractType
                     'ROLE_ADMIN' => 'Administrateur',
                 ),
             ))
+            ->add('facebook', 'url', array(
+                'label' => 'Facebook',
+                'required' => false,
+            ))
+            ->add('twitter', 'url', array(
+                'label' => 'Twitter',
+                'required' => false,
+            ))
+            ->add('github', 'url', array(
+                'label' => 'Git Hub',
+                'required' => false,
+            ))
+            ->add('linkedin', 'url', array(
+                'label' => 'Linkedin',
+                'required' => false,
+            ))
+            ->add('website', 'url', array(
+                'label' => 'Site perso',
+                'required' => false,
+            ))
             ->add('Enregistrer', 'submit')
         ;
     }
