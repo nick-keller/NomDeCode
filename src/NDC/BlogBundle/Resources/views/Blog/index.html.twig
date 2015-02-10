@@ -1,1 +1,41 @@
-{#var: articles#}
+{% extends '::base.html.twig' %}
+
+{% block body %}
+
+{% embed "::header.html.twig" %}
+	{% block content %}
+		<div class="illustration">
+			<img src="https://dl.dropboxusercontent.com/u/18517066/nomdecode/illu.png" alt="">
+		</div>
+	{% endblock %}
+{% endembed %}
+
+<section class="container articles_list">
+	{% for article in articles %}
+		<div class="article">
+			<a href="{{ path('blog_article', { 'id': article.id, 'slug': article.slug }) }}" title="{{ article.title|capitalize }}">
+				<h2>{{ article.title|capitalize }}</h2>
+				<p class="long-text">{{ article.html|striptags|slice(0, 230) }}{% if article.html|striptags|length > 230 %}...{% endif %}</p>
+			</a>
+			<div class="information">
+				<a href="#author" title="Rédacteur : {{ article.author.username|capitalize }}">
+					<img src="{{ article.author.photo|default('https://dl.dropboxusercontent.com/u/18517066/nomdecode/author.png') }}" class="author-img">
+				</a>
+				<a class="author" href="#author" title="Rédacteur : {{ article.author.username|capitalize }}">
+					<span class="author">{{ article.author.username|capitalize }}</span>
+				</a>
+				<span class="date">{{ article.createdAt|fullDate|lower }}</span>
+				{% for tech in article.techs %}
+					<a href="#category" class="category" style="background-color:#{{ tech.color }};background-image:url({{ asset(tech.webPath) }});" title="{{ tech.name }}"></a>
+				{% endfor %}
+				<span class="comments">5 commentaires</span>
+			</div>
+		</div>
+	{% endfor %}
+</section>
+{% endblock %}
+
+{% block javascripts %}
+{{ parent() }}
+<script src="{{ asset('js/anim_header.js') }}"></script>
+{% endblock %}
