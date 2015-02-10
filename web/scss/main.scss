@@ -135,20 +135,38 @@ header {
 	background-color: $background-color-header;
 	background-image: url(img/pattern-illustration.png);
 
-	input[type=text].search {
+	nav {
 		$color-over-header: white;
-		border: none;
-		border-bottom: 2px solid $color-over-header;
-		color: $color-over-header;
-
 		position: absolute;
 		right: 8vw;
 		top: 10vh;
 		width: 15vw;
-		&::-webkit-input-placeholder { color: $color-over-header; }
-		&:-moz-placeholder { color: $color-over-header; }
-		&::-moz-placeholder { color: $color-over-header; }
-		&:-ms-input-placeholder { color: $color-over-header; }
+		height: auto;
+		display: block;
+		color: $color-over-header;
+
+		a {
+			padding-top: 5px;
+			padding-left: 10px;
+			display: block;
+
+			&:hover {
+				opacity: 0.6;
+			}
+		}
+
+		input[type=text].search {
+			border: none;
+			border-bottom: 2px solid $color-over-header;
+			color: $color-over-header;
+			margin-bottom: 10px;
+			
+			width: 100%;
+			&::-webkit-input-placeholder { color: $color-over-header; }
+			&:-moz-placeholder { color: $color-over-header; }
+			&::-moz-placeholder { color: $color-over-header; }
+			&:-ms-input-placeholder { color: $color-over-header; }
+		}
 	}
 
 	.logo {
