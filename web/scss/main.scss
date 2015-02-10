@@ -1,6 +1,5 @@
 @import "colors";
 
-
 // variables
 $height-header: 72vh;
 $size-photo-author-index: 40px;
@@ -141,8 +140,8 @@ header {
 		color: $color-over-header;
 
 		position: absolute;
-		right: 6vw;
-		top: 7vh;
+		right: 8vw;
+		top: 10vh;
 		width: 15vw;
 		&::-webkit-input-placeholder { color: $color-over-header; }
 		&:-moz-placeholder { color: $color-over-header; }
@@ -152,8 +151,8 @@ header {
 
 	.logo {
 		position: absolute;
-		left: 6vw;
-		top: 5vh;
+		left: 8vw;
+		top: 8vh;
 		width: 150px;
 
 		img {
