@@ -1,5 +1,6 @@
 @import "colors";
 
+
 // variables
 $height-header: 72vh;
 $size-photo-author-index: 40px;
@@ -132,6 +133,7 @@ a.category {
 header {
 	height: 100vh;
 	background-color: $background-color-header;
+	background-image: url(img/pattern-illustration.png);
 
 	input[type=text].search {
 		$color-over-header: white;
