@@ -22,11 +22,9 @@ class ArticleType extends AbstractType
                 'label' => 'Auteur',
                 'class' => 'NDC\UserBundle\Entity\User',
             ))
-            ->add('techs', 'entity', array(
-                'label' => 'Technos',
+            ->add('tech', 'entity', array(
+                'label' => 'Techno',
                 'class' => 'NDC\BlogBundle\Entity\Tech',
-                'multiple' => true,
-                'expanded' => true,
             ))
             ->add('createdAt', 'datetime', array(
                 'label' => 'Créé le',
