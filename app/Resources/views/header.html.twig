@@ -4,7 +4,7 @@
 		{% if app.user %}
 			{% if is_granted('ROLE_ADMIN') %}
 				<a href="{{ path('ndc_admin_index') }}">Admninistration</a>
-				{% if article %}
+				{% if article is defined %}
 					<a href="{{ path('blog_article_admin_edit', { 'id': article.id }) }}">Éditer cet article</a>
 				{% endif %}
 			{% else %}
