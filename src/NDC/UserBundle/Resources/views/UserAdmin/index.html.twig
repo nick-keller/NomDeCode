@@ -19,6 +19,11 @@
                 </td>
                 <td>{{ user.email }}</td>
                 <td>{{ user.lastLogin|fullDate }}</td>
+                <td>
+                    <a href="{{ path('blog_user_admin_edit', {id:user.id}) }}" class="btn btn-default btn-xs">
+                        <i class="glyphicon glyphicon-pencil"></i> Editer
+                    </a>
+                </td>
             </tr>
         {% endfor %}
     </table>
