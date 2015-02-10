@@ -26,6 +26,14 @@ class ArticleType extends AbstractType
                 'label' => 'Techno',
                 'class' => 'NDC\BlogBundle\Entity\Tech',
             ))
+            ->add('state', 'choice', array(
+                'label' => 'Etat',
+                'choices' => array(
+                    'published' => 'Publié',
+                    'draft' => 'Brouillon',
+                    'removed' => 'Supprimé',
+                )
+            ))
             ->add('createdAt', 'datetime', array(
                 'label' => 'Créé le',
             ))

@@ -49,6 +49,10 @@ class Article
      * @var \NDC\BlogBundle\Entity\Tech
      */
     private $tech;
+    /**
+     * @var string
+     */
+    private $state;
 
     /**
      * Constructor
@@ -230,6 +234,29 @@ class Article
     public function setTech(\NDC\BlogBundle\Entity\Tech $tech = null)
     {
         $this->tech = $tech;
+
+        return $this;
+    }
+
+    /**
+     * Get state
+     *
+     * @return string
+     */
+    public function getState()
+    {
+        return $this->state;
+    }
+
+    /**
+     * Set state
+     *
+     * @param string $state
+     * @return Article
+     */
+    public function setState($state)
+    {
+        $this->state = $state;
 
         return $this;
     }

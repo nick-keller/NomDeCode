@@ -38,6 +38,10 @@ NDC\BlogBundle\Entity\Article:
         html:
             type: text
 
+        state:
+            type: string
+            length: 20
+
 
     manyToOne:
         author:
