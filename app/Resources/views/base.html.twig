@@ -1,4 +1,37 @@
 <!DOCTYPE html>
+
+{% macro pagination(currentPage, pageCount) %}
+    {% if currentPage > 1 or currentPage < pageCount %}
+        <div class="pagination">
+            {% if currentPage > 1 %}
+                <a href="{% if currentPage == 2 %}{{ path('blog_index_first_page') }}{% else %}{{ path('blog_index', { 'page': currentPage - 1 }) }}{% endif %}" rel="prev">Page précédente</a>
+            {% endif %}
+            {% if currentPage < pageCount %}
+                <a href="{{ path('blog_index', { 'page': currentPage + 1 }) }}" rel="next">Page suivante</a>
+            {% endif %}
+        </div>
+    {% endif %}
+{% endmacro %}
+
+{% macro author_link(author) %}
+    {% set links = {
+        'website': {'title': 'personnelle', 'icon': 'link'},
+        'github': {'title': 'GitHub', 'icon': 'github-alt'},
+        'facebook': {},
+        'linkedin': {'title': 'LinkedIn'},
+        'twitter': {}
+    } %}
+    {% for key, link in links %}
+        {% if attribute(author, key) is not empty %}
+            {% if link.title is not defined %}{% set link = link|merge({'title': key|capitalize}) %}{% endif %}
+            {% if link.icon is not defined %}{% set link = link|merge({'icon': key}) %}{% endif %}
+            <a class="author-link author-link-{{ key }}" href="{{ attribute(author, key) }}" title="Page {{ link.title }} de {{ author.username|capitalize }}" target="_blank"><i class="fa fa-{{ link.icon }}"></i></a>
+        {% endif %}
+    {% endfor %}
+{% endmacro %}
+
+{% import _self as helper %}
+
 <html>
     <head>
         <meta charset="UTF-8" />
@@ -13,20 +46,6 @@
         <link rel="icon" type="image/png" href="{{ asset('css/img/favicon.png') }}" />
     </head>
     <body>
-        {% macro pagination(currentPage, pageCount) %}
-            {% if currentPage > 1 or currentPage < pageCount %}
-                <div class="pagination">
-                    {% if currentPage > 1 %}
-                        <a href="{% if currentPage == 2 %}{{ path('blog_index_first_page') }}{% else %}{{ path('blog_index', { 'page': currentPage - 1 }) }}{% endif %}" rel="prev">Page précédente</a>
-                    {% endif %}
-                    {% if currentPage < pageCount %}
-                        <a href="{{ path('blog_index', { 'page': currentPage + 1 }) }}" rel="next">Page suivante</a>
-                    {% endif %}
-                </div>
-            {% endif %}
-        {% endmacro %}
-
-        {% import _self as helper %}
 
         {% block body %}{% endblock %}
 

@@ -1,9 +1,8 @@
 {% extends '::base.html.twig' %}
 
-{% block title %}{{ article.title }} - {{ parent() }}{% endblock %}
+{% block title %}{{ article.title }} [{{ article.tech.name }}] - {{ parent() }}{% endblock %}
 
 {% block body %}
-
 {% embed "::header.html.twig" %}
 	{% block class %}article{% endblock %}
 	{% block content %}
@@ -22,11 +21,7 @@
 			<a href="#author" title="Rédacteur : {{ article.author.username|capitalize }}">
 				<img src="{{ article.author.photo|default('https://dl.dropboxusercontent.com/u/18517066/nomdecode/author.png') }}" class="author-img">
 			</a>
-			<a class="author-link author-link-personal" href="#" title="Page personnelle de {{ article.author.username|capitalize }}" target="_blank"><i class="fa fa-link"></i></a>
-			<a class="author-link author-link-github" href="#" title="Page Github de {{ article.author.username|capitalize }}" target="_blank"><i class="fa fa-github-alt"></i></a>
-			<a class="author-link author-link-facebook" href="#" title="Page Facebook de {{ article.author.username|capitalize }}" target="_blank"><i class="fa fa-facebook"></i></a>
-			<a class="author-link author-link-linkedin" href="#" title="Page LinkedIn de {{ article.author.username|capitalize }}" target="_blank"><i class="fa fa-linkedin"></i></a>
-			<a class="author-link author-link-twitter" href="#" title="Page Twitter de {{ article.author.username|capitalize }}" target="_blank"><i class="fa fa-twitter"></i></a>
+			{{ helper.author_link(article.author) }}
 	</div>
 </div>
 <section class="comments">

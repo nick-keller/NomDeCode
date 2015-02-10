@@ -3,12 +3,17 @@
 		<input type="text" class="search" placeholder="Chercher..." title="Chercher un article">
 		{% if app.user %}
 			{% if is_granted('ROLE_ADMIN') %}
-				<a href="{{ path('ndc_admin_index') }}">Admninistration</a>
-				{% if article is defined %}
-					<a href="{{ path('blog_article_admin_edit', { 'id': article.id }) }}">Éditer cet article</a>
-				{% endif %}
+				<a href="{{ path('ndc_admin_index') }}">Administration</a>
 			{% else %}
 				<a href="{{ path('ndc_admin_index') }}">Modération</a>
+			{% endif %}
+
+			<a href="{{ path('blog_user_admin_edit', { 'id': app.user.id}) }}">Éditer son compte</a>
+
+			{% if article is defined %}
+				{% if is_granted('ROLE_ADMIN') or article.author == app.user %}
+					<a href="{{ path('blog_article_admin_edit', { 'id': article.id }) }}">Éditer cet article</a>
+				{% endif %}
 			{% endif %}
 		{% endif %}
 	</nav>
