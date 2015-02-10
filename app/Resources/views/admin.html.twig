@@ -53,7 +53,9 @@
 {% endmacro %}
 
 {% macro tech(tech) %}
-    <div class="tech" style="background-color: #{{ tech.color }};background-image: url({{ asset(tech.webPath) }});"></div>
+    {% if tech is not null %}
+        <div class="tech" style="background-color: #{{ tech.color }};background-image: url({{ asset(tech.webPath) }});"></div>
+    {% endif %}
 {% endmacro %}
 
 {% import _self as helper %}
