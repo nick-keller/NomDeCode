@@ -1,0 +1,29 @@
+{% extends '@NDCUser/UserAdmin/layout.html.twig' %}
+
+{% block body %}
+    <table class="table table-bordered table-striped table-condensed table-hover">
+        <tr>
+            <th>ID</th>
+            <th>Pseudo</th>
+            <th>Email</th>
+            <th>Dernière connexion</th>
+            <th>Actions</th>
+        </tr>
+        {% for user in users %}
+            <tr>
+                <td>
+                    {{ user.id }}
+                </td>
+                <td>
+                    <b style="display: inline-block;width: 10px;height: 10px;border-radius: 100%;background: #{{ user.color }}"></b>
+                    {{ user }}
+                </td>
+                <td>{{ user.email }}</td>
+                <td>{{ user.lastLogin|fullDate }}</td>
+            </tr>
+        {% endfor %}
+    </table>
+
+    {{ knp_pagination_render(users) }}
+
+{% endblock %}

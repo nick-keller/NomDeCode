@@ -1,0 +1,3 @@
+blog_user_admin_index:
+    pattern: /
+    defaults: { _controller: NDCUserBundle:UserAdmin:index }
