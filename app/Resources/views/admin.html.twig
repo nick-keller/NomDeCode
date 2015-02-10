@@ -170,7 +170,7 @@
             height: '900px',
             extraAllowedContent: 'code pre h2 h3 h4',
             contentsCss: ['{{ asset('css/bootstrap.min.css') }}', '{{ asset('ckeditor/theme.css') }}'],
-            extraPlugins: 'resize,removeformat,codesnippet,basicstyles,elementspath,justify,blockquote,codeTag,format,image,filebrowser',
+            extraPlugins: 'autolink,resize,removeformat,codesnippet,basicstyles,elementspath,justify,blockquote,codeTag,format,image,filebrowser',
             format_tags: 'p;h2;h3;h4',
             removePlugins: 'about',
             codeSnippet_languages: {
@@ -190,6 +190,7 @@
                     ['Format'],
                     ['Image'],
                     ['Bold', 'Italic', 'Underline','Strike','-','RemoveFormat'],
+                    ['Link', 'Unlink'],
                     /*['JustifyLeft','JustifyCenter','JustifyRight','JustifyBlock'],*/
                     [ 'NumberedList','BulletedList','-','Blockquote'],
                     ['CodeSnippet', 'Code']

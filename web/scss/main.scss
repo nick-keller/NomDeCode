@@ -95,7 +95,7 @@ a {
 
 input[type=text], textarea {
 	box-sizing: border-box;
-	padding: 10px;
+	padding-left: 10px;
 }
 
 input[type=text] {
@@ -385,6 +385,38 @@ section.comments {
 			p:last-child {
 				margin-bottom: 0;
 			}
+		}
+	}
+}
+
+.pagination	{
+	position: relative;
+	height: 55px;
+	display: block;
+
+	a {
+		height: 100%;
+		position: absolute;
+		background-repeat: no-repeat;
+		line-height: 55px;
+		top: 0;
+
+		&:hover {
+			opacity: 0.6;
+		}
+
+		&[rel="prev"] {
+			left: 0;
+			padding-left: 70px;
+			background-position: left;
+			background-image: url(img/arrowl.png);
+		}
+
+		&[rel="next"] {
+			right: 0;
+			padding-right: 70px;
+			background-position: right;
+			background-image: url(img/arrowr.png);
 		}
 	}
 }

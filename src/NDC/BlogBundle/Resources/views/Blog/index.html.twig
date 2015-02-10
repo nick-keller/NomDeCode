@@ -1,7 +1,6 @@
 {% extends '::base.html.twig' %}
 
 {% block body %}
-
 {% embed "::header.html.twig" %}
 	{% block content %}
 		<div class="illustration">
@@ -15,7 +14,7 @@
 		<div class="article">
 			<a href="{{ path('blog_article', { 'id': article.id, 'slug': article.slug }) }}" title="{{ article.title|capitalize }}">
 				<h2>{{ article.title|capitalize }}</h2>
-				<p class="long-text">{{ article.html|striptags|slice(0, 230) }}{% if article.html|striptags|length > 230 %}...{% endif %}</p>
+				<p class="long-text">{{ article.html|striptags|slice(0, 230)|raw }}{% if article.html|striptags|length|raw > 230 %}...{% endif %}</p>
 			</a>
 			<div class="information">
 				<a href="#author" title="Rédacteur : {{ article.author.username|capitalize }}">
@@ -30,6 +29,8 @@
 			</div>
 		</div>
 	{% endfor %}
+
+	{{ helper.pagination(page, articles.pageCount) }}
 </section>
 {% endblock %}
 
