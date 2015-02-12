@@ -132,7 +132,6 @@ a.category {
 header {
 	height: 100vh;
 	background-color: $background-color-header;
-	background-image: url(img/pattern-illustration.png);
 
 	nav {
 		$color-over-header: white;
@@ -196,15 +195,84 @@ header {
 		}
 	}
 
+	&.index {
+		background-image: url(img/pattern-illustration.png);
+	}
+
 	&.article {
 		background-color: $background-color-base;
 
 		.top {
+			position: relative;
 			background-color: #333;
 			background-position: 50% $margin-section;
 			background-repeat: no-repeat;
-			height: 70vh;
+			height: $height-header;
 			overflow: hidden;
+
+			.mask {
+				position: absolute;
+				top: 0;
+				right: 0;
+				left: 0;
+				bottom: 0;
+				background-color: rgba(0, 0, 0, 0.6);
+			}
+
+			.state {
+				$height-state: $height-header/2;
+				$height-icon: $height-header/3.5;
+
+				margin: auto;
+				margin-top: ($height-header - $height-state)/2;
+				position: absolute;
+				top: 0;
+				height: $height-state;
+				left: 0;
+				right: 0;
+				width: $height-state;
+				text-align: center;
+
+				&.state-draft {
+					color: #489bce;
+					.state-icon { background-color: #489bce; }
+				}
+
+				&.state-removed {
+					color: #ce4848;
+					.state-icon { background-color: #ce4848; }
+				}
+
+				.state-icon {
+					display: flex;
+					justify-content: center;
+					align-items: center;
+					border-radius: 50%;
+					margin: auto;
+					position: absolute;
+					top: 0;
+					height: $height-icon;
+					left: 0;
+					right: 0;
+					width: $height-icon;
+					
+					i {
+						color: #fff;
+						font-size: $height-icon/2;
+					}
+				}
+
+				span {
+					position: absolute;
+					display: inline-block;
+					bottom: 0;
+					right: 0;
+					left: 0;
+					font-size: $font-size-headline-index;
+					margin-top: $height-icon;
+					font-weight: bold;
+				}
+			}
 		}
 
 		.text {

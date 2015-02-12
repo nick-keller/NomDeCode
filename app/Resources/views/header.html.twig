@@ -1,4 +1,5 @@
 <header class="{% block class %}{% endblock %}">
+	{% block content %}{% endblock %}
 	<nav>
 		<input type="text" class="search" placeholder="Chercher..." title="Chercher un article">
 		{% if app.user %}
@@ -20,5 +21,4 @@
 	<a href="{{ path('blog_index_first_page') }}" class="logo" title="Accueil de Nomdecode">
 		<img src="{{ asset('css/img/logo.png') }}" alt="Logo">
 	</a>
-	{% block content %}{% endblock %}
 </header>

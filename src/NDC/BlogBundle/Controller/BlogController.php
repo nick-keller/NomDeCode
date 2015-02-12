@@ -9,6 +9,7 @@ use Doctrine\ORM\EntityManager;
 use Knp\Component\Pager\Paginator;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
 use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\HttpKernel\Exception\HttpException;
 
 class BlogController extends Controller
 {
@@ -44,11 +45,11 @@ class BlogController extends Controller
     public function articleAction(Article $article, $slug)
     {
         if($article->getState() != 'published') {
-            if($this->getUser() == $article->getAuthor() or $this->isGranted('ROLE_ADMIN')) {
-                $this->addFlash('warning', "L'article demandé n'est pas publié et n'est donc pas accessible publiquement");
-                return $this->redirect($this->generateUrl('blog_article_admin_edit', array("id" => $article->getId())));
-            } else
-                throw $this->createNotFoundException();
+            if($this->getUser() != $article->getAuthor() and !$this->isGranted('ROLE_ADMIN'))
+                if($article->getState() == 'removed')
+                    throw new HttpException(410);
+                else
+                    throw $this->createNotFoundException();
         }
 
         if($article->getSlug() != $slug)
