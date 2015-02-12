@@ -43,8 +43,13 @@ class BlogController extends Controller
      */
     public function articleAction(Article $article, $slug)
     {
-        if($article->getState() != 'published' && !$this->isGranted('ROLE_ADMIN'))
-            return $this->createNotFoundException();
+        if($article->getState() != 'published') {
+            if($this->getUser() == $article->getAuthor() or $this->isGranted('ROLE_ADMIN')) {
+                $this->addFlash('warning', "L'article demandé n'est pas publié et n'est donc pas accessible publiquement");
+                return $this->redirect($this->generateUrl('blog_article_admin_edit', array("id" => $article->getId())));
+            } else
+                throw $this->createNotFoundException();
+        }
 
         if($article->getSlug() != $slug)
             return $this->redirect($this->generateUrl('blog_article', array('id'=>$article->getId(), 'slug'=>$article->getSlug())), 301);
