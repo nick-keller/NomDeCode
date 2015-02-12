@@ -1,22 +1,22 @@
 {% extends '::base.html.twig' %}
 
-{% block body %}
-{% embed "::header.html.twig" %}
-	{% block content %}
-		<div class="illustration">
-			<img src="https://dl.dropboxusercontent.com/u/18517066/nomdecode/illu.png" alt="">
-		</div>
-	{% endblock %}
-{% endembed %}
+{% block header_class %}index{% endblock %}
 
-<section class="container articles_list">
+{% block header %}
+	<div class="illustration">
+		<img src="https://dl.dropboxusercontent.com/u/18517066/nomdecode/illu.png" alt="">
+	</div>
+{% endblock %}
+
+{% block body %}
+<section class="container spacer articles_list">
 	{% for article in articles %}
 		<div class="article">
 			<a href="{{ path('blog_article', { 'id': article.id, 'slug': article.slug }) }}" title="{{ article.title|capitalize }}">
 				<h2>{{ article.title|capitalize }}</h2>
 				<p class="long-text">{{ article.html|striptags|slice(0, 230)|raw }}{% if article.html|striptags|length|raw > 230 %}...{% endif %}</p>
 			</a>
-			<div class="information">
+			<div class="information muted">
 				<a href="#author" title="Rédacteur : {{ article.author.username|capitalize }}">
 					<img src="{{ article.author.photo|default('https://dl.dropboxusercontent.com/u/18517066/nomdecode/author.png') }}" class="author-img">
 				</a>

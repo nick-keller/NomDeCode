@@ -2,13 +2,9 @@
 
 // variables
 $height-header: 72vh;
+$height-input-text: 30px;
 $size-photo-author-index: 40px;
 $size-photo-author-article: 70px;
-$font-size-base: 1rem;
-$font-size-article: 1.2em;
-$line-height-article: 1.2em;
-$font-size-headline-index: 2.3rem;
-$font-size-headline-article: 3rem;
 $size-icon-category: 30px;
 $border-radius-common: 6px; // comments and buttons
 // IF WIDTH CHANGED IN PERCENTAGE -> EDIT WIDTH OF VIGNETTES IN VW
@@ -16,9 +12,14 @@ $width-article: 740px;
 $margin-section: 12vh;
 
 //fonts
-$font-family-base: 'Source Sans Pro', Arial, Helvetica, sans-serif;
-$font-family-headline: $font-family-base;
-$font-family-article: 'Droid Serif', serif;
+$font-family-base: "Open Sans", Arial, Helvetica, sans-serif;
+$font-family-article: $font-family-base;
+$font-family-headline: "Montserrat", Arial, Helvetica, sans-serif;
+$font-size-base: 1rem;
+$font-size-article: $font-size-base; // 1.2em;
+$line-height-article: 1.4rem; // 1.2em;
+$font-size-headline-index: 2.3rem;
+$font-size-headline-article: 3rem;
 
 // sizes for media queries
 $size-limit-little-screen: 1160px;
@@ -42,7 +43,7 @@ $margin-for-blocks: 0.5rem;
 		color: $font-color-article;
 		text-transform: initial;
 		font-weight: bold;
-		font-size: $font-size-base*1.25;
+		font-size: $font-size-base*1.15;
 		padding-left: 4px;
 	}
 
@@ -79,6 +80,7 @@ body {
 
 h1 {
 	text-align: center;
+	font-family: $font-family-headline;
 	font-size: $font-size-headline-article;
 }
 
@@ -99,14 +101,19 @@ input[type=text], textarea {
 
 input[type=text] {
 	background-color: transparent;
-	height: 30px;
+	height: $height-input-text;
 }
+
 
 .long-text {
 	font-family: $font-family-article;
 	font-size: $font-size-article;
-	line-height: $line-height-article;
 	color: $font-color-article;
+	line-height: $line-height-article;
+
+	h1, h2, h3, h4 {
+		line-height: normal;
+	}
 }
 
 a.category {
@@ -129,7 +136,18 @@ a.category {
 	margin: auto;
 }
 
+.spacer {
+	margin: $margin-section auto;
+}
+
+.muted {
+	color: $font-color-muted;
+}
+
 header {
+	$height-logo: 85px;
+	$margin-top-logo: $height-logo*0.8;
+
 	height: 100vh;
 	background-color: $background-color-header;
 
@@ -137,7 +155,7 @@ header {
 		$color-over-header: white;
 		position: absolute;
 		right: 8vw;
-		top: 10vh;
+		top: $margin-top-logo;
 		width: 15vw;
 		height: auto;
 		display: block;
@@ -170,10 +188,12 @@ header {
 	.logo {
 		position: absolute;
 		left: 8vw;
-		top: 8vh;
+		top: $margin-top-logo;
 		width: 150px;
+		height: $height-logo;
 
 		img {
+			height: $height-logo;
 			width: 100%;
 		}
 
@@ -193,6 +213,10 @@ header {
 			max-height: 100%;
 			max-width: 100%;
 		}
+	}
+
+	&.classic {
+		height: $margin-top-logo*2 + $height-logo;
 	}
 
 	&.index {
@@ -285,7 +309,6 @@ header {
 
 			span {
 				text-transform: uppercase;
-				color: $font-color-muted;
 			}
 
 			h1 {
@@ -307,17 +330,24 @@ article {
 }
 
 footer {
+	margin: $margin-section/2 auto;
+	display: flex;
+	justify-content: center;
 	height: 120px;
-	background-color: $font-color-article;
+	color: $font-color-article;
+	// background-color: $font-color-article;
+
+	div {
+		margin: 0 30px;
+	}
 }
 
-section.articles_list {
-	margin: $margin-section auto;
-	
+section.articles_list {	
 	.article {
 		margin-bottom: $margin-section;
 
 		h2 {
+			font-family: $font-family-headline;
 			font-size: $font-size-headline-index;
 			margin-bottom: 1rem;
 			text-align: center;
@@ -330,7 +360,6 @@ section.articles_list {
 		.information {
 			position: relative;
 			margin-top: 10px;
-			color: $font-color-muted;
 			text-transform: uppercase;
 
 			* {

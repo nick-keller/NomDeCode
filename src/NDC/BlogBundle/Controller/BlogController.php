@@ -57,4 +57,12 @@ class BlogController extends Controller
 
         return array();
     }
+
+    /**
+     * @Template
+     */
+    public function cguAction()
+    {
+        return array();
+    }
 } 

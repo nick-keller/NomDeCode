@@ -2,32 +2,31 @@
 
 {% block title %}{{ article.title }} [{{ article.tech.name }}] - {{ parent() }}{% endblock %}
 
-{% block body %}
-{% embed "::header.html.twig" %}
-	{% block class %}article{% endblock %}
-	{% block content %}
-		<div class="top" style="background-color:#{{ article.tech.color }};background-image:url(https://dl.dropboxusercontent.com/u/18517066/nomdecode/jollyt.png);">	
-			{% if article.state != "published" %}
-			    {% set states = {
-			        'draft':  {'icon': 'pencil', 'info': 'Cet article est un brouillon'},
-			        'removed': {'icon': 'trash-o', 'info': 'Cet article est supprimé'}
-			    } %}
-			    <div class="mask"></div>
-			    <div class="state state-{{ article.state }}">
-					<div class="state-icon">
-						<i class="fa fa-{{ attribute(states[article.state], 'icon') }}"></i>
-					</div>
-					<span>{{ attribute(states[article.state], 'info') }}</span>
-				</div>
-			{% endif %}
-		</div>
-		<div class="container text">
-			<h1>{{ article.title|capitalize }}</h1>
-			<span>{{ article.createdAt|fullDate }} - 5 commentaires</span>
-		</div>
-	{% endblock %}
-{% endembed %}
+{% block header_class %}article{% endblock %}
 
+{% block header %}
+	<div class="top" style="background-color:#{{ article.tech.color }};background-image:url(https://dl.dropboxusercontent.com/u/18517066/nomdecode/jollyt.png);">	
+		{% if article.state != "published" %}
+		    {% set states = {
+		        'draft':  {'icon': 'pencil', 'info': 'Cet article est un brouillon'},
+		        'removed': {'icon': 'trash-o', 'info': 'Cet article est supprimé'}
+		    } %}
+		    <div class="mask"></div>
+		    <div class="state state-{{ article.state }}">
+				<div class="state-icon">
+					<i class="fa fa-{{ attribute(states[article.state], 'icon') }}"></i>
+				</div>
+				<span>{{ attribute(states[article.state], 'info') }}</span>
+			</div>
+		{% endif %}
+	</div>
+	<div class="container text">
+		<h1>{{ article.title|capitalize }}</h1>
+		<span class="muted">{{ article.createdAt|fullDate }} - 5 commentaires</span>
+	</div>
+{% endblock %}
+
+{% block body %}
 <article class="long-text">{{ article.html|raw }}</article>
 <div class="article-author">
 	<div class="container">
@@ -73,7 +72,6 @@
 
 {% block javascripts %}
 {{ parent() }}
-<script src="{{ asset('js/scripts-article.js') }}"></script>
 <script src="{{ asset('js/highlight.pack.js') }}"></script>
 <script>hljs.initHighlightingOnLoad();</script>
 {% endblock %}
