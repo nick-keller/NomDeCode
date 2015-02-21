@@ -16,13 +16,14 @@ $font-family-base: "Open Sans", Arial, Helvetica, sans-serif;
 $font-family-article: $font-family-base;
 $font-family-headline: "Montserrat", Arial, Helvetica, sans-serif;
 $font-size-base: 1rem;
-$font-size-article: $font-size-base; // 1.2em;
-$line-height-article: 1.4rem; // 1.2em;
+$font-size-article: 1rem; // 1.2em;
+$line-height-article: 28px; // 1.2em;
+$line-height-pre-code: $line-height-article*0.86;
 $font-size-headline-index: 2.3rem;
 $font-size-headline-article: 3rem;
 
 // sizes for media queries
-$size-limit-little-screen: 1160px;
+$size-limit-bigger-screen: 1500px;
 
 // article content layout variables
 $padding-inline: 2px 4px;
@@ -91,7 +92,7 @@ a {
 
 // prevent outline highlight from Chrome focusing input
 *:focus {
-    outline: 0;
+	outline: 0;
 }
 
 input[type=text], textarea {
@@ -110,6 +111,7 @@ input[type=text] {
 	font-size: $font-size-article;
 	color: $font-color-article;
 	line-height: $line-height-article;
+	word-wrap: break-word;
 
 	h1, h2, h3, h4 {
 		line-height: normal;
@@ -132,7 +134,9 @@ a.category {
 }
 
 .container {
-	width: $width-article;
+	box-sizing: border-box;
+	width: $width-article - 20px;
+	padding: 0 10px;
 	margin: auto;
 }
 
@@ -203,15 +207,51 @@ header {
 	}
 
 	.illustration {
-		height: 70vh;
-		width: 36vw;
-		position: absolute;
-		top: 15vh;
-		right: 30vw;
+		$bottom-illustration: 13vh;
+		$bottom-offset-code-in-ilustration: 78px;
 
-		img {
-			max-height: 100%;
-			max-width: 100%;
+		position: absolute;
+		top: 0;
+		left: 0;
+		right: 0;
+		bottom: $bottom-illustration;
+		overflow: hidden;
+
+		#background-svg {
+			position: absolute;
+			bottom: 0;
+			left: 50%;
+			transform: translate(-50%, 0);
+			width: 1290px;
+			height: 535px;
+		}
+
+		.animated-code {
+			position: absolute;
+			bottom: $bottom-offset-code-in-ilustration;
+			left: 50%;
+			transform: translate(-50%, 0);
+			width: 435px;
+			height: 229px;
+			z-index: 2;
+			overflow: hidden;
+			padding: 3px 0px 3px 15px;
+		}
+
+		.animated-code svg:nth-child(1) {
+			position: absolute;
+			top: 5px;
+			left: 4px;
+			width: 171px;
+			height: 542px;
+		}
+
+		.animated-code svg:nth-child(2) {
+			position: absolute;
+			top: 5px;
+			left: calc(50% + 4px);
+			width: 98px;
+			height: 546px;
 		}
 	}
 
@@ -292,7 +332,7 @@ header {
 					bottom: 0;
 					right: 0;
 					left: 0;
-					font-size: $font-size-headline-index;
+					font-size: $height-icon/5;
 					margin-top: $height-icon;
 					font-weight: bold;
 				}
@@ -325,8 +365,8 @@ header {
 }
 
 article {
-  	@extend .container;
-	margin-bottom: $margin-section/1.5;
+	@extend .container;
+	margin-bottom: $margin-section/1.2;
 }
 
 footer {
@@ -393,7 +433,7 @@ section.articles_list {
 
 .article-author {
 	text-align: center;
-	padding-bottom: $margin-section/1.5;
+	padding-bottom: $margin-section/1.2;
 
 	img.author-img {
 		@include author-photo($size-photo-author-article);
@@ -409,48 +449,56 @@ section.articles_list {
 		padding-right: 10px;
 	}
 
-	.author-link {
-		display: inline-block;
+	.author-links {
+		display: inline-flex;
 		font-size: 18px;
-		width: 35px;
 		height: 35px;
-		background-color: #333;
 		color: #fff;
-		border-radius: 50%;
 		margin-left: 8px;
 
-		&:hover {
-			opacity: 0.6;
-		}
-
-		i {
-			padding-top: 8px;
-		}
-
-		&.author-link-website {
-			background-color: #666;
-		}
-
-		&.author-link-github {
+		a {
+			width: 35px;
+			height: 35px;
 			background-color: #333;
-		}
+			border-radius: 50%;
 
-		&.author-link-facebook {
-			background-color: #3d578d;
-			font-size: 23px;
+			&:not(:last-child) {
+				margin-right: 8px;
+			}
+
+			&:hover {
+				opacity: 0.6;
+			}
 
 			i {
-				padding-top: 13px;
-				padding-right: 4px;
+				padding-top: 8px;
 			}
-		}
 
-		&.author-link-linkedin {
-			background-color: #1884bb;
-		}
+			&.author-link-website {
+				background-color: #666;
+			}
 
-		&.author-link-twitter {
-			background-color: #55acee;
+			&.author-link-github {
+				background-color: #333;
+			}
+
+			&.author-link-facebook {
+				background-color: #3d578d;
+				font-size: 23px;
+
+				i {
+					padding-top: 13px;
+					padding-right: 4px;
+				}
+			}
+
+			&.author-link-linkedin {
+				background-color: #1884bb;
+			}
+
+			&.author-link-twitter {
+				background-color: #55acee;
+			}
 		}
 	}
 }

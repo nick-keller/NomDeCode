@@ -21,13 +21,15 @@
         'linkedin': {'title': 'LinkedIn'},
         'twitter': {}
     } %}
-    {% for key, link in links %}
-        {% if attribute(author, key) is not empty %}
-            {% if link.title is not defined %}{% set link = link|merge({'title': key|capitalize}) %}{% endif %}
-            {% if link.icon is not defined %}{% set link = link|merge({'icon': key}) %}{% endif %}
-            <a class="author-link author-link-{{ key }}" href="{{ attribute(author, key) }}" title="Page {{ link.title }} de {{ author.username|capitalize }}" target="_blank"><i class="fa fa-{{ link.icon }}"></i></a>
-        {% endif %}
-    {% endfor %}
+    <div class="author-links">
+        {% for key, link in links %}
+            {% if attribute(author, key) is not empty %}
+                {% if link.title is not defined %}{% set link = link|merge({'title': key|capitalize}) %}{% endif %}
+                {% if link.icon is not defined %}{% set link = link|merge({'icon': key}) %}{% endif %}
+                <a class="author-link-{{ key }}" href="{{ attribute(author, key) }}" title="Page {{ link.title }} de {{ author.username|capitalize }}" target="_blank"><i class="fa fa-{{ link.icon }}"></i></a>
+            {% endif %}
+        {% endfor %}
+    </div>
 {% endmacro %}
 
 {% import _self as helper %}
@@ -76,19 +78,18 @@
 
         <footer>
             <div>
-                <p><a href="#">CGU</a></p>
+                <p><a href="{{ path('blog_cgu') }}">CGU</a></p>
                 <p><a href="#">FAQ</a></p>
                 <p class="muted">© {{ "now"|date("Y") }} Nomdecode</p>
             </div>
             <div>
                 <p><a href="#">Nous contacter</a></p>
-                <p><a href="#">Rédacteurs</a></p>
+                <p><a href="{{ path('blog_authors') }}">Rédacteurs</a></p>
             </div>
         </footer>
 
         {% block javascripts %}
             <script src="{{ asset('js/jquery.min.js') }}"></script>
-            <script src="{{ asset('js/velocity.min.js') }}"></script>
         {% endblock %}
     </body>
 </html>

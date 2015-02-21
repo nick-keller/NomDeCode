@@ -18,3 +18,7 @@ blog_article:
 blog_cgu:
     pattern: /cgu
     defaults: { _controller: NDCBlogBundle:Blog:cgu }
+
+blog_authors:
+    pattern: /authors
+    defaults: { _controller: NDCBlogBundle:Blog:authors }

@@ -1,6 +1,6 @@
 {% extends '::base.html.twig' %}
 
-{% block title %}{{ article.title }} [{{ article.tech.name }}] - {{ parent() }}{% endblock %}
+{% block title %}{{ article.title }} [{{ article.tech.name }}] | {{ parent() }}{% endblock %}
 
 {% block header_class %}article{% endblock %}
 
@@ -42,7 +42,9 @@
 		<h1>Commentaires</h1>
 		<div class="comment">
 			<a href="#author">
-				<img src="{{ article.author.photo|default('https://dl.dropboxusercontent.com/u/18517066/nomdecode/author.png') }}" class="author-img">
+				{# <img src="{{ article.author.photo|default('https://dl.dropboxusercontent.com/u/18517066/nomdecode/author.png') }}" class="author-img"> #}
+				{% set avatar = random(7) + 1 %}
+				<img src="{{ asset('css/img/avatar/'~avatar~'.png') }}" class="author-img">
 			</a>
 			<a class="author" href="#author">{{ article.author.username|capitalize }}</a>
 			<span class="date">{{ article.createdAt|fullDate }}</span>
@@ -53,7 +55,19 @@
 		</div>
 		<div class="comment">
 			<a href="#author">
-				<img src="{{ article.author.photo|default('https://dl.dropboxusercontent.com/u/18517066/nomdecode/author.png') }}" class="author-img">
+				{% set avatar = random(7) + 1 %}
+				<img src="{{ asset('css/img/avatar/'~avatar~'.png') }}" class="author-img">
+			</a>
+			<a class="author" href="#author">{{ article.author.username|capitalize }}</a>
+			<span class="date">{{ article.createdAt|fullDate }}</span>
+			<div class="html long-text">
+				<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Libero impedit, molestias repellendus sit.</p>
+			</div>
+		</div>
+		<div class="comment">
+			<a href="#author">
+				{% set avatar = random(7) + 1 %}
+				<img src="{{ asset('css/img/avatar/'~avatar~'.png') }}" class="author-img">
 			</a>
 			<a class="author" href="#author">{{ article.author.username|capitalize }}</a>
 			<span class="date">{{ article.createdAt|fullDate }}</span>

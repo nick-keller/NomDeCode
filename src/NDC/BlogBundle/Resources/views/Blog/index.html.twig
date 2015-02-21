@@ -4,7 +4,10 @@
 
 {% block header %}
 	<div class="illustration">
+		{% include 'NDCBlogBundle:Blog:index_animation.html.twig' %}
+		<!--
 		<img src="https://dl.dropboxusercontent.com/u/18517066/nomdecode/illu.png" alt="">
+	-->
 	</div>
 {% endblock %}
 
@@ -14,7 +17,7 @@
 		<div class="article">
 			<a href="{{ path('blog_article', { 'id': article.id, 'slug': article.slug }) }}" title="{{ article.title|capitalize }}">
 				<h2>{{ article.title|capitalize }}</h2>
-				<p class="long-text">{{ article.html|striptags|slice(0, 230)|raw }}{% if article.html|striptags|length|raw > 230 %}...{% endif %}</p>
+				<p class="long-text">{{ article.html|striptags|slice(0, 250)|raw }}{% if article.html|striptags|length|raw > 250 %}...{% endif %}</p>
 			</a>
 			<div class="information muted">
 				<a href="#author" title="Rédacteur : {{ article.author.username|capitalize }}">
@@ -36,5 +39,30 @@
 
 {% block javascripts %}
 {{ parent() }}
-<script src="{{ asset('js/anim_header.js') }}"></script>
+<script src="{{ asset('js/velocity.min.js') }}"></script>
+<script>
+  $(function () {
+    function anim(currentSide) {
+      var currentSide = currentSide || "1";
+
+      var vDelay = Math.floor((Math.random() * 3000) + 1000),
+      vDuration = Math.floor((Math.random() * 1500) + 500),
+      heightSVG = $(".animated-code svg:nth-child(1)").height(),
+      vMove = - Math.floor((Math.random() * heightSVG*0.8) + 50) % heightSVG;
+      $(".animated-code svg:nth-child("+ currentSide +")").velocity(
+        { top: vMove + "px" },
+        {
+          duration: vDuration,
+          delay: vDelay,
+          easing: "easeInSine",
+          complete: function() {
+            anim(currentSide == 1 ? 2 : 1);
+        }
+    }
+    );
+  }
+
+  anim()
+});
+</script>
 {% endblock %}
