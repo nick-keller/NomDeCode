@@ -221,7 +221,8 @@ header {
 			position: absolute;
 			bottom: 0;
 			left: 50%;
-			transform: translate(-50%, 0);
+			transform-origin: center bottom;
+			transform: translateX(-50%);
 			width: 1290px;
 			height: 535px;
 		}
@@ -230,7 +231,8 @@ header {
 			position: absolute;
 			bottom: $bottom-offset-code-in-ilustration;
 			left: 50%;
-			transform: translate(-50%, 0);
+			transform-origin: center bottom;
+			transform: translateX(-50%);
 			width: 435px;
 			height: 229px;
 			z-index: 2;
@@ -252,6 +254,20 @@ header {
 			left: calc(50% + 4px);
 			width: 98px;
 			height: 546px;
+		}
+
+		@media screen and (min-width: $size-limit-bigger-screen) {
+			$ratio-bigger-anim: 1.13;
+			bottom: $bottom-illustration/$ratio-bigger-anim;
+
+			#background-svg {
+				transform: translateX(-50%) scale($ratio-bigger-anim);
+			}
+
+			.animated-code {
+				bottom: $bottom-offset-code-in-ilustration*$ratio-bigger-anim;
+				transform: translateX(-50%) scale($ratio-bigger-anim);
+			}
 		}
 	}
 
