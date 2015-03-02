@@ -1,39 +1,117 @@
 {% extends '::base.html.twig' %}
 
-{% block body %}
+{% block header_class %}index{% endblock %}
 
-{% embed "::header.html.twig" %}
-	{% block content %}
+	{% block header %}
 		<div class="illustration">
-			<img src="https://dl.dropboxusercontent.com/u/18517066/nomdecode/illu.png" alt="">
+			{% include 'NDCBlogBundle:Blog:index_animation.html.twig' %}
 		</div>
-	{% endblock %}
-{% endembed %}
+{% endblock %}
 
-<section class="container articles_list">
-	{% for article in articles %}
-		<div class="article">
-			<a href="{{ path('blog_article', { 'id': article.id, 'slug': article.slug }) }}" title="{{ article.title|capitalize }}">
-				<h2>{{ article.title|capitalize }}</h2>
-				<p class="long-text">{{ article.html|striptags|slice(0, 230) }}{% if article.html|striptags|length > 230 %}...{% endif %}</p>
-			</a>
-			<div class="information">
-				<a href="#author" title="Rédacteur : {{ article.author.username|capitalize }}">
-					<img src="{{ article.author.photo|default('https://dl.dropboxusercontent.com/u/18517066/nomdecode/author.png') }}" class="author-img">
+{% block body %}
+	<section class="container spacer articles_list">
+		{% for article in articles %}
+			<div class="article">
+				<a href="{{ path('blog_article', { 'id': article.id, 'slug': article.slug }) }}" title="{{ article.title|capitalize }}">
+					<h2>{{ article.title|capitalize }}</h2>
+					<p class="long-text">{{ article.html|striptags|slice(0, 250)|raw }}{% if article.html|striptags|length|raw > 250 %}...{% endif %}</p>
 				</a>
-				<a class="author" href="#author" title="Rédacteur : {{ article.author.username|capitalize }}">
-					<span class="author">{{ article.author.username|capitalize }}</span>
-				</a>
-				<span class="date">{{ article.createdAt|fullDate|lower }}</span>
-				<a href="#category" class="category" style="background-color:#{{ article.tech.color }};background-image:url({{ asset(article.tech.webPath) }});" title="{{ article.tech.name }}"></a>
-				<span class="comments">5 commentaires</span>
+				<div class="information muted">
+					<a href="#author" title="Rédacteur : {{ article.author.username|capitalize }}">
+						<img src="{{ article.author.photo|default('https://dl.dropboxusercontent.com/u/18517066/nomdecode/author.png') }}" class="author-img">
+					</a>
+					<a class="author" href="#author" title="Rédacteur : {{ article.author.username|capitalize }}">
+						<span class="author">{{ article.author.username|capitalize }}</span>
+					</a>
+					<span class="date">{{ article.createdAt|fullDate|lower }}</span>
+					<a href="#category" class="category" style="background-color:#{{ article.tech.color }};background-image:url({{ asset(article.tech.webPath) }});" title="{{ article.tech.name }}"></a>
+					<span class="comments">5 commentaires</span>
+				</div>
 			</div>
-		</div>
-	{% endfor %}
-</section>
+		{% endfor %}
+
+		{{ helper.pagination(page, articles.pageCount) }}
+	</section>
 {% endblock %}
 
 {% block javascripts %}
-{{ parent() }}
-<script src="{{ asset('js/anim_header.js') }}"></script>
+	{{ parent() }}
+	<script src="{{ asset('js/velocity.min.js') }}"></script>
+	<script>
+		$(function () {
+			var velocity_steps = 0,
+				velocity_delay = 140,
+				velocity_duration = velocity_delay*1.5;
+			jQuery.fn.extend({
+				velocity_delay: function(has_delay) {
+			    	return this.each(function() {
+			    		if(!has_delay)
+			    			velocity_steps -= 1;
+			    		$(this).delay(velocity_delay*velocity_steps);
+			    		velocity_steps += 1;
+			    	});
+			  	},
+				velocity_reset_position: function(has_delay) {
+			    	return this.each(function() {
+			    		$(this)
+			    			.velocity_delay(has_delay)
+			    			.velocity({
+								translateY: 0,
+								translateX: 0,
+								rotateZ: 0,
+								scale: 1,
+								scaleX: 1,
+								scaleY: 1,
+								opacity: 1
+							}, {
+								duration: velocity_duration,
+								easing: [ 18, 5 ]
+							});
+			    	});
+			  	}
+			});
+
+			var svg = $(".illustration"),
+				deploy = [
+					{ "e": "#second-element", "p": { translateY: 100, translateX: -100 } },
+					{ "e": "#third-element", "p": { translateX: 100 } },
+					{ "e": "#second-element #tapis", "p": { translateX: -200 } },
+					{ "e": "#fourth-element", "p": { translateX: 100 } },
+					{ "e": "#third-element #boitier", "p": { translateY: 50 } },
+					{ "e": "#fourth-element #fiole2", "p": { translateY: -50 } },
+					{ "e": "#fourth-element #fiole3", "p": { translateY: -50 } },
+					{ "e": "#fourth-element #fiole1", "p": { translateY: -50 } },
+				];
+
+				jQuery.each(deploy, function(i, v) {
+					if(!("has_delay" in v))
+						$.extend(v, { "has_delay" : true } );
+					$.extend(v.p, { opacity: 0, scale: 0.8 } );
+				    svg.find(v.e)
+				    .velocity(v.p, { duration: 0 })
+				    .velocity_reset_position(v.has_delay);
+				});
+
+			function code_animation(currentSide) {
+				var currentSide = currentSide || "1";
+
+				var vDelay = Math.floor((Math.random() * 3000) + 1000),
+				vDuration = Math.floor((Math.random() * 1500) + 500),
+				heightSVG = $(".animated-code svg:nth-child(1)").height(),
+				vMove = - Math.floor((Math.random() * heightSVG*0.8) + 50) % heightSVG;
+				$(".animated-code svg:nth-child("+ currentSide +")").velocity(
+					{ top: vMove + "px" },
+					{
+						duration: vDuration,
+						delay: vDelay,
+						easing: "easeInSine",
+						complete: function() {
+							code_animation(currentSide == 1 ? 2 : 1);
+						}
+					});
+			}
+
+			code_animation();
+		});
+	</script>
 {% endblock %}

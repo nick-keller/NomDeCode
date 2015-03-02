@@ -23,8 +23,18 @@ class UserType extends AbstractType
             ))
             ->add('plain_password', 'repeated', array(
                 'type' => 'password',
-                'first_options'  => array('label' => 'Mot de passe'),
-                'second_options' => array('label' => ' '),
+                'first_options'  => array(
+                    'label' => 'Nouveau mot de passe',
+                    'attr' => array(
+                        'placeholder' => 'Mot de passe',
+                    )
+                ),
+                'second_options' => array(
+                    'label' => ' ',
+                    'attr' => array(
+                        'placeholder' => 'Confirmation du mot de passe',
+                    )
+                ),
                 'required' => false,
             ))
             ->add('enabled', 'checkbox', array(
@@ -35,10 +45,14 @@ class UserType extends AbstractType
                 'label' => 'Bloqué',
                 'required' => false,
             ))
-            ->add('expired', 'checkbox', array(
-                'label' => 'Expiré',
-                'required' => false,
-            ))
+            // ->add('expired', 'checkbox', array(
+            //     'label' => 'Expiré',
+            //     'required' => false,
+            // ))
+            // ->add('expires_at', 'datetime', array(
+            //     'label' => 'Expiré l',
+            //     'required' => false,
+            // ))
             ->add('roles', 'choice', array(
                 'label' => 'Droits',
                 'multiple' => true,
@@ -56,11 +70,11 @@ class UserType extends AbstractType
                 'required' => false,
             ))
             ->add('github', 'url', array(
-                'label' => 'Git Hub',
+                'label' => 'GitHub',
                 'required' => false,
             ))
             ->add('linkedin', 'url', array(
-                'label' => 'Linkedin',
+                'label' => 'LinkedIn',
                 'required' => false,
             ))
             ->add('website', 'url', array(
