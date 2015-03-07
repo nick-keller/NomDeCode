@@ -3,6 +3,7 @@
 namespace NDC\UserBundle\Entity;
 
 use FOS\UserBundle\Model\User as BaseUser;
+use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * User
@@ -13,6 +14,19 @@ class User extends BaseUser
      * @var integer
      */
     protected $id;
+
+    /**
+     * @var string
+     * @Assert\NotBlank()
+     */
+    protected $username;
+
+    /**
+     * @var string
+     * @Assert\Email()
+     */
+    protected $email;
+
     /**
      * @var string
      */

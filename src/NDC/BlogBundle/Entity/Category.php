@@ -16,11 +16,13 @@ class Category
 
     /**
      * @var string
+     * @Assert\NotBlank()
      */
     private $name;
 
     /**
      * @var string
+     * @Assert\NotBlank()
      */
     private $abbr;
 
@@ -31,11 +33,15 @@ class Category
 
     /**
      * @var string
+     * @Assert\NotBlank()
+     * @Assert\Regex("/^[a-fA-F0-9]{6}$/")
      */
     private $color;
 
     /**
      * @var string
+     * @Assert\NotBlank()
+     * @Assert\Regex("/^[a-fA-F0-9]{6}$/")
      */
     private $txtColor;
 

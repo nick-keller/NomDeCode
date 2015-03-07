@@ -22,28 +22,35 @@ class Tech
     /**
      * @var string
      * @Expose
+     * @Assert\NotBlank()
      */
     private $name;
 
     /**
      * @var string
      * @Expose
+     * @Assert\NotBlank()
+     * @Assert\Regex("/^[a-fA-F0-9]{6}$/")
      */
     private $color;
 
     /**
      * @var string
      * @Expose
+     * @Assert\NotBlank()
      */
     private $slug;
 
     /**
      * @var string
+     * @Assert\NotBlank()
      */
     private $abbr;
 
     /**
      * @var string
+     * @Assert\NotBlank()
+     * @Assert\Regex("/^[a-fA-F0-9]{6}$/")
      */
     private $txtColor;
 
