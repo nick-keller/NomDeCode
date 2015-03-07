@@ -25,6 +25,7 @@ class Article
 
     /**
      * @var User
+     * @Assert\NotBlank()
      */
     private $author;
 
@@ -45,20 +46,26 @@ class Article
 
     /**
      * @var string
+     * @Assert\NotBlank()
      */
     private $html;
 
     /**
      * @var string
+     * @Assert\NotBlank()
      */
     private $state;
 
     /**
      * @var \NDC\BlogBundle\Entity\Category
+     * @Assert\NotBlank()
      */
     private $category;
     /**
      * @var \Doctrine\Common\Collections\Collection
+     * @Assert\Count(
+     *      min = "1"
+     * )
      */
     private $tech;
 
