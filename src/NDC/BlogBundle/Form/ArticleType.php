@@ -22,9 +22,15 @@ class ArticleType extends AbstractType
                 'label' => 'Auteur',
                 'class' => 'NDC\UserBundle\Entity\User',
             ))
+            ->add('category', 'entity', array(
+                'label' => 'Catégorie',
+                'class' => 'NDC\BlogBundle\Entity\Category',
+            ))
             ->add('tech', 'entity', array(
                 'label' => 'Techno',
                 'class' => 'NDC\BlogBundle\Entity\Tech',
+                'multiple' => true,
+                'expanded' => true,
             ))
             ->add('state', 'choice', array(
                 'label' => 'Etat',
