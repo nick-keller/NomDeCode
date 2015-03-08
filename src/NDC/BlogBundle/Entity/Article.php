@@ -63,9 +63,6 @@ class Article
     private $category;
     /**
      * @var \Doctrine\Common\Collections\Collection
-     * @Assert\Count(
-     *      min = "1"
-     * )
      */
     private $tech;
 
