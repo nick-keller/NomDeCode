@@ -38,7 +38,6 @@ class Tech
     /**
      * @var string
      * @Expose
-     * @Assert\NotBlank()
      */
     private $slug;
 
