@@ -13,10 +13,12 @@
             <button class="btn btn-default" type="submit">
                 Enregistrer et quitter
             </button>
-            <a class="btn btn-default" href="{{ path('blog_article', {id:article.id, slug:article.slug}) }}" target="_blank">
-                <i class="glyphicon glyphicon-eye-open"></i>
-                Visionner
-            </a>
+            {% if article.id is not null %}
+                <a class="btn btn-default" href="{{ path('blog_article', {id:article.id, slug:article.slug}) }}" target="_blank">
+                    <i class="glyphicon glyphicon-eye-open"></i>
+                    Visionner
+                </a>
+            {% endif %}
         </div>
     </div>
 </div>
