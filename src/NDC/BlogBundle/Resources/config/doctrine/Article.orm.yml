@@ -72,5 +72,5 @@ NDC\BlogBundle\Entity\Article:
 
     oneToMany:
         comments:
-            targetEntity: NDC\BLogBundle\Entity\Comment
+            targetEntity: NDC\BlogBundle\Entity\Comment
             mappedBy: article

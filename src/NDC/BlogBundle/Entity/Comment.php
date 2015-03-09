@@ -38,6 +38,11 @@ class Comment
      */
     private $article;
 
+    public function __construct(Article $article = null)
+    {
+        $this->article = $article;
+    }
+
     /**
      * Get id
      *

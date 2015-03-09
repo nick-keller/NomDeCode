@@ -21,7 +21,7 @@ class CommentType extends AbstractType
             ->add('email', 'text', array(
                 'label' => 'Email'
             ))
-            ->add('message', 'text', array(
+            ->add('message', 'textarea', array(
                 'label' => 'Message'
             ))
             ->add('Envoyer', 'submit')

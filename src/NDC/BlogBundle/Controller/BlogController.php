@@ -4,6 +4,8 @@
 namespace NDC\BlogBundle\Controller;
 
 use NDC\BlogBundle\Entity\Article;
+use NDC\BlogBundle\Entity\Comment;
+use NDC\BlogBundle\Form\CommentType;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Doctrine\ORM\EntityManager;
 use Knp\Component\Pager\Paginator;
@@ -42,7 +44,7 @@ class BlogController extends Controller
     /**
      * @Template
      */
-    public function articleAction(Article $article, $slug)
+    public function articleAction(Article $article, $slug, Request $request)
     {
         if($article->getState() != 'published') {
             if($this->getUser() != $article->getAuthor() and !$this->isGranted('ROLE_ADMIN'))
@@ -55,7 +57,20 @@ class BlogController extends Controller
         if($article->getSlug() != $slug)
             return $this->redirect($this->generateUrl('blog_article', array('id'=>$article->getId(), 'slug'=>$article->getSlug())), 301);
 
-        return array();
+        $comment = new Comment($article);
+        $form = $this->createForm(new CommentType, $comment);
+
+        if($request->isMethod('POST')){
+            $form->handleRequest($request);
+
+            if($form->isValid()){
+
+            }
+        }
+
+        return array(
+            'form' => $form->createView(),
+        );
     }
 
     /**

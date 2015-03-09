@@ -316,10 +316,10 @@ class Article
     /**
      * Add comments
      *
-     * @param \NDC\BLogBundle\Entity\Comment $comments
+     * @param \NDC\BlogBundle\Entity\Comment $comments
      * @return Article
      */
-    public function addComment(\NDC\BLogBundle\Entity\Comment $comments)
+    public function addComment(\NDC\BlogBundle\Entity\Comment $comments)
     {
         $this->comments[] = $comments;
 
@@ -329,9 +329,9 @@ class Article
     /**
      * Remove comments
      *
-     * @param \NDC\BLogBundle\Entity\Comment $comments
+     * @param \NDC\BlogBundle\Entity\Comment $comments
      */
-    public function removeComment(\NDC\BLogBundle\Entity\Comment $comments)
+    public function removeComment(\NDC\BlogBundle\Entity\Comment $comments)
     {
         $this->comments->removeElement($comments);
     }
