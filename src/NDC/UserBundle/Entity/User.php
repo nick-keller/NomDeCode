@@ -48,6 +48,13 @@ class User extends BaseUser
      */
     private $website;
 
+    private $file;
+
+    /**
+     * @var string
+     */
+    private $path;
+
     public function __construct()
     {
         parent::__construct();
@@ -174,6 +181,50 @@ class User extends BaseUser
     public function setWebsite($website)
     {
         $this->website = $website;
+
+        return $this;
+    }
+
+    /**
+     * @param mixed $file
+     */
+    public function setFile($file)
+    {
+        $this->file = $file;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getFile()
+    {
+        return $this->file;
+    }
+
+    /**
+     * Get path
+     *
+     * @return string
+     */
+    public function getPath()
+    {
+        return $this->path;
+    }
+
+    public function getWebPath()
+    {
+        return substr($this->path, strpos($this->path, 'app/../web/') + 11);
+    }
+
+    /**
+     * Set path
+     *
+     * @param string $path
+     * @return User
+     */
+    public function setPath($path)
+    {
+        $this->path = $path;
 
         return $this;
     }
