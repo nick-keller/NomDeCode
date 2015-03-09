@@ -32,3 +32,4 @@ NDC\BlogBundle\Entity\Comment:
             targetEntity: NDC\BlogBundle\Entity\Article
             fetch: EAGER
             nullable: false
+            inversedBy: comments
