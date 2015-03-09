@@ -64,7 +64,12 @@ class BlogController extends Controller
             $form->handleRequest($request);
 
             if($form->isValid()){
+                $this->em->persist($comment);
+                $this->em->flush();
 
+                return $this->render('@NDCBlog/Blog/comment.html.twig', array(
+                    'comment' => $comment,
+                ));
             }
         }
 

@@ -38,10 +38,16 @@ class Comment
      * @var \DateTime
      */
     private $createdAt;
+    
     /**
      * @var \NDC\BlogBundle\Entity\Article
      */
     private $article;
+
+    /**
+     * @var boolean
+     */
+    private $isRegistered;
 
     public function __construct(Article $article = null)
     {
@@ -174,6 +180,29 @@ class Comment
     public function setArticle(\NDC\BlogBundle\Entity\Article $article = null)
     {
         $this->article = $article;
+
+        return $this;
+    }
+
+    /**
+     * Get isRegistered
+     *
+     * @return boolean
+     */
+    public function getIsRegistered()
+    {
+        return $this->isRegistered;
+    }
+
+    /**
+     * Set isRegistered
+     *
+     * @param boolean $isRegistered
+     * @return Comment
+     */
+    public function setIsRegistered($isRegistered)
+    {
+        $this->isRegistered = $isRegistered;
 
         return $this;
     }

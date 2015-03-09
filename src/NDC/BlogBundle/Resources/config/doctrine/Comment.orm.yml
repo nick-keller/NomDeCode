@@ -27,6 +27,10 @@ NDC\BlogBundle\Entity\Comment:
                 timestampable:
                     on: create
 
+        isRegistered:
+            column: is_registered
+            type: boolean
+
     manyToOne:
         article:
             targetEntity: NDC\BlogBundle\Entity\Article
