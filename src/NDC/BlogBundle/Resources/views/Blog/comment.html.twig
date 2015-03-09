@@ -1,0 +1,8 @@
+<div class="comment">
+	<a>
+		<img src="http://www.gravatar.com/avatar/{{ comment.gravatar }}?d=retro" class="author-img">
+	</a>
+	<a class="author">{{ comment.username|capitalize }}</a>
+	<span class="date">{{ comment.createdAt|fullDate }}</span>
+	<div class="html long-text">{{ comment.message }}</div>
+</div>

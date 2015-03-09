@@ -86,5 +86,11 @@ class BlogController extends Controller
     /**
      * @Template
      */
-    public function authorsAction() { return array(); }
+    public function authorsAction() {
+        $authors = $this->em->getRepository('NDCUserBundle:User')->findBy(array("locked" => false, "expired" => false));
+
+        return array(
+            "authors" => $authors,
+        );
+    }
 } 

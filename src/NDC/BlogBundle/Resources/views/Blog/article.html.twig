@@ -40,44 +40,9 @@
 <section class="comments">
 	<div class="container">
 		<h1>Commentaires</h1>
-
-        {{ form(form) }}
-
-		<div class="comment">
-			<a href="#author">
-				{# <img src="{{ article.author.photo|default('https://dl.dropboxusercontent.com/u/18517066/nomdecode/author.png') }}" class="author-img"> #}
-				{% set avatar = random(7) + 1 %}
-				<img src="{{ asset('css/img/avatar/'~avatar~'.png') }}" class="author-img">
-			</a>
-			<a class="author" href="#author">{{ article.author.username|capitalize }}</a>
-			<span class="date">{{ article.createdAt|fullDate }}</span>
-			<div class="html long-text">
-				<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Libero impedit, molestias repellendus sit. Libero, excepturi? Quas molestias nobis porro itaque, impedit eligendi beatae cum soluta quo numquam! Iure facere odio magnam aliquam reprehenderit eum sunt sapiente expedita molestiae praesentium minima pariatur libero eos rerum quaerat.</p>
-				<p>Dolor aliquam quo suscipit libero mollitia, optio pariatur qui obcaecati incidunt dolores necessitatibus quia modi, beatae aperiam impedit facilis sequi. Sint, vel.</p>
-			</div>
-		</div>
-		<div class="comment">
-			<a href="#author">
-				{% set avatar = random(7) + 1 %}
-				<img src="{{ asset('css/img/avatar/'~avatar~'.png') }}" class="author-img">
-			</a>
-			<a class="author" href="#author">{{ article.author.username|capitalize }}</a>
-			<span class="date">{{ article.createdAt|fullDate }}</span>
-			<div class="html long-text">
-				<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Libero impedit, molestias repellendus sit.</p>
-			</div>
-		</div>
-		<div class="comment">
-			<a href="#author">
-				{% set avatar = random(7) + 1 %}
-				<img src="{{ asset('css/img/avatar/'~avatar~'.png') }}" class="author-img">
-			</a>
-			<a class="author" href="#author">{{ article.author.username|capitalize }}</a>
-			<span class="date">{{ article.createdAt|fullDate }}</span>
-			<div class="html long-text">
-				<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Libero impedit, molestias repellendus sit. Libero, excepturi? Quas molestias nobis porro itaque, impedit eligendi beatae cum soluta quo numquam! Iure facere odio magnam aliquam reprehenderit eum sunt sapiente expedita molestiae praesentium minima pariatur libero eos rerum quaerat.</p>
-			</div>
-		</div>
+		{% for comment in article.comments %}
+			{% include 'NDCBlogBundle:Blog:comment.html.twig' %}
+		{% endfor %}
 	</div>
 </section>
 {% endblock %}
