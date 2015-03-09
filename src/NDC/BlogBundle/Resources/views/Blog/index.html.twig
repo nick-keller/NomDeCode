@@ -24,7 +24,11 @@
 						<span class="author">{{ article.author.username|capitalize }}</span>
 					</a>
 					<span class="date">{{ article.createdAt|fullDate|lower }}</span>
-					<a href="#category" class="category" style="background-color:#{{ article.tech.color }};background-image:url({{ asset(article.tech.webPath) }});" title="{{ article.tech.name }}"></a>
+					
+					<a href="" class="tech" style="background-color:#{{ article.category.color }};color:#{{ article.category.txtColor }};" title="{{ article.category.name }}">{{ article.category.abbr }}</a>
+					{% for t in article.tech %}
+						<a href="" class="tech tech-framework" style="background-color:#{{ t.color }};color:#{{ t.txtColor }};" title="{{ t.name }}">{{ t.abbr }}</a>
+					{% endfor %}
 					<span class="comments">5 commentaires</span>
 				</div>
 			</div>
