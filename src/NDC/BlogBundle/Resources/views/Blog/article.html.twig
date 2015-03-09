@@ -40,8 +40,11 @@
 <section class="comments">
 	<div class="container">
 		<h1>Commentaires</h1>
+        {{ form(form) }}
 		{% for comment in article.comments %}
 			{% include 'NDCBlogBundle:Blog:comment.html.twig' %}
+		{% else %}
+			<p>Il n'y a pas encore de commentaire sur cet article !</p>
 		{% endfor %}
 	</div>
 </section>

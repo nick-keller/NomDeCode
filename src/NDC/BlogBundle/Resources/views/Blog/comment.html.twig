@@ -4,5 +4,5 @@
 	</a>
 	<a class="author">{{ comment.username|capitalize }}</a>
 	<span class="date">{{ comment.createdAt|fullDate }}</span>
-	<div class="html long-text">{{ comment.message }}</div>
+	<div class="html long-text">{{ comment.message|nl2br }}</div>
 </div>

@@ -52,6 +52,7 @@ class Comment
     public function __construct(Article $article = null)
     {
         $this->article = $article;
+        $this->isRegistered = false;
     }
 
     /**
