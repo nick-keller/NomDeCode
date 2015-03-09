@@ -40,8 +40,9 @@
 <section class="comments">
 	<div class="container">
 		<h1>Commentaires</h1>
+		<p><i class="fa fa-exclamation-circle"></i> Les commentaires se limitent à du texte simple</p>
         {{ form(form) }}
-		{% for comment in article.comments %}
+		{% for comment in article.comments|reverse %}
 			{% include 'NDCBlogBundle:Blog:comment.html.twig' %}
 		{% else %}
 			<p>Il n'y a pas encore de commentaire sur cet article !</p>

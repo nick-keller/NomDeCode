@@ -21,6 +21,7 @@ $line-height-article: 28px; // 1.2em;
 $line-height-pre-code: $line-height-article*0.86;
 $font-size-headline-index: 2.3rem;
 $font-size-headline-article: 3rem;
+$color-over-header: white;
 
 // sizes for media queries
 $size-limit-bigger-screen: 1500px;
@@ -30,6 +31,7 @@ $padding-inline: 2px 4px;
 $margin-for-blocks: 0.5rem;
 // imports needing variables
 @import "article_theme";
+
 
 // mixins
 @mixin author-photo($diameter) {
@@ -123,16 +125,39 @@ a {
 	outline: 0;
 }
 
-input[type=text], textarea {
+input[type=text], input[type=email], textarea {
 	box-sizing: border-box;
 	padding-left: 10px;
+	background-color: transparent;
+	border: none;
+	border-bottom: 2px solid $color-over-header;
+	color: $color-over-header;
+	margin-bottom: 10px;
+
+	&::-webkit-input-placeholder { color: $color-over-header; }
+	&:-moz-placeholder { color: $color-over-header; }
+	&::-moz-placeholder { color: $color-over-header; }
+	&:-ms-input-placeholder { color: $color-over-header; }
 }
 
-input[type=text] {
-	background-color: transparent;
+input[type=text], input[type=email] {
 	height: $height-input-text;
 }
 
+textarea {
+	resize: vertical;
+}
+
+.btn {
+	display: inline-block;
+	border: none;
+	background-color: $color-over-header;
+	padding: 15px 25px;
+	text-transform: uppercase;
+	color: inherit;
+	font-weight: bold;
+	border-radius: 4px;
+}
 
 .long-text {
 	font-family: $font-family-article;
@@ -181,7 +206,6 @@ header {
 	background-color: $background-color-header;
 
 	nav {
-		$color-over-header: white;
 		position: absolute;
 		right: 8vw;
 		top: $margin-top-logo;
@@ -201,16 +225,7 @@ header {
 		}
 
 		input[type=text].search {
-			border: none;
-			border-bottom: 2px solid $color-over-header;
-			color: $color-over-header;
-			margin-bottom: 10px;
-			
 			width: 100%;
-			&::-webkit-input-placeholder { color: $color-over-header; }
-			&:-moz-placeholder { color: $color-over-header; }
-			&::-moz-placeholder { color: $color-over-header; }
-			&:-ms-input-placeholder { color: $color-over-header; }
 		}
 	}
 
@@ -600,6 +615,20 @@ section.comments {
 
 	h1 {
 		margin-bottom: $margin-section/2;
+	}
+
+	form {
+		margin-bottom: 50px;
+
+		input:not([type=submit]), textarea {
+			width: 100%;
+			margin-bottom: 20px;
+		}
+
+		.btn {
+			display: block;
+			margin: auto;
+		}
 	}
 
 	.comment {
