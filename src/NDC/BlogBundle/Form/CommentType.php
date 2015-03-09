@@ -18,7 +18,7 @@ class CommentType extends AbstractType
             ->add('username', 'text', array(
                 'label' => 'Pseudo'
             ))
-            ->add('email', 'text', array(
+            ->add('email', 'email', array(
                 'label' => 'Email'
             ))
             ->add('message', 'textarea', array(

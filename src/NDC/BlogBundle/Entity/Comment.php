@@ -3,6 +3,7 @@
 namespace NDC\BlogBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * Comment
@@ -16,16 +17,20 @@ class Comment
 
     /**
      * @var string
+     * @Assert\NotBlank()
      */
     private $username;
 
     /**
      * @var string
+     * @Assert\NotBlank()
+     * @Assert\Email()
      */
     private $email;
 
     /**
      * @var string
+     * @Assert\NotBlank()
      */
     private $message;
 
