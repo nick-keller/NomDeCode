@@ -22,7 +22,7 @@
 	</div>
 	<div class="container text">
 		<h1>{{ article.title|capitalize }}</h1>
-		<span class="muted">{{ article.createdAt|fullDate }} - 5 commentaires</span>
+		<span class="muted">{{ article.createdAt|fullDate }} - 5 commentaires{% if article.tech|length > 0 %} - {{ article.tech|join(" + ") }}{% endif %}</span>
 	</div>
 {% endblock %}
 
@@ -32,7 +32,7 @@
 	<div class="container">
 			<a class="author" href="#author" title="Rédacteur : {{ article.author.username|capitalize }}">{{ article.author.username|capitalize }}</a>
 			<a href="#author" title="Rédacteur : {{ article.author.username|capitalize }}">
-				<img src="{{ article.author.photo|default('https://dl.dropboxusercontent.com/u/18517066/nomdecode/author.png') }}" class="author-img">
+				<img src="../{{ article.author.webPath }}" class="author-img">
 			</a>
 			{{ helper.author_link(article.author) }}
 	</div>
