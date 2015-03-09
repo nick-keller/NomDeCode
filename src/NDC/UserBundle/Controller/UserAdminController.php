@@ -59,6 +59,7 @@ class UserAdminController extends Controller
 
             if($form->isValid()){
                 $userManager->updateUser($user);
+                if($user->getFile() != null)
                 $this->uploadableManager->markEntityToUpload($user, $user->getFile());
                 $userManager->updateUser($user);
 
