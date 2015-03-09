@@ -5,7 +5,7 @@
 {% block header_class %}article{% endblock %}
 
 {% block header %}
-	<div class="top" style="background-color:#{{ article.category.color }};background-image:url({{asset('css/img/bg_category/'~article.category.abbr|lower~'.png')}});">
+	<div class="top" style="background-color:#{{ article.category.color }};background-image:url({{asset('css/img/bg_category/'~article.category.abbr|lower~'.png')}}), url({{asset('css/img/bg_category/motif_'~article.category.abbr|lower~'.png')}});">
 		{% if article.state != "published" %}
 		    {% set states = {
 		        'draft':  {'icon': 'pencil', 'info': 'Cet article est un brouillon'},
