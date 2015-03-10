@@ -1,14 +1,21 @@
 <div class="article_preview">
+	{% if is_granted('ROLE_ADMIN') or article.author == app.user %}
+		<div class="admin_panel">
+			<a href="{{ path('blog_article_admin_edit', { 'id': article.id }) }}"> <i class="fa fa-pencil"></i> Éditer cet article</a>
+		</div>
+	{% endif %}
+
 	<a href="{{ path('blog_article', { 'id': article.id, 'slug': article.slug }) }}" title="{{ article.title|capitalize }}">
 		<h2>{{ article.title|capitalize }}</h2>
 		<p class="long-text">{{ article.html|striptags|slice(0, 250)|raw }}{% if article.html|striptags|length|raw > 250 %}...{% endif %}</p>
 	</a>
+	
 	<div class="information muted">
-		<a title="Rédacteur : {{ article.author.username|capitalize }}">
+		<a title="Rédacteur : {{ article.author.username }}">
 			<img src="{{ asset(article.author.webPath) }}" class="author-img">
 		</a>
-		<a class="author" title="Rédacteur : {{ article.author.username|capitalize }}">
-			<span class="author">{{ article.author.username|capitalize }}</span>
+		<a class="author" title="Rédacteur : {{ article.author.username }}">
+			<span class="author">{{ article.author.username }}</span>
 		</a>
 		<span class="date">{{ article.createdAt|fullDate|lower }}</span>
 					

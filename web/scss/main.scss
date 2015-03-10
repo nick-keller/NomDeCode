@@ -22,6 +22,7 @@ $line-height-pre-code: $line-height-article*0.86;
 $font-size-headline-index: 2.3rem;
 $font-size-headline-article: 3rem;
 $color-over-header: white;
+$color-before-focus: transparentize($font-color-base, 0.2);
 
 // sizes for media queries
 $size-limit-bigger-screen: 1500px;
@@ -126,37 +127,36 @@ a {
 }
 
 input[type=text], input[type=password], input[type=email], textarea {
-	$color-before-focus: transparentize($color-over-header, 0.2);
+	$color-before-focus-white: transparentize($color-over-header, 0.2);
 	box-sizing: border-box;
 	padding-left: 10px;
 	background-color: transparent;
 	border: none;
-	border-bottom: 2px solid transparentize($color-before-focus, 0.4);
+	border-bottom: 2px solid transparentize($color-before-focus-white, 0.4);
 	color: $color-over-header;
 	margin-bottom: 10px;
 	transition: border-bottom 0.3s;
 
 	&:focus {
 		color: $color-over-header;
-		border-bottom: 2px solid $color-over-header;
+		border-bottom-color: $color-over-header;
 	}
 
-	&::-webkit-input-placeholder { color: $color-before-focus; }
-	&:-moz-placeholder { color: $color-before-focus; }
-	&::-moz-placeholder { color: $color-before-focus; }
-	&:-ms-input-placeholder { color: $color-before-focus; }
+	&::-webkit-input-placeholder { color: $color-before-focus-white; }
+	&:-moz-placeholder { color: $color-before-focus-white; }
+	&::-moz-placeholder { color: $color-before-focus-white; }
+	&:-ms-input-placeholder { color: $color-before-focus-white; }
 }
 
 .input-dark {
 	input[type=text], input[type=password], input[type=email], textarea {
-		$color-before-focus: transparentize($font-color-base, 0.2);
 		border-color: $color-before-focus;
 		color: $font-color-base;
 		width: 100%;
 
 		&:focus {
 			color: $font-color-base;
-			border-bottom: 3px solid $font-color-base;
+			border-bottom-color: $font-color-base;
 		}
 
 		&::-webkit-input-placeholder { color: $color-before-focus; }
@@ -576,6 +576,7 @@ footer {
 
 .article_preview {
 	margin-bottom: $margin-section;
+	position: relative;
 
 	h2 {
 		font-family: $font-family-headline;
@@ -622,6 +623,27 @@ footer {
 				margin-right: 5px;
 			}
 		}
+	}
+
+	.admin_panel {
+		transition: opacity 0.2s;
+		position: absolute;
+		top: 0;
+		left: 0;
+		transform: translateY(-100%);
+		padding: 10px 15px;
+		display: flex;
+
+		a {
+			margin-right: 15px;
+
+			&:hover {
+				color: $color-before-focus;
+			}
+		}
+	}
+	&:not(:hover) .admin_panel {
+		opacity: 0;
 	}
 }
 
