@@ -17,6 +17,7 @@ NDC\UserBundle\Entity\User:
     fields:
         desc:
             type: text
+            column: description
             nullable: true
 
         facebook:
