@@ -5,3 +5,11 @@ services:
             - @translator
         tags:
             - { name: twig.extension }
+
+    validator.allowed_username:
+        class: NDC\BlogBundle\Validator\Constraints\AllowedUsernameValidator
+        arguments:
+            - @doctrine.orm.entity_manager
+            - @security.context
+        tags:
+            - { name: validator.constraint_validator, alias: allowed_username }

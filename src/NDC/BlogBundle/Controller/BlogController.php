@@ -58,8 +58,8 @@ class BlogController extends Controller
         if($article->getSlug() != $slug)
             return $this->redirect($this->generateUrl('blog_article', array('id'=>$article->getId(), 'slug'=>$article->getSlug())), 301);
 
-        $comment = new Comment($article);
-        $form = $this->createForm(new CommentType, $comment);
+        $comment = new Comment($article, $this->getUser());
+        $form = $this->createForm(new CommentType($this->getUser()), $comment);
 
         if($request->query->get('r', null) == 'ajax') {
             if($request->isMethod('POST')){

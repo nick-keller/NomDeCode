@@ -2,12 +2,20 @@
 
 namespace NDC\BlogBundle\Form;
 
+use NDC\UserBundle\Entity\User;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolverInterface;
 
 class CommentType extends AbstractType
 {
+    private $user;
+
+    public function __construct(User $user = null)
+    {
+        $this->user = $user;
+    }
+
     /**
      * @param FormBuilderInterface $builder
      * @param array $options
@@ -20,12 +28,14 @@ class CommentType extends AbstractType
                 'attr' => array(
                     'placeholder' => 'Nom',
                 ),
+                'disabled' => $this->user != null,
             ))
             ->add('email', 'email', array(
                 'label' => false,
                 'attr' => array(
                     'placeholder' => 'Adresse mail',
                 ),
+                'disabled' => $this->user != null,
             ))
             ->add('message', 'textarea', array(
                 'label' => false,
