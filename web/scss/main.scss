@@ -302,6 +302,10 @@ header {
 			padding-left: 10px;
 			display: block;
 
+			&:first-of-type {
+				margin-top: 42px;
+			}
+
 			&:hover {
 				opacity: 0.6;
 			}
