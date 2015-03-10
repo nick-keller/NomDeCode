@@ -102,4 +102,16 @@ class BlogController extends Controller
             "authors" => $authors,
         );
     }
+
+    /**
+     * @Template
+     */
+    public function searchAction(Request $request)
+    {
+        $query = $request->query->get('q', '');
+
+        return array(
+            "query" => $query,
+        );
+    }
 } 

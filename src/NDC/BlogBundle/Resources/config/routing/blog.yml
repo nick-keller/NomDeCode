@@ -8,6 +8,10 @@ blog_index:
     requirements:
         page: \d+
 
+blog_search:
+    pattern: /search
+    defaults: { _controller: NDCBlogBundle:Blog:search, page: 1 }
+
 blog_article:
     pattern: /article/{id}-{slug}
     defaults: { _controller: NDCBlogBundle:Blog:article, slug:null }

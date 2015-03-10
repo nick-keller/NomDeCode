@@ -33,4 +33,14 @@ class ArticleRepository extends EntityRepository
             ->setParameter('state', 'published')
             ->orderBy('a.createdAt', 'DESC');
     }
+
+    public function querySearch($query, $techs, $authors, $categories)
+    {
+        $queries = explode(' ', $query);
+        $techs = explode('+', $techs);
+        $authors = explode('+', $authors);
+        $categories = explode('+', $categories);
+
+        $qb = $this->createQueryBuilder('a');
+    }
 }
