@@ -49,8 +49,7 @@ class CommentType extends AbstractType
                 'label' => false,
                 'attr' => array(
                     'placeholder' => 'Message',
-                    'rows' => '6',
-                    'class' => 'btn',
+                    'class' => 'btn btn-bloc',
                     'data-type' => 'ajax',
                 ),
             ))

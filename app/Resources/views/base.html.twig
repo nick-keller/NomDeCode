@@ -52,7 +52,11 @@
         <header class="{% block header_class %}classic{% endblock %}">
             {% block header %}{% endblock %}
             <nav>
-                <input type="text" class="search" placeholder="Chercher..." title="Chercher un article">
+                <form action="" method="get" class="search">
+                    <input type="text" name="k" placeholder="Chercher..." title="Chercher un article">
+                    <button type="submit"><i class="fa fa-search"></i></button>
+                </form>
+
                 {% if app.user %}
                     {% if is_granted('ROLE_ADMIN') %}
                         <a href="{{ path('ndc_admin_index') }}">Administration</a>
@@ -67,6 +71,8 @@
                             <a href="{{ path('blog_article_admin_edit', { 'id': article.id }) }}">Éditer cet article</a>
                         {% endif %}
                     {% endif %}
+
+                    <a href="{{ path('fos_user_security_logout') }} ">Se déconnecter</a>
                 {% endif %}
             </nav>
             <a href="{{ path('blog_index_first_page') }}" class="logo" title="Accueil de Nomdecode">

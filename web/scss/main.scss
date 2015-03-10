@@ -125,8 +125,8 @@ a {
 	outline: 0;
 }
 
-input[type=text], input[type=email], textarea {
-	$color-before-focus: transparentize($color-over-header, 0.25);
+input[type=text], input[type=password], input[type=email], textarea {
+	$color-before-focus: transparentize($color-over-header, 0.2);
 	box-sizing: border-box;
 	padding-left: 10px;
 	background-color: transparent;
@@ -147,7 +147,26 @@ input[type=text], input[type=email], textarea {
 	&:-ms-input-placeholder { color: $color-before-focus; }
 }
 
-input[type=text], input[type=email] {
+.input-dark {
+	input[type=text], input[type=password], input[type=email], textarea {
+		$color-before-focus: transparentize($font-color-base, 0.2);
+		border-color: $color-before-focus;
+		color: $font-color-base;
+		width: 100%;
+
+		&:focus {
+			color: $font-color-base;
+			border-bottom: 3px solid $font-color-base;
+		}
+
+		&::-webkit-input-placeholder { color: $color-before-focus; }
+		&:-moz-placeholder { color: $color-before-focus; }
+		&::-moz-placeholder { color: $color-before-focus; }
+		&:-ms-input-placeholder { color: $color-before-focus; }
+	}
+}
+
+input[type=text], input[type=password], input[type=email] {
 	height: $height-input-text;
 }
 
@@ -165,10 +184,15 @@ textarea {
 	font-weight: bold;
 	border-radius: 4px;
 	transition: background-color 0.3s linear;
-}
 
-.btn:disabled {
-	background-color: #ccc;
+	&:disabled {
+		background-color: #ccc;
+	}
+
+	&.btn-bloc {
+		display: block;
+		margin: auto;
+	}
 }
 
 .long-text {
@@ -283,9 +307,29 @@ header {
 			}
 		}
 
-		input[type=text].search {
+		.search {
+			position: relative;
 			width: 100%;
+
+			input[type=text], button {
+				position: absolute;
+			}
+
+			input[type=text] {
+				left: 0;
+				top: 0;
+				width: 100%;
+			}
+
+			button {
+				border: none;
+				color: white;
+				background: none;
+				right: 0;
+				top: 0;
+			}
 		}
+
 	}
 
 	.logo {
@@ -682,11 +726,6 @@ section.comments {
 		input:not([type=submit]), textarea {
 			width: 100%;
 			margin-bottom: 20px;
-		}
-
-		.btn {
-			display: block;
-			margin: auto;
 		}
 	}
 
