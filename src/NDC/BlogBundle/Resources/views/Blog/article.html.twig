@@ -48,7 +48,7 @@
 		{% for comment in article.comments|reverse %}
 			{% include 'NDCBlogBundle:Blog:comment.html.twig' %}
 		{% else %}
-			<p>Il n'y a pas encore de commentaire sur cet article !</p>
+			<p data-purpose="help">Il n'y a pas encore de commentaire sur cet article !</p>
 		{% endfor %}
 	</div>
 </section>

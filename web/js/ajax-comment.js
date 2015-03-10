@@ -14,10 +14,9 @@ $(function(){
             type: 'post',
             statusCode: {
                 200: function(e){
-                    $form.slideUp(400, function() { $(this).remove(); });
-                    $section.find('.comment').first().before(e);
-                    $new_comment = $section.find('.comment').first();
-                    $new_comment.hide().slideDown();
+                    $section.find('[data-purpose=help]').slideUp(400, function() { $(this).remove(); });
+                    $form.after(e).slideUp(400, function() { $(this).remove(); });
+                    $section.find('.comment').first().hide().slideDown();
                 },
                 400: function(e){
                     $this.prepend('<i class="fa fa-exclamation-circle" style="color:#EC7676;"></i> ');

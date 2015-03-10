@@ -1,5 +1,11 @@
 {% extends '::base.html.twig' %}
 
 {% block body %}
-    <h1>Résultats de la recherche : "{{ query }}"</h1>
+<section class="container spacer">
+	<h1>Résultats de la recherche : "{{ query }}"</h1>
+	<br/>
+	{% for article in articles %}
+		{% include 'NDCBlogBundle:Blog:preview_article.html.twig' %}
+	{% endfor %}
+</section>
 {% endblock %}
