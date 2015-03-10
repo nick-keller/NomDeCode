@@ -37,6 +37,7 @@
 		display: block;
 		max-width: 100%;
 		margin: 0 auto;
+		height: auto !important;
 	}
 
 	// inline code
@@ -64,6 +65,7 @@
 			position: relative;
 			word-wrap: normal;
 
+			/*
 			&::before {
 				content: attr(class);
 				position: absolute;
@@ -72,6 +74,7 @@
 				top: 0;
 				transform: translateY(-100%);
 			}
+			*/
 		}
 	}
 

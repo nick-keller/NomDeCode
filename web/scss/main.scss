@@ -607,12 +607,12 @@ footer {
 		}
 
 		@include post-information();
-		
+
 		.comments {
 			float: right;
 			padding-right: 10px;
 		}
-		
+
 		a.tech {
 			margin-top: ($size-photo-author-index - $size-icon-category)/2;
 			display: inline-block;
