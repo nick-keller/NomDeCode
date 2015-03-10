@@ -111,9 +111,14 @@ class Comment
         return $this;
     }
 
-    public function getGravatar()
+    public function getMd5()
     {
         return md5(strtolower(trim($this->email)));
+    }
+
+    public function getIdentifier()
+    {
+        return abs(crc32($this->email));
     }
 
     /**

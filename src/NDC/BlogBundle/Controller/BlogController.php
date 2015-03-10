@@ -12,6 +12,7 @@ use Knp\Component\Pager\Paginator;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpKernel\Exception\HttpException;
+use Symfony\Component\HttpFoundation\Response;
 
 class BlogController extends Controller
 {
@@ -60,17 +61,21 @@ class BlogController extends Controller
         $comment = new Comment($article);
         $form = $this->createForm(new CommentType, $comment);
 
-        if($request->isMethod('POST')){
-            $form->handleRequest($request);
+        if($request->query->get('r', null) == 'ajax') {
+            if($request->isMethod('POST')){
+                $form->handleRequest($request);
 
-            if($form->isValid()){
-                $this->em->persist($comment);
-                $this->em->flush();
+                if($form->isValid()){
+                    $this->em->persist($comment);
+                    $this->em->flush();
 
-                return $this->render('@NDCBlog/Blog/comment.html.twig', array(
-                    'comment' => $comment,
-                ));
+                    return $this->render('@NDCBlog/Blog/comment.html.twig', array(
+                        'comment' => $comment,
+                    ));
+                }
             }
+
+            return new Response('retttt', 400);
         }
 
         return array(

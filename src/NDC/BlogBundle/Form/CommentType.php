@@ -40,6 +40,7 @@ class CommentType extends AbstractType
                     'placeholder' => 'Message',
                     'rows' => '6',
                     'class' => 'btn',
+                    'data-type' => 'ajax',
                 ),
             ))
         ;
