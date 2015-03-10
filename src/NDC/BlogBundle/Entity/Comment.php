@@ -38,7 +38,7 @@ class Comment
      * @var \DateTime
      */
     private $createdAt;
-    
+
     /**
      * @var \NDC\BlogBundle\Entity\Article
      */

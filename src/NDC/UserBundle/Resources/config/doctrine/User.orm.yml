@@ -15,6 +15,10 @@ NDC\UserBundle\Entity\User:
             filenameGenerator: SHA1
 
     fields:
+        desc:
+            type: text
+            nullable: true
+
         facebook:
             type: string
             length: 255
