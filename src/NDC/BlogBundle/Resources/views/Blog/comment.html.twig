@@ -6,5 +6,5 @@
 	</a>
 	<a class="author">{{ comment.username }}</a>
 	<span class="date">{{ comment.createdAt|fullDate }}{% if date(comment.createdAt) > date('-1day') %} à {{ comment.createdAt|date('H:i') }}{% endif %}</span>
-	<div class="bulle long-text">{{ comment.message|commentify }}</div>
+	<div class="bulle long-text {% if comment.isRegistered %}bulle-author{% endif %}">{{ comment.message|commentify }}</div>
 </div>

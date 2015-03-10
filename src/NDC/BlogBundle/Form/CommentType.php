@@ -25,18 +25,21 @@ class CommentType extends AbstractType
         $builder
             ->add('username', $this->user != null ? 'hidden' : 'text', array(
                 'label' => false,
+                'error_bubbling' => true,
                 'attr' => array(
                     'placeholder' => 'Nom',
                 ),
             ))
             ->add('email', $this->user != null ? 'hidden' : 'email', array(
                 'label' => false,
+                'error_bubbling' => true,
                 'attr' => array(
                     'placeholder' => 'Adresse mail',
                 ),
             ))
             ->add('message', 'textarea', array(
                 'label' => false,
+                'error_bubbling' => true,
                 'attr' => array(
                     'placeholder' => 'Message',
                     'rows' => '6',

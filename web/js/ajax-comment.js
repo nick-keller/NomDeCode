@@ -1,10 +1,11 @@
 $(function(){
     $('.comments button[data-type=ajax]').click(function(e){
-        var $this = $(this);
+        e.preventDefault();
+        var $this = $(this), $form = $(this).parents('form'), $section = $(this).parents('form').parents('section.comments');
         $this.find('i').remove();
         $this.prepend('<i class="fa fa-circle-o-notch fa-spin"></i> ');
-        e.preventDefault();
         $this.prop('disabled', true);
+        $section.find('.bulle-top').fadeOut(400, function() { $(this).remove(); });
 
         var $form = $(this).parents('form');
         $.ajax({
@@ -13,13 +14,15 @@ $(function(){
             type: 'post',
             statusCode: {
                 200: function(e){
-                    alert("publié");
-                    //$this.prepend('<i class="fa fa-check"></i> ');
+                    $form.slideUp(400, function() { $(this).remove(); });
+                    $section.find('.comment').first().before(e);
+                    $new_comment = $section.find('.comment').first();
+                    $new_comment.hide().slideDown();
                 },
                 400: function(e){
-                    $this.parents('form').before('<p class="bulle bulle-top bulle-danger"><i class="fa fa-exclamation-circle"></i> '+e.responseText+'</p>');
-
-                    //$this.prepend('<i class="fa fa-exclamation-circle"></i> ');
+                    $this.prepend('<i class="fa fa-exclamation-circle" style="color:#EC7676;"></i> ');
+                    $form.prepend('<p class="bulle bulle-top bulle-danger bulle-helper-article" style="display:none;"><i class="fa fa-exclamation-circle"></i> '+e.responseText+'</p>')
+                    $form.find("p.bulle-danger").fadeIn();
                 }
             },
             complete: function(){

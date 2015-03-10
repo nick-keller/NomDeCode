@@ -22,7 +22,7 @@
 	</div>
 	<div class="container text">
 		<h1>{{ article.title|capitalize }}</h1>
-		<span class="muted">{{ article.createdAt|fullDate }}{% if article.tech|length > 0 %} - {{ article.tech|join(" + ") }}{% endif %}</span>
+		<span class="muted">publié {{ article.createdAt|fullDate }}{% if article.tech|length > 0 %} - {{ article.tech|join(" + ") }}{% endif %}</span>
 	</div>
 {% endblock %}
 
@@ -30,8 +30,8 @@
 <article class="long-text">{{ article.html|raw }}</article>
 <div class="article-author">
 	<div class="container">
-			<a class="author" href="#author" title="Rédacteur : {{ article.author.username|capitalize }}">{{ article.author.username|capitalize }}</a>
-			<a href="#author" title="Rédacteur : {{ article.author.username|capitalize }}">
+			<a class="author" href="#author" title="Rédacteur : {{ article.author.username }}">{{ article.author.username }}</a>
+			<a href="#author" title="Rédacteur : {{ article.author.username }}">
 				<img src="{{ asset(article.author.webPath) }}" class="author-img">
 			</a>
 			{{ helper.author_link(article.author) }}
@@ -40,8 +40,11 @@
 <section class="comments">
 	<div class="container">
 		<h1>Commentaires</h1>
-		<p><i class="fa fa-exclamation-circle"></i> Les commentaires se limitent à du texte simple</p>
-        {{ form(form) }}
+		<div class="bulle bulle-top bulle-helper-article">
+			<p><i class="fa fa-comment"></i> Les commentaires se limitent à du texte simple (pas de balise html)</p>
+			<p><i class="fa fa-envelope"></i> L'adresse email sera utilisée pour générer un avatar unique et ne sera pas rendue publique.</p>
+		</div>
+		{{ form(form) }}
 		{% for comment in article.comments|reverse %}
 			{% include 'NDCBlogBundle:Blog:comment.html.twig' %}
 		{% else %}

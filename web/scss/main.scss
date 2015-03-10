@@ -2,7 +2,7 @@
 
 // variables
 $height-header: 65vh;
-$height-input-text: 30px;
+$height-input-text: 34px;
 $size-photo-author-index: 40px;
 $size-photo-author-article: 70px;
 $size-icon-category: 30px;
@@ -126,18 +126,25 @@ a {
 }
 
 input[type=text], input[type=email], textarea {
+	$color-before-focus: transparentize($color-over-header, 0.25);
 	box-sizing: border-box;
 	padding-left: 10px;
 	background-color: transparent;
 	border: none;
-	border-bottom: 2px solid $color-over-header;
+	border-bottom: 2px solid transparentize($color-before-focus, 0.4);
 	color: $color-over-header;
 	margin-bottom: 10px;
+	transition: border-bottom 0.3s;
 
-	&::-webkit-input-placeholder { color: $color-over-header; }
-	&:-moz-placeholder { color: $color-over-header; }
-	&::-moz-placeholder { color: $color-over-header; }
-	&:-ms-input-placeholder { color: $color-over-header; }
+	&:focus {
+		color: $color-over-header;
+		border-bottom: 3px solid $color-over-header;
+	}
+
+	&::-webkit-input-placeholder { color: $color-before-focus; }
+	&:-moz-placeholder { color: $color-before-focus; }
+	&::-moz-placeholder { color: $color-before-focus; }
+	&:-ms-input-placeholder { color: $color-before-focus; }
 }
 
 input[type=text], input[type=email] {
@@ -208,8 +215,10 @@ a.tech {
 	padding: 1rem;
 	border-radius: $border-radius-common;
 	border-top-left-radius: 0;
+	box-sizing: border-box;
 
 	&.bulle-top {
+		width: 100%;
 		border-radius: $border-radius-common;
 		border-bottom-left-radius: 0;
 	}
@@ -217,6 +226,26 @@ a.tech {
 	&.bulle-danger {
 		color: white;
 		background-color: #EC7676;
+	}
+
+	&.bulle-author {
+		background-color: #FFF699;
+	}
+
+	&.bulle-helper-article {
+		width: 15vw;
+		min-width: 200px;
+		position: absolute;
+		margin-left: $width-article;
+		transform: translateY(-50%);
+
+		@media screen and (max-width: $size-limit-bigger-screen) {
+			width: 100%;
+			position: initial;
+			transform: none;
+			margin: initial;
+			margin-bottom: 20px;
+		}
 	}
 
 	p:first-child {
@@ -644,7 +673,7 @@ section.comments {
 	background-color: $background-color-header;
 
 	h1 {
-		margin-bottom: $margin-section/2;
+		margin-bottom: $margin-section/4;
 	}
 
 	form {

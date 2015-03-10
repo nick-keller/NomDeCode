@@ -71,14 +71,15 @@ class BlogController extends Controller
 
                     $this->em->persist($comment);
                     $this->em->flush();
-
+                    
                     return $this->render('@NDCBlog/Blog/comment.html.twig', array(
                         'comment' => $comment,
                     ));
                 }
             }
 
-            return new Response('retttt', 400);
+            $intro_responsse = count(explode('ERROR: ', $form->getErrors()))-1 > 1 ? '<b>Il y a quelques erreurs dans ce formulaire !</b><br>' : '';
+            return new Response($intro_responsse.str_replace("ERROR: ", "", nl2br($form->getErrors())), 400);
         }
 
         return array(
