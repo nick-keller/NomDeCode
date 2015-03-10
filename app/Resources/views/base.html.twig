@@ -52,8 +52,8 @@
         <header class="{% block header_class %}classic{% endblock %}">
             {% block header %}{% endblock %}
             <nav>
-                <form action="" method="get" class="search">
-                    <input type="text" name="k" placeholder="Chercher..." title="Chercher un article">
+                <form action="{{ path('blog_search') }}" method="get" class="search">
+                    <input type="text" name="q" placeholder="Chercher..." title="Chercher un article">
                     <button type="submit"><i class="fa fa-search"></i></button>
                 </form>
 
