@@ -21,7 +21,7 @@ class CommentExtension extends \Twig_Extension
         $txt = str_replace("\r", '', $txt);
         $txt = preg_replace("/\n{2,}/", "</p><p>", $txt);
         $txt = preg_replace("/\n/", "<br>", $txt);
-        $txt = preg_replace('/https?:\/\/[a-zA-Z0-9\.\-\/\?\=\#\&\~\|\_\@\+\,\$\%\:\;]+/', '<a href="$0" traget="_blank">$0</a>', $txt);
+        $txt = preg_replace('/https?:\/\/[a-zA-Z0-9\.\-\/\?\=\#\&\~\|\_\@\+\,\$\%\:\;]+/', '<a href="$0" target="_blank">$0</a>', $txt);
         return $txt;
     }
 
