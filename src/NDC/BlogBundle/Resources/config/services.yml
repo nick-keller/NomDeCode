@@ -6,6 +6,11 @@ services:
         tags:
             - { name: twig.extension }
 
+    ndc_blog.comment_extension:
+        class: NDC\BlogBundle\Twig\CommentExtension
+        tags:
+            - { name: twig.extension }
+
     validator.allowed_username:
         class: NDC\BlogBundle\Validator\Constraints\AllowedUsernameValidator
         arguments:
