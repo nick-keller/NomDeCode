@@ -7,6 +7,7 @@
         <th>Auteur</th>
         <th>Créé le</th>
         <th>Edité le</th>
+        <th title="Commentaires">Com.</th>
         <th>Actions</th>
     </tr>
     {% for article in articles %}
@@ -39,6 +40,7 @@
             <td>{{ article.author }}</td>
             <td>{{ article.createdAt|fullDate }}</td>
             <td>{{ article.updatedAt|fullDate }}</td>
+            <td>{{ article.comments|length }}</td>
             <td>
                 <div class="btn-group btn-group-xs">
                     <a class="btn btn-default" href="{{ path('blog_article_admin_edit', {id: article.id}) }}">
