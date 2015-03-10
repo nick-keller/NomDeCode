@@ -66,6 +66,9 @@ class BlogController extends Controller
                 $form->handleRequest($request);
 
                 if($form->isValid()){
+                    if($this->isGranted('ROLE_ADMIN'))
+                        $comment->setIsRegistered(true);
+                    
                     $this->em->persist($comment);
                     $this->em->flush();
 
