@@ -23,19 +23,17 @@ class CommentType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->add('username', 'text', array(
+            ->add('username', $this->user != null ? 'hidden' : 'text', array(
                 'label' => false,
                 'attr' => array(
                     'placeholder' => 'Nom',
                 ),
-                'disabled' => $this->user != null,
             ))
-            ->add('email', 'email', array(
+            ->add('email', $this->user != null ? 'hidden' : 'email', array(
                 'label' => false,
                 'attr' => array(
                     'placeholder' => 'Adresse mail',
                 ),
-                'disabled' => $this->user != null,
             ))
             ->add('message', 'textarea', array(
                 'label' => false,
