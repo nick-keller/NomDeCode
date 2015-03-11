@@ -1,0 +1,6 @@
+{% extends 'NDCBlogBundle:CommentAdmin:layout.html.twig' %}
+
+{% block body %}
+    <h1>Nouveau commentaires</h1>
+    {% include '@NDCBlog/CommentAdmin/_comments.html.twig' with {comments: unseen} %}
+{% endblock %}

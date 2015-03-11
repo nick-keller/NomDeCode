@@ -1,0 +1,6 @@
+{% extends '::admin.html.twig' %}
+
+{% block breadcrumb %}
+    {{ parent() }}
+    {{ helper.breadcrumb('blog_comment_admin_index', 'Commentaires') }}
+{% endblock %}

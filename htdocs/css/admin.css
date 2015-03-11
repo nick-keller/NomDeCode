@@ -13,3 +13,13 @@ body{
     font-size: 10px;
     line-height: 20px;
 }
+
+.user{
+    width: 25px;
+    height: 25px;
+    border-radius: 100%;
+    background: center;
+    background-size: cover;
+    display: inline-block;
+    vertical-align: middle;
+}
