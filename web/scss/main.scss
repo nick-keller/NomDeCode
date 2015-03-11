@@ -22,6 +22,7 @@ $line-height-pre-code: $line-height-article*0.86;
 $font-size-headline-index: 2.3rem;
 $font-size-headline-article: 3rem;
 $color-over-header: white;
+$color-before-focus: transparentize($font-color-base, 0.2);
 
 // sizes for media queries
 $size-limit-bigger-screen: 1500px;
@@ -65,6 +66,7 @@ $margin-for-blocks: 0.5rem;
 
 
 // animations
+// chaton translate
 @-webkit-keyframes svg_chaton {
 	90% { transform: translateX(0px); }
 	100% { transform:  translateX(260px); }
@@ -75,6 +77,7 @@ $margin-for-blocks: 0.5rem;
 	100% { transform:  translateX(260px); }
 }
 
+// carton translate et opacity
 @-webkit-keyframes svg_carton {
 	0% { -webkit-transform: translateX(0); opacity:0; }
 	44% { -webkit-transform: translateX(0); opacity:0; }
@@ -126,37 +129,36 @@ a {
 }
 
 input[type=text], input[type=password], input[type=email], textarea {
-	$color-before-focus: transparentize($color-over-header, 0.2);
+	$color-before-focus-white: transparentize($color-over-header, 0.2);
 	box-sizing: border-box;
 	padding-left: 10px;
 	background-color: transparent;
 	border: none;
-	border-bottom: 2px solid transparentize($color-before-focus, 0.4);
+	border-bottom: 2px solid transparentize($color-before-focus-white, 0.4);
 	color: $color-over-header;
 	margin-bottom: 10px;
 	transition: border-bottom 0.3s;
 
 	&:focus {
 		color: $color-over-header;
-		border-bottom: 2px solid $color-over-header;
+		border-bottom-color: $color-over-header;
 	}
 
-	&::-webkit-input-placeholder { color: $color-before-focus; }
-	&:-moz-placeholder { color: $color-before-focus; }
-	&::-moz-placeholder { color: $color-before-focus; }
-	&:-ms-input-placeholder { color: $color-before-focus; }
+	&::-webkit-input-placeholder { color: $color-before-focus-white; }
+	&:-moz-placeholder { color: $color-before-focus-white; }
+	&::-moz-placeholder { color: $color-before-focus-white; }
+	&:-ms-input-placeholder { color: $color-before-focus-white; }
 }
 
 .input-dark {
 	input[type=text], input[type=password], input[type=email], textarea {
-		$color-before-focus: transparentize($font-color-base, 0.2);
 		border-color: $color-before-focus;
 		color: $font-color-base;
 		width: 100%;
 
 		&:focus {
 			color: $font-color-base;
-			border-bottom: 3px solid $font-color-base;
+			border-bottom-color: $font-color-base;
 		}
 
 		&::-webkit-input-placeholder { color: $color-before-focus; }
@@ -250,10 +252,6 @@ a.tech {
 	&.bulle-danger {
 		color: white;
 		background-color: #EC7676;
-	}
-
-	&.bulle-author {
-		background-color: #FFF699;
 	}
 
 	&.bulle-helper-article {
@@ -574,56 +572,76 @@ footer {
 	}
 }
 
-section.articles_list {	
-	.article {
-		margin-bottom: $margin-section;
+.article_preview {
+	margin-bottom: $margin-section;
+	position: relative;
 
-		h2 {
-			font-family: $font-family-headline;
-			font-size: $font-size-headline-index;
-			margin-bottom: 1rem;
-			text-align: center;
+	h2 {
+		font-family: $font-family-headline;
+		font-size: $font-size-headline-index;
+		margin-bottom: 1rem;
+		text-align: center;
+	}
+
+	p {
+		margin-bottom: 5px;
+	}
+
+	.information {
+		position: relative;
+		margin-top: 10px;
+		text-transform: uppercase;
+
+		* {
+			vertical-align: middle;
+			line-height: $size-photo-author-index;
 		}
 
-		p {
-			margin-bottom: 5px;
+		& > a > span {
+			vertical-align: initial;
 		}
 
-		.information {
-			position: relative;
-			margin-top: 10px;
-			text-transform: uppercase;
+		img.author-img {
+			@include author-photo($size-photo-author-index);
+		}
 
-			* {
-				vertical-align: middle;
-				line-height: $size-photo-author-index;
-			}
+		@include post-information();
 
-			& > a > span {
-				vertical-align: initial;
-			}
+		.comments {
+			float: right;
+			padding-right: 10px;
+		}
 
-			img.author-img {
-				@include author-photo($size-photo-author-index);
-			}
+		a.tech {
+			margin-top: ($size-photo-author-index - $size-icon-category)/2;
+			display: inline-block;
+			float: right;
 
-			@include post-information();
-			
-			.comments {
-				float: right;
-				padding-right: 10px;
-			}
-			
-			a.tech {
-				margin-top: ($size-photo-author-index - $size-icon-category)/2;
-				display: inline-block;
-				float: right;
-
-				&.tech-framework {
-					margin-right: 5px;
-				}
+			&.tech-framework {
+				margin-right: 5px;
 			}
 		}
+	}
+
+	.admin_panel {
+		transition: opacity 0.2s;
+		position: absolute;
+		top: 0;
+		left: 0;
+		transform: translateY(-100%);
+		padding: 10px 15px;
+		display: flex;
+
+		a {
+			margin-right: 15px;
+
+			&:hover {
+				color: $color-before-focus;
+			}
+		}
+	}
+	&:not(:hover) .admin_panel {
+		opacity: 0;
 	}
 }
 
@@ -749,6 +767,10 @@ section.comments {
 
 		.author {
 			padding-left: 10px;
+
+			&.author-registered i {
+				color: white;
+			}
 		}
 
 		.bulle {

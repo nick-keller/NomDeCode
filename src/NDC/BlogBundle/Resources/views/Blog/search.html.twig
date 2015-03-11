@@ -2,6 +2,10 @@
 
 {% block body %}
 <section class="container spacer">
-    <h1>Résultats de la recherche : "{{ query }}"</h1>
+	<h1>Résultats de la recherche : "{{ query }}"</h1>
+	<br/>
+	{% for article in articles %}
+		{% include 'NDCBlogBundle:Blog:preview_article.html.twig' %}
+	{% endfor %}
 </section>
 {% endblock %}
