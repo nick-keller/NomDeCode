@@ -58,6 +58,7 @@ class UserAdminController extends Controller
             $form->handleRequest($request);
 
             if($form->isValid()){
+                $user->setPath('lol');
                 $userManager->updateUser($user);
                 if($user->getFile() != null)
                     $this->uploadableManager->markEntityToUpload($user, $user->getFile());
