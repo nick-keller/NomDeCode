@@ -1,30 +1,26 @@
-/*
-
-Monokai Sublime style. Derived from Monokai by noformnocontent http://nn.mit-license.org/
-
-*/
-
 .hljs {
-  display: block;
-  padding: 0.5em;
-  /* background: #23241f; */
-  background: #222;
+    display: block;
+    overflow-x: auto;
+    background: #222;
+    padding: 0.5em;
+    -webkit-text-size-adjust: none;
 }
 
 .hljs,
 .hljs-tag,
 .css .hljs-rules,
 .css .hljs-value,
+.aspectj .hljs-function,
 .css .hljs-function
 .hljs-preprocessor,
 .hljs-pragma {
-  color: #f8f8f2;
+    color: #f8f8f2;
 }
 
 .hljs-strongemphasis,
 .hljs-strong,
 .hljs-emphasis {
-  color: #a8a8a2;
+    color: #a8a8a2;
 }
 
 .hljs-bullet,
@@ -35,7 +31,7 @@ Monokai Sublime style. Derived from Monokai by noformnocontent http://nn.mit-lic
 .alias .hljs-keyword,
 .hljs-literal,
 .hljs-hexcolor {
-  color: #ae81ff;
+    color: #ae81ff;
 }
 
 .hljs-tag .hljs-value,
@@ -43,31 +39,32 @@ Monokai Sublime style. Derived from Monokai by noformnocontent http://nn.mit-lic
 .hljs-title,
 .css .hljs-class,
 .hljs-class .hljs-title:last-child {
-  color: #a6e22e;
+    color: #a6e22e;
 }
 
 .hljs-link_url {
-  font-size: 80%;
+    font-size: 80%;
 }
 
 .hljs-strong,
 .hljs-strongemphasis {
-  font-weight: bold;
+    font-weight: bold;
 }
 
 .hljs-emphasis,
 .hljs-strongemphasis,
-.hljs-class .hljs-title:last-child {
-  font-style: italic;
+.hljs-class .hljs-title:last-child,
+.hljs-typename {
+    font-style: italic;
 }
 
 .hljs-keyword,
+.ruby .hljs-class .hljs-keyword:first-child,
+.ruby .hljs-function .hljs-keyword,
 .hljs-function,
 .hljs-change,
 .hljs-winutils,
 .hljs-flow,
-.lisp .hljs-title,
-.clojure .hljs-built_in,
 .nginx .hljs-title,
 .tex .hljs-special,
 .hljs-header,
@@ -80,29 +77,31 @@ Monokai Sublime style. Derived from Monokai by noformnocontent http://nn.mit-lic
 .css .hljs-tag,
 .css .unit,
 .css .hljs-important {
-  color: #F92672;
+    color: #f92672;
 }
 
 .hljs-function .hljs-keyword,
 .hljs-class .hljs-keyword:first-child,
+.hljs-aspect .hljs-keyword:first-child,
 .hljs-constant,
+.hljs-typename,
 .css .hljs-attribute {
-  color: #66d9ef;
+    color: #66d9ef;
 }
 
 .hljs-variable,
 .hljs-params,
-.hljs-class .hljs-title {
-  color: #f8f8f2;
+.hljs-class .hljs-title,
+.hljs-aspect .hljs-title {
+    color: #f8f8f2;
 }
 
 .hljs-string,
 .css .hljs-id,
 .hljs-subst,
-.haskell .hljs-type,
+.hljs-type,
 .ruby .hljs-class .hljs-parent,
 .hljs-built_in,
-.sql .hljs-aggregate,
 .django .hljs-template_tag,
 .django .hljs-variable,
 .smalltalk .hljs-class,
@@ -120,21 +119,20 @@ Monokai Sublime style. Derived from Monokai by noformnocontent http://nn.mit-lic
 .hljs-prompt,
 .hljs-link_label,
 .hljs-link_url {
-  color: #e6db74;
+    color: #e6db74;
 }
 
 .hljs-comment,
 .hljs-javadoc,
-.java .hljs-annotation,
-.python .hljs-decorator,
-.hljs-template_comment,
+.hljs-annotation,
+.hljs-decorator,
 .hljs-pi,
 .hljs-doctype,
 .hljs-deletion,
 .hljs-shebang,
 .apache .hljs-sqbracket,
 .tex .hljs-formula {
-  color: #75715e;
+    color: #75715e;
 }
 
 .coffeescript .javascript,
@@ -146,5 +144,9 @@ Monokai Sublime style. Derived from Monokai by noformnocontent http://nn.mit-lic
 .xml .hljs-cdata,
 .xml .php,
 .php .xml {
-  opacity: 0.5;
+    opacity: 0.5;
+}
+
+.language-php .hljs-variable {
+    color: rgb(167, 131, 228);
 }

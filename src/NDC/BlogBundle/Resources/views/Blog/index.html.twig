@@ -1,11 +1,17 @@
 {% extends '::base.html.twig' %}
 
+{% block meta %}
+	<meta property="og:title" content="Nomdecode" />
+	<meta property="og:type" content="website" />
+	<meta name="description" content="Nomdecode est un blog de jeunes développeurs qui partagent leurs connaissances !" />
+{% endblock %}
+
 {% block header_class %}index{% endblock %}
 
-	{% block header %}
-		<div class="illustration">
-			{% include 'NDCBlogBundle:Blog:_index_animation.html.twig' %}
-		</div>
+{% block header %}
+	<div class="illustration">
+		{% include 'NDCBlogBundle:Blog:_index_animation.html.twig' %}
+	</div>
 {% endblock %}
 
 {% block body %}

@@ -45,7 +45,10 @@
 <html>
     <head>
         <meta charset="UTF-8" />
+        <meta name="language" content="fr-FR" />
         <meta name="google-site-verification" content="u4KBzk7hvGDGxoO_Nwm5eeBi2CwLbAvGB8kMips1WOw" />
+        <meta property="og:url" content="{{ path(app.request.attributes.get('_route'), app.request.attributes.get('_route_params')) }}" />
+        {% block meta %}{% endblock %}
         <title>{% block title %}Nomdecode{% endblock %}</title>
         {% block stylesheets %}
             <link rel="stylesheet" href="{{ asset('css/normalize.css') }}">
