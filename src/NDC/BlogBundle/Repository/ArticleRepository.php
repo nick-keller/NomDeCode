@@ -31,6 +31,8 @@ class ArticleRepository extends EntityRepository
         return $this->createQueryBuilder('a')
             ->where('a.state = :state')
             ->setParameter('state', 'published')
+            ->andWhere('a.createdAt < :now')
+            ->setParameter('now', new \DateTime())
             ->orderBy('a.createdAt', 'DESC');
     }
 
@@ -57,6 +59,10 @@ class ArticleRepository extends EntityRepository
 
         $qb = $this->createQueryBuilder('a')
             ->select('a')
+            ->where('a.createdAt < :now')
+            ->setParameter('now', new \DateTime())
+            ->andWhere('a.state = :state')
+            ->setParameter('state', 'published')
             ->join('a.category', 'c')
             ->join('a.author', 'u')
             ->orderBy('a.createdAt', 'DESC');

@@ -48,7 +48,8 @@ class BlogController extends Controller
      */
     public function articleAction($category, Article $article, $slug, Request $request)
     {
-        if($article->getState() != 'published') {
+        // Check if readable
+        if($article->getState() != 'published' || $article->getCreatedAt() > new \DateTime()) {
             if($this->getUser() != $article->getAuthor() and !$this->isGranted('ROLE_ADMIN'))
                 if($article->getState() == 'removed')
                     throw new HttpException(410);
