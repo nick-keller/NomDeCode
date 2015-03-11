@@ -34,13 +34,51 @@ class ArticleRepository extends EntityRepository
             ->orderBy('a.createdAt', 'DESC');
     }
 
-    public function querySearch($query, $techs, $authors, $categories)
+    public function querySearch($query, array $techs, array $categories, array $users)
     {
-        $queries = explode(' ', $query);
-        $techs = explode('+', $techs);
-        $authors = explode('+', $authors);
-        $categories = explode('+', $categories);
+        $keywords = explode(' ', strtolower($query));
+        $map = array(
+            'title' => array(),
+            'tech' => array(),
+            'category' => array(),
+            'author' => array(),
+        );
 
-        $qb = $this->createQueryBuilder('a');
+        foreach($keywords as $word){
+            if(in_array($word, $techs))
+                $map['tech'][] = $word;
+            else if(in_array($word, $categories))
+                $map['category'][] = $word;
+            else if(in_array($word, $users))
+                $map['author'][] = $word;
+            else
+                $map['title'][] = $word;
+        }
+
+        $qb = $this->createQueryBuilder('a')
+            ->select('a')
+            ->join('a.category', 'c')
+            ->join('a.author', 'u')
+            ->orderBy('a.createdAt', 'DESC');
+
+        foreach($map as $field => $data){
+            if($field == 'title'){
+                foreach($data as $id => $keyword)
+                    $qb->andWhere("a.title LIKE :keyword$id")
+                        ->setParameter("keyword$id", "%$keyword%");
+            }else if($field == 'tech'){
+                foreach($data as $id => $tech)
+                    $qb->andWhere(":tech$id MEMBER OF a.techs")
+                        ->setParameter("tech$id", $tech);
+            }else if($field == 'author'){
+                $qb->andWhere("u.username IN (:authors)")
+                    ->setParameter('authors', $data);
+            }else if($field == 'category'){
+                $qb->andWhere("c.slug IN (:categories)")
+                    ->setParameter('categories', $data);
+            }
+        }
+
+        return $qb->getQuery();
     }
 }

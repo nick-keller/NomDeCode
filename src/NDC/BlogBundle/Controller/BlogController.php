@@ -109,9 +109,21 @@ class BlogController extends Controller
     public function searchAction(Request $request)
     {
         $query = $request->query->get('q', '');
+        $techs = $this->em->getRepository('NDCBlogBundle:Tech')->findAllSlug();
+        $categories = $this->em->getRepository('NDCBlogBundle:Category')->findAllSlug();
+        $users = $this->em->getRepository('NDCUserBundle:User')->findAllSlug();
+
+        $searchQuery = $this->em->getRepository('NDCBlogBundle:Article')->querySearch($query, $techs, $categories, $users);
+
+        $articles = $this->paginator->paginate(
+            $searchQuery,
+            $request->query->get('page', 1),
+            10
+        );
 
         return array(
             "query" => $query,
+            'articles' => $articles,
         );
     }
 } 
