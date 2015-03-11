@@ -65,7 +65,7 @@ class BlogController extends Controller
             return $this->redirect($this->generateUrl('blog_article', array('id'=>$article->getId(), 'category' => $article->getCategory()->getSlug(), 'slug'=>$article->getSlug())), 301);
 
         // View counter
-        if($this->isGranted('IS_AUTHENTICATED_ANONYMOUSLY')){
+        if($this->getUser() !== null){
             $article->setViews($article->getViews() +1);
             $this->em->persist($article);
             $this->em->flush();
