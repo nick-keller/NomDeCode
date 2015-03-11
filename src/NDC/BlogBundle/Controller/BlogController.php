@@ -5,6 +5,7 @@ namespace NDC\BlogBundle\Controller;
 
 use NDC\BlogBundle\Entity\Article;
 use NDC\BlogBundle\Entity\Comment;
+use NDC\BlogBundle\Entity\CommentMonitoring;
 use NDC\BlogBundle\Form\CommentType;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Doctrine\ORM\EntityManager;
@@ -55,18 +56,34 @@ class BlogController extends Controller
                     throw $this->createNotFoundException();
         }
 
+        // Check slug
         if($article->getSlug() != $slug)
             return $this->redirect($this->generateUrl('blog_article', array('id'=>$article->getId(), 'category' => $article->getCategory()->getSlug(), 'slug'=>$article->getSlug())), 301);
 
+        // Check category
         if($article->getCategory()->getSlug() != $category)
             return $this->redirect($this->generateUrl('blog_article', array('id'=>$article->getId(), 'category' => $article->getCategory()->getSlug(), 'slug'=>$article->getSlug())), 301);
 
+        // View counter
         if($this->isGranted('IS_AUTHENTICATED_ANONYMOUSLY')){
             $article->setViews($article->getViews() +1);
             $this->em->persist($article);
             $this->em->flush();
         }
 
+        // Comment monitoring
+        if($this->getUser() !== null){
+            $cm = $this->em->getRepository('NDCBlogBundle:CommentMonitoring')->findOne($article, $this->getUser());
+
+            if($cm === null)
+                $cm = new CommentMonitoring($this->getUser(), $article);
+
+            $cm->setLastViewed(new \DateTime());
+            $this->em->persist($cm);
+            $this->em->flush();
+        }
+
+        // Post comment
         $comment = new Comment($article, $this->getUser());
         $form = $this->createForm(new CommentType($this->getUser()), $comment);
 
@@ -81,7 +98,7 @@ class BlogController extends Controller
                     $this->em->persist($comment);
                     $this->em->flush();
                     
-                    return $this->render('@NDCBlog/Blog/comment.html.twig', array(
+                    return $this->render('@NDCBlog/Blog/_comment.html.twig', array(
                         'comment' => $comment,
                     ));
                 }
