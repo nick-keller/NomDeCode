@@ -22,7 +22,14 @@
 	</div>
 	<div class="container text">
 		<h1>{{ article.title|capitalize }}</h1>
-		<span class="muted">publié {{ article.createdAt|fullDate }}{% if article.tech|length > 0 %} - {{ article.tech|join(" + ") }}{% endif %}</span>
+		<span class="muted">publié {{ article.createdAt|fullDate }}
+			{% if article.tech|length > 0 %} - 
+				{% for t in article.tech %}
+					<a href="{{ path('blog_search', {q: t.slug}) }}">{{ t.name }}</a>
+					{% if not loop.last %} + {% endif %}
+				{% endfor %}
+			{% endif %}
+		</span>
 	</div>
 {% endblock %}
 
@@ -30,8 +37,8 @@
 <article class="long-text">{{ article.html|raw }}</article>
 <div class="article-author">
 	<div class="container">
-			<a class="author" href="#author" title="Rédacteur : {{ article.author.username }}">{{ article.author.username }}</a>
-			<a href="#author" title="Rédacteur : {{ article.author.username }}">
+			<a class="author" href="{{ path('blog_search', {q: article.author.username}) }}" title="Rédacteur : {{ article.author.username }}">{{ article.author.username }}</a>
+			<a href="#author" href="{{ path('blog_search', {q: article.author.username}) }}" title="Rédacteur : {{ article.author.username }}">
 				<img src="{{ asset(article.author.webPath) }}" class="author-img">
 			</a>
 			{{ helper.author_link(article.author) }}

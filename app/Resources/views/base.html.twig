@@ -62,7 +62,7 @@
             {% block header %}{% endblock %}
             <nav>
                 <form action="{{ path('blog_search') }}" method="get" class="search">
-                    <input type="text" name="q" placeholder="Chercher..." title="Chercher un article">
+                    <input type="text" name="q" placeholder="Chercher..." title="Chercher un article" {% if query is defined %}value="{{ query }}"{% endif %}>
                     <button type="submit"><i class="fa fa-search"></i></button>
                 </form>
 
