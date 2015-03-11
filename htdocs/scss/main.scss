@@ -692,7 +692,8 @@ footer {
 			}
 
 			i {
-				padding-top: 8px;
+				font-size: 1rem;
+				line-height: 35px;
 			}
 
 			&.author-link-website {
@@ -705,12 +706,6 @@ footer {
 
 			&.author-link-facebook {
 				background-color: #3d578d;
-				font-size: 23px;
-
-				i {
-					padding-top: 13px;
-					padding-right: 4px;
-				}
 			}
 
 			&.author-link-linkedin {
