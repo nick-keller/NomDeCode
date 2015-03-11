@@ -76,7 +76,8 @@ class ArticleRepository extends EntityRepository
                     $qb->andWhere("a.title LIKE :keyword$id")
                         ->setParameter("keyword$id", "%$keyword%");
             }else if($field == 'tech'){
-                foreach($data as $id => $tech)
+                $techs = $this->getEntityManager()->getRepository('NDCBlogBundle:Tech')->findFromSlugs($data);
+                foreach($techs as $id => $tech)
                     $qb->andWhere(":tech$id MEMBER OF a.tech")
                         ->setParameter("tech$id", $tech);
             }else if($field == 'author'){
