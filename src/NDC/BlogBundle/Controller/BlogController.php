@@ -61,6 +61,12 @@ class BlogController extends Controller
         if($article->getCategory()->getSlug() != $category)
             return $this->redirect($this->generateUrl('blog_article', array('id'=>$article->getId(), 'category' => $article->getCategory()->getSlug(), 'slug'=>$article->getSlug())), 301);
 
+        if($this->isGranted('IS_AUTHENTICATED_ANONYMOUSLY')){
+            $article->setViews($article->getViews() +1);
+            $this->em->persist($article);
+            $this->em->flush();
+        }
+
         $comment = new Comment($article, $this->getUser());
         $form = $this->createForm(new CommentType($this->getUser()), $comment);
 

@@ -3,6 +3,7 @@
         <th>ID</th>
         <th></th>
         <th>Titre</th>
+        <th>Vues</th>
         <th>Technos</th>
         <th>Auteur</th>
         <th>Créé le</th>
@@ -31,6 +32,7 @@
                     {{ article }}
                 </a>
             </td>
+            <td>{{ article.views }}</td>
             <td>
                 {{ helper.tech(article.category) }}
                 {% for tech in article.tech %}
