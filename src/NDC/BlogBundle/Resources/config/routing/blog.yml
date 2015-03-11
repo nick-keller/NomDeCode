@@ -13,7 +13,7 @@ blog_search:
     defaults: { _controller: NDCBlogBundle:Blog:search }
 
 blog_article:
-    pattern: /article/{id}-{slug}
+    pattern: /article/{category}/{id}-{slug}
     defaults: { _controller: NDCBlogBundle:Blog:article, slug:null }
     requirements:
         id: \d+

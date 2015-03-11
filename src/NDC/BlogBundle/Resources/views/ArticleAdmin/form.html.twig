@@ -14,7 +14,7 @@
                 Enregistrer et quitter
             </button>
             {% if article.id is not null %}
-                <a class="btn btn-default" href="{{ path('blog_article', {id:article.id, slug:article.slug}) }}" target="_blank">
+                <a class="btn btn-default" href="{{ path('blog_article', {id:article.id, category: article.category.slug, slug:article.slug}) }}" target="_blank">
                     <i class="glyphicon glyphicon-eye-open"></i>
                     Visionner
                 </a>

@@ -45,7 +45,7 @@ class BlogController extends Controller
     /**
      * @Template
      */
-    public function articleAction(Article $article, $slug, Request $request)
+    public function articleAction($category, Article $article, $slug, Request $request)
     {
         if($article->getState() != 'published') {
             if($this->getUser() != $article->getAuthor() and !$this->isGranted('ROLE_ADMIN'))
@@ -56,7 +56,10 @@ class BlogController extends Controller
         }
 
         if($article->getSlug() != $slug)
-            return $this->redirect($this->generateUrl('blog_article', array('id'=>$article->getId(), 'slug'=>$article->getSlug())), 301);
+            return $this->redirect($this->generateUrl('blog_article', array('id'=>$article->getId(), 'category' => $article->getCategory()->getSlug(), 'slug'=>$article->getSlug())), 301);
+
+        if($article->getCategory()->getSlug() != $category)
+            return $this->redirect($this->generateUrl('blog_article', array('id'=>$article->getId(), 'category' => $article->getCategory()->getSlug(), 'slug'=>$article->getSlug())), 301);
 
         $comment = new Comment($article, $this->getUser());
         $form = $this->createForm(new CommentType($this->getUser()), $comment);

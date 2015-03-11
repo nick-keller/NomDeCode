@@ -27,7 +27,7 @@
                 </td>
             {% endif %}
             <td>
-                <a href="{{ path('blog_article', {id: article.id, slug:article.slug}) }}">
+                <a href="{{ path('blog_article', {id: article.id, category: article.category.slug, slug:article.slug}) }}">
                     {{ article }}
                 </a>
             </td>
