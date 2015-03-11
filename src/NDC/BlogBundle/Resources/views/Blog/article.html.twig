@@ -46,7 +46,7 @@
 		</div>
 		{{ form(form) }}
 		{% for comment in article.comments|reverse %}
-			{% include 'NDCBlogBundle:Blog:comment.html.twig' %}
+			{% include 'NDCBlogBundle:Blog:_comment.html.twig' %}
 		{% else %}
 			<p data-purpose="help">Il n'y a pas encore de commentaire sur cet article !</p>
 		{% endfor %}

@@ -4,14 +4,14 @@
 
 	{% block header %}
 		<div class="illustration">
-			{% include 'NDCBlogBundle:Blog:index_animation.html.twig' %}
+			{% include 'NDCBlogBundle:Blog:_index_animation.html.twig' %}
 		</div>
 {% endblock %}
 
 {% block body %}
 	<section class="container spacer">
 		{% for article in articles %}
-			{% include 'NDCBlogBundle:Blog:preview_article.html.twig' %}
+			{% include 'NDCBlogBundle:Blog:_preview_article.html.twig' %}
 		{% endfor %}
 
 		{{ helper.pagination(page, articles.pageCount) }}

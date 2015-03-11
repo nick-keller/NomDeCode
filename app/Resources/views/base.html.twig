@@ -26,7 +26,7 @@
             {% if attribute(author, key) is not empty %}
                 {% if link.title is not defined %}{% set link = link|merge({'title': key|capitalize}) %}{% endif %}
                 {% if link.icon is not defined %}{% set link = link|merge({'icon': key}) %}{% endif %}
-                <a class="author-link-{{ key }}" href="{{ attribute(author, key) }}" title="Page {{ link.title }} de {{ author.username|capitalize }}" target="_blank"><i class="fa fa-{{ link.icon }}"></i></a>
+                <a class="author-link-{{ key }}" href="{{ attribute(author, key) }}" title="Page {{ link.title }} de {{ author.username }}" target="_blank"><i class="fa fa-{{ link.icon }}"></i></a>
             {% endif %}
         {% endfor %}
     </div>
@@ -37,6 +37,7 @@
 <html>
     <head>
         <meta charset="UTF-8" />
+        <meta name="google-site-verification" content="u4KBzk7hvGDGxoO_Nwm5eeBi2CwLbAvGB8kMips1WOw" />
         <title>{% block title %}Nomdecode{% endblock %}</title>
         {% block stylesheets %}
             <link rel="stylesheet" href="{{ asset('css/normalize.css') }}">
@@ -92,6 +93,8 @@
                 <p><a href="#">Nous contacter</a></p>
                 <p><a href="{{ path('blog_authors') }}">Rédacteurs</a></p>
             </div>
+
+            {% include 'NDCBlogBundle:Blog:_analytics.html.twig' %}
         </footer>
 
         {% block javascripts %}
