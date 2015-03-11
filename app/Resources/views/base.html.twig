@@ -48,6 +48,8 @@
         <meta name="language" content="fr-FR" />
         <meta name="google-site-verification" content="u4KBzk7hvGDGxoO_Nwm5eeBi2CwLbAvGB8kMips1WOw" />
         <meta property="og:url" content="{{ path(app.request.attributes.get('_route'), app.request.attributes.get('_route_params')) }}" />
+        <meta property="og:image" content="{{ app.request.scheme ~'://' ~ app.request.httpHost ~ asset('css/img/og_logo.png') }}" />
+        <meta property="og:locale" content="fr_FR" />
         {% block meta %}{% endblock %}
         <title>{% block title %}Nomdecode{% endblock %}</title>
         {% block stylesheets %}
