@@ -68,7 +68,7 @@ class ArticleRepository extends EntityRepository
                         ->setParameter("keyword$id", "%$keyword%");
             }else if($field == 'tech'){
                 foreach($data as $id => $tech)
-                    $qb->andWhere(":tech$id MEMBER OF a.techs")
+                    $qb->andWhere(":tech$id MEMBER OF a.tech")
                         ->setParameter("tech$id", $tech);
             }else if($field == 'author'){
                 $qb->andWhere("u.username IN (:authors)")
