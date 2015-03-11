@@ -14,6 +14,12 @@ use NDC\UserBundle\Entity\User;
  */
 class CommentRepository extends EntityRepository
 {
+    public function queryAll()
+    {
+        return $this->createQueryBuilder('c')
+            ->orderBy('c.createdAt', 'DESC');
+    }
+
     public function findUnseen(User $user)
     {
         return $this->getEntityManager()->createQueryBuilder()

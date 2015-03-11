@@ -28,12 +28,19 @@ class CommentAdminController extends Controller
     /**
      * @Template
      */
-    public function indexAction()
+    public function indexAction(Request $request)
     {
         $unseen = $this->em->getRepository('NDCBlogBundle:Comment')->findUnseen($this->getUser());
 
+        $comments = $this->paginator->paginate(
+            $this->em->getRepository('NDCBlogBundle:Comment')->queryAll(),
+            $request->query->get('page', 1),
+            50
+        );
+
         return array(
             'unseen' => $unseen,
+            'comments' => $comments,
         );
     }
 } 
