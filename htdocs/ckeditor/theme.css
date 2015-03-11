@@ -41,6 +41,9 @@ img {
 	display: block;
 	max-width: 100%;
 	margin: 0 auto;
+}
+
+img:not(.cke_widget_mask) {
 	height: auto !important;
 }
 
