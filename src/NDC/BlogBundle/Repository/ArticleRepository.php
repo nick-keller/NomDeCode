@@ -62,6 +62,9 @@ class ArticleRepository extends EntityRepository
             ->orderBy('a.createdAt', 'DESC');
 
         foreach($map as $field => $data){
+            if(count($data) == 0)
+                continue;
+
             if($field == 'title'){
                 foreach($data as $id => $keyword)
                     $qb->andWhere("a.title LIKE :keyword$id")
