@@ -497,6 +497,11 @@ header {
 					.state-icon { background-color: #ce4848; }
 				}
 
+				&.state-future {
+					color: #98DCBD;
+					.state-icon { background-color: #98DCBD; }
+				}
+
 				.state-icon {
 					display: flex;
 					justify-content: center;

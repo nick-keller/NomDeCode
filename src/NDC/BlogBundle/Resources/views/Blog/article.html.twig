@@ -15,17 +15,19 @@
 
 {% block header %}
 	<div class="top" style="background-color:#{{ article.category.color }};background-image:url({{asset('css/img/bg_category/'~article.category.abbr|lower~'.png')}}), url({{asset('css/img/bg_category/motif_'~article.category.abbr|lower~'.png')}});">
-		{% if article.state != "published" %}
+		{% if article.state != "published" or article.createdAt > date("now") %}
+			{% set article_state = article.createdAt > date("now") ? 'future' : article.state %}
 		    {% set states = {
+		        'future':  {'icon': 'clock-o', 'info': 'Publication future'},
 		        'draft':  {'icon': 'pencil', 'info': 'Cet article est un brouillon'},
 		        'removed': {'icon': 'trash-o', 'info': 'Cet article est supprimé'}
 		    } %}
 		    <div class="mask"></div>
-		    <div class="state state-{{ article.state }}">
+		    <div class="state state-{{ article_state }}">
 				<div class="state-icon">
-					<i class="fa fa-{{ attribute(states[article.state], 'icon') }}"></i>
+					<i class="fa fa-{{ attribute(states[article_state], 'icon') }}"></i>
 				</div>
-				<span>{{ attribute(states[article.state], 'info') }}</span>
+				<span>{{ attribute(states[article_state], 'info') }}</span>
 			</div>
 		{% endif %}
 	</div>
