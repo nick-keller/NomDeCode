@@ -7,5 +7,7 @@
 	{% for article in articles %}
 		{% include 'NDCBlogBundle:Blog:_preview_article.html.twig' %}
 	{% endfor %}
+
+	{{ helper.pagination(page, articles.pageCount, 'blog_search', {'q': query}) }}
 </section>
 {% endblock %}

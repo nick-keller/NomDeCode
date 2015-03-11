@@ -14,7 +14,7 @@
 			{% include 'NDCBlogBundle:Blog:_preview_article.html.twig' %}
 		{% endfor %}
 
-		{{ helper.pagination(page, articles.pageCount) }}
+		{{ helper.pagination(page, articles.pageCount, 'blog_index', null) }}
 	</section>
 {% endblock %}
 

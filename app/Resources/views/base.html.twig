@@ -1,13 +1,21 @@
 <!DOCTYPE html>
 
-{% macro pagination(currentPage, pageCount) %}
+{% macro pagination(currentPage, pageCount, url, params) %}
     {% if currentPage > 1 or currentPage < pageCount %}
         <div class="pagination">
             {% if currentPage > 1 %}
-                <a href="{% if currentPage == 2 %}{{ path('blog_index_first_page') }}{% else %}{{ path('blog_index', { 'page': currentPage - 1 }) }}{% endif %}" rel="prev">Page précédente</a>
+                {% set parameters = {'page': currentPage - 1} %}
+                {% if params is not null %}
+                    {% set parameters = parameters|merge(params) %}
+                {% endif %}
+                <a href="{{ path(url, parameters) }}" rel="prev">Page précédente</a>
             {% endif %}
             {% if currentPage < pageCount %}
-                <a href="{{ path('blog_index', { 'page': currentPage + 1 }) }}" rel="next">Page suivante</a>
+                {% set parameters = {'page': currentPage + 1} %}
+                {% if params is not null %}
+                    {% set parameters = parameters|merge(params) %}
+                {% endif %}
+                <a href="{{ path(url, parameters) }}" rel="next">Page suivante</a>
             {% endif %}
         </div>
     {% endif %}

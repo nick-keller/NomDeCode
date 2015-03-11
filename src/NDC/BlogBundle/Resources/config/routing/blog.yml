@@ -10,7 +10,7 @@ blog_index:
 
 blog_search:
     pattern: /search
-    defaults: { _controller: NDCBlogBundle:Blog:search, page: 1 }
+    defaults: { _controller: NDCBlogBundle:Blog:search }
 
 blog_article:
     pattern: /article/{id}-{slug}
