@@ -1,4 +1,4 @@
- <div class="comment">
+ <div id="comment-{{ comment.id }}" class="comment">
 	<a {% if comment.isRegistered %}href="{{ path('blog_search', {q: comment.username}) }}"{% endif %}>
 		{% set avatar_max = 8 %}
 		{% set avatar_number = comment.identifier % (avatar_max - 1) + 1 %}
