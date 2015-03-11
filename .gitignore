@@ -1,4 +1,4 @@
-/web/bundles/
+/htdocs/bundles/
 /app/bootstrap.php.cache
 /app/cache/*
 /app/config/parameters.yml
@@ -14,5 +14,5 @@
 *~
 /.idea/
 /.sass-cache/
-/web/uploads/
+/htdocs/uploads/
 

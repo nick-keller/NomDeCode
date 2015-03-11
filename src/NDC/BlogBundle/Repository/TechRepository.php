@@ -17,4 +17,18 @@ class TechRepository extends EntityRepository
         return $this->createQueryBuilder('t')
             ->orderBy('t.name');
     }
+
+    public function findAllSlug()
+    {
+        $r = $this->createQueryBuilder('t')
+            ->select('t.slug')
+            ->getQuery()
+            ->getArrayResult();
+
+        $result = array();
+        foreach($r as $l)
+            $result[] = $l['slug'];
+
+        return $result;
+    }
 }
