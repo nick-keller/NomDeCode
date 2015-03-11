@@ -31,4 +31,13 @@ class TechRepository extends EntityRepository
 
         return $result;
     }
+
+    public function findFromSlugs(array $slugs)
+    {
+        return $this->createQueryBuilder('t')
+            ->where('t.slug IN (:slugs)')
+            ->setParameter('slugs', $slugs)
+            ->getQuery()
+            ->getResult();
+    }
 }
