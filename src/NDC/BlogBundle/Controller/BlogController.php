@@ -124,6 +124,7 @@ class BlogController extends Controller
         return array(
             "query" => $query,
             'articles' => $articles,
+            'page' => $request->query->get('page', 1),
         );
     }
 } 
