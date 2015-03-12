@@ -3,6 +3,7 @@
 namespace NDC\BlogBundle\Repository;
 
 use Doctrine\ORM\EntityRepository;
+use NDC\BlogBundle\Entity\Image;
 
 /**
  * ArticleRepository
@@ -90,5 +91,14 @@ class ArticleRepository extends EntityRepository
         }
 
         return $qb->getQuery();
+    }
+
+    public function imageUsedIn(Image $image)
+    {
+        return $this->createQueryBuilder('a')
+            ->where('a.html LIKE :image')
+            ->setParameter('image', "%{$image->getFileName()}%")
+            ->getQuery()
+            ->getResult();
     }
 }
