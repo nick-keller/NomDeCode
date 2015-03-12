@@ -1,6 +1,5 @@
 <?php
 
-
 namespace NDC\BlogBundle\Twig;
 
 use Symfony\Component\Translation\TranslatorInterface;
@@ -29,4 +28,4 @@ class ArticlePreviewExtension extends \Twig_Extension
     {
         return 'article_preview_extension';
     }
-} 
+}
