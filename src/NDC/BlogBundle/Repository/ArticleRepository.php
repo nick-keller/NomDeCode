@@ -4,6 +4,7 @@ namespace NDC\BlogBundle\Repository;
 
 use Doctrine\ORM\EntityRepository;
 use NDC\BlogBundle\Entity\Image;
+use NDC\BlogBundle\Entity\Demo;
 
 /**
  * ArticleRepository
@@ -35,6 +36,18 @@ class ArticleRepository extends EntityRepository
             ->andWhere('a.createdAt < :now')
             ->setParameter('now', new \DateTime())
             ->orderBy('a.createdAt', 'DESC');
+    }
+
+    public function queryArticleWithoutDemo(Demo $demo)
+    {
+        $results = $this->createQueryBuilder('a')
+            ->leftJoin('a.demo', 'd')
+            ->where('d.id IS NULL')
+            ->orderBy('a.createdAt', 'DESC');
+        if (isset($demo)) {
+            $results->orWhere('d.id = :id')->setParameter('id', $demo->getId());
+        }
+        return $results;
     }
 
     public function querySearch($query, array $techs, array $categories, array $users)
