@@ -47,8 +47,7 @@
 {% block body %}
 <article class="long-text">
 	{% if article.demo is not null %}
-		<h2>Démonstration</h2>
-		<iframe src="{{ path('blog_demo', {id: article.demo.id}) }}" seamless></iframe>
+		<a href="{{ path('blog_demo', {id: article.demo.id }) }}" class="lien_demo" target="_blank">Voir la démo</a>
 	{% endif %}
 
 	{{ article.html|raw }}
@@ -87,11 +86,6 @@
 {% block javascripts %}
 {{ parent() }}
 <script src="{{ asset('js/ajax-comment.js') }}"></script>
-<script src="{{ asset('js/jquery.browser.js') }}"></script>
-<script src="{{ asset('js/iframe-resizer.min.js') }}"></script>
-<script>
-	$('iframe').iframeAutoHeight();
-</script>
 <script src="{{ asset('js/highlight.pack.js') }}"></script>
 <script>hljs.initHighlightingOnLoad();</script>
 {% endblock %}
