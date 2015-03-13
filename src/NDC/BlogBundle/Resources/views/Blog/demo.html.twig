@@ -1,0 +1,20 @@
+<html>
+{% set demo_dependencies = demo.dependencies|split('\r\n') %}
+
+<head>
+<script src="{{ asset('js/jquery.min.js') }}"></script>
+{% for c in demo_dependencies if c|split('.')|last == 'css' %}
+	<link rel="stylesheet" href="{{ c }}">
+{% endfor %}
+<style>{{ demo.css|raw }}</style>
+</head>
+
+<body style=" margin: 0;">
+{{ demo.html|raw }}
+{% for c in demo_dependencies if c|split('.')|last == 'js' %}
+	<script src="{{ c }}"></script>
+{% endfor %}
+<script>{{ demo.js|raw }}</script>
+</body>
+
+</html>

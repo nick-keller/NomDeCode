@@ -25,19 +25,36 @@ class DemoType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
+            ->add('name', null, array(
+                'label' => 'Nom',
+            ))
             ->add('article', null, array(
                 'query_builder' => function(ArticleRepository $repo) {
                     return $repo->queryArticleWithoutDemo($this->demo);
                 },
             ))
-            ->add('name', null, array(
-                'label' => 'Nom',
+            ->add('dependency', 'choice', array(
+                'label' => 'Raccourcis de dépendences',
+                'choices'   => array(
+                    'https://raw.github.com/necolas/normalize.css/master/normalize.css' => 'CSS Normalize',
+                    'https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css,https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js' => 'Bootstrap',
+                    'https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css' => 'Font Awesome',
+                    'https://raw.github.com/julianshapiro/velocity/master/velocity.min.js' => 'Velocity',
+                ),
+                'attr' => array(
+                    'class' => 'checkbox-inline button-dependency',
+                ),
+                'multiple'  => true,
+                'expanded'  => true,
+                'mapped' => false,
             ))
             ->add('dependencies', null, array(
-                'label' => 'Dépendences',
+                'label' => 'Dépendences (jQuery inclus par défaut)',
                 'required' => false,
                 'attr' => array(
                     'rows' => '12',
+                    'data-role' => 'dependencies-list',
+                    'data-ajax' => 'dependencies',
                     'placeholder' => 'Liens des dépendences en .css ou .js, une par ligne',
                 ),
             ))
@@ -46,6 +63,7 @@ class DemoType extends AbstractType
                 'required' => false,
                 'attr' => array(
                     'rows' => '12',
+                    'data-ajax' => 'html',
                 ),
             ))
             ->add('css', null, array(
@@ -53,6 +71,7 @@ class DemoType extends AbstractType
                 'required' => false,
                 'attr' => array(
                     'rows' => '12',
+                    'data-ajax' => 'css',
                 ),
             ))
             ->add('js', null, array(
@@ -60,6 +79,7 @@ class DemoType extends AbstractType
                 'required' => false,
                 'attr' => array(
                     'rows' => '12',
+                    'data-ajax' => 'js',
                 ),
             ))
             ->add('Enregistrer', 'submit')

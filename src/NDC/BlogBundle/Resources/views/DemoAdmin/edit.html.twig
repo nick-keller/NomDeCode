@@ -12,3 +12,8 @@
     {% form_theme form 'bootstrap_3_horizontal_layout.html.twig' %}
     {{ form(form) }}
 {% endblock %}
+
+{% block javascripts %}
+	{{ parent() }}
+	{% include 'NDCBlogBundle:DemoAdmin:_dependencies_shortcuts.html.twig' %}
+{% endblock %}

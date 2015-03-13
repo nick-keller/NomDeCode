@@ -88,4 +88,11 @@
 		border-left: 5px solid #eee;
 		font-style: italic;
 	}
+
+	iframe {
+		width: 100%;
+		max-height: 100vh;
+		border: none;
+		box-sizing: border-box;
+	}
 }

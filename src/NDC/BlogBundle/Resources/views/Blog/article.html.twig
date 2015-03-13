@@ -45,7 +45,14 @@
 {% endblock %}
 
 {% block body %}
-<article class="long-text">{{ article.html|raw }}</article>
+<article class="long-text">
+	{% if article.demo is not null %}
+		<h2>Démonstration</h2>
+		<iframe src="{{ path('blog_demo', {id: article.demo.id}) }}" seamless></iframe>
+	{% endif %}
+
+	{{ article.html|raw }}
+</article>
 <div class="article-author">
 	<div class="container">
 			<a class="author" href="{{ path('blog_search', {q: article.author.username}) }}" title="Rédacteur : {{ article.author.username }}">{{ article.author.username }}</a>
@@ -80,6 +87,11 @@
 {% block javascripts %}
 {{ parent() }}
 <script src="{{ asset('js/ajax-comment.js') }}"></script>
+<script src="{{ asset('js/jquery.browser.js') }}"></script>
+<script src="{{ asset('js/iframe-resizer.min.js') }}"></script>
+<script>
+	$('iframe').iframeAutoHeight();
+</script>
 <script src="{{ asset('js/highlight.pack.js') }}"></script>
 <script>hljs.initHighlightingOnLoad();</script>
 {% endblock %}
