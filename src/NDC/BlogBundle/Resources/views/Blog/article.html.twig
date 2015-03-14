@@ -32,7 +32,7 @@
 		{% endif %}
 	</div>
 	<div class="container text">
-		<h1>{{ article.title|capitalize }}</h1>
+		<h1>{{ article.title }}</h1>
 		<span class="muted">publié {{ article.createdAt|fullDate }}
 			{% if article.tech|length > 0 %} - 
 				{% for t in article.tech %}
