@@ -47,7 +47,7 @@
 {% block body %}
 <article class="long-text">
 	{% if article.demo is not null %}
-		<a href="{{ path('blog_demo', {id: article.demo.id }) }}" class="lien_demo" target="_blank">Voir la démo</a>
+		<a href="{{ path('blog_demo', {id: article.demo.id }) }}" class="lien_demo btn" target="_blank">Voir la démo</a>
 	{% endif %}
 
 	{{ article.html|raw }}
