@@ -107,7 +107,7 @@
                 <p><a href="{{ path('blog_authors') }}">Rédacteurs</a></p>
             </div>
             
-            {% if 'localhost' not in app.request.httpHost and '127.0.0.1' not in app.request.httpHost %}
+            {% if 'localhost' not in app.request.httpHost and '127.0.0.1' not in app.request.httpHost and not app.user %}
                 {% include 'NDCBlogBundle:Blog:_analytics.html.twig' %}
             {% endif %}
         </footer>
