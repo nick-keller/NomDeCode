@@ -23,10 +23,16 @@
                         {% endif %}
                     </td>
                     <td>
-                        <a class="btn btn-default btn-xs" href="{{ path('blog_demo_admin_edit', {id: demo.id}) }}">
-                            <i class="glyphicon glyphicon-pencil"></i>
-                            Editer
-                        </a>
+                        <div class="btn-group btn-group-xs">
+                            <a class="btn btn-default btn-xs" href="{{ path('blog_demo_admin_edit', {id: demo.id}) }}">
+                                <i class="glyphicon glyphicon-pencil"></i>
+                                Editer
+                            </a>
+                            <a class="btn btn-default btn-xs" href="{{ path('blog_demo', {id: demo.id}) }}">
+                                <i class="glyphicon glyphicon-eye-open"></i>
+                                Voir
+                            </a>
+                        </div>
                     </td>
                 </tr>
             {% endfor %}
