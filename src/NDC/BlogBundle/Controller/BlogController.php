@@ -140,11 +140,12 @@ class BlogController extends Controller
      */
     public function demoAction(Demo $demo) {
         // Check if readable
-        if(empty($demo->getArticle())) {
+        $article = $demo->getArticle();
+        if(empty($article)) {
             if(!$this->isGranted('ROLE_ADMIN'))
                 throw $this->createNotFoundException();
         } else {
-            $this->isArticleReadable($demo->getArticle());
+            $this->isArticleReadable($article);
         }
 
         return array();
