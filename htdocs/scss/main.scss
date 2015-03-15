@@ -602,6 +602,11 @@ footer {
 		font-size: $font-size-headline-index;
 		margin-bottom: 1rem;
 		text-align: center;
+		transition: all 0.3s;
+	}
+
+	&:hover h2 {
+		color: $background-color-header;
 	}
 
 	p {
