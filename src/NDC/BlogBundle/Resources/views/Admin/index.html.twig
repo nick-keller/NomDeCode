@@ -18,7 +18,7 @@
                                 <a class="btn btn-default btn-xs pull-right" href="{{ path('blog_demo_admin_edit', {id:article.demo.id}) }}">Démo</a>
                             {% endif %}
                             <a href="{{ path('blog_article_admin_edit', {id:article.id}) }}">
-                                {{ article.title|slice(0, 30) }}{% if article.title|length > 30 %}...{% endif %}
+                                {{ article.title }}
                             </a>
                         </li>
                     {% else %}
@@ -40,7 +40,7 @@
                                 {{ article.createdAt|fullDate }}
                             </span>
                             <a href="{{ path('blog_article_admin_edit', {id:article.id}) }}">
-                                {{ article.title|slice(0, 30) }}{% if article.title|length > 30 %}...{% endif %}
+                                {{ article.title }}
                             </a>
                         </li>
                     {% else %}
@@ -61,15 +61,15 @@
                     {% for comment in unseen %}
                         <li class="list-group-item">
                             <div class="text-muted">
-                                {{ comment.article.title|slice(0, 30) }}{% if comment.article.title|length > 30 %}...{% endif %}
+                                {{ comment.article.title }}
                             </div>
                             <a href="{{ path('blog_article', {category:comment.article.category.slug, id: comment.article.id, slug:comment.article.slug}) }}#comment-{{ comment.id }}">
-                                {{ comment.message|striptags|slice(0, 50)|raw }}{% if comment.message|striptags|length > 50 %}...{% endif %}
+                                {{ comment.message|striptags|slice(0, 100)|raw }}{% if comment.message|striptags|length > 100 %}...{% endif %}
                             </a>
                         </li>
                     {% else %}
                         <li class="list-group-item">
-                            Aucun commentaire non-lus
+                            Aucun commentaire non-lu
                         </li>
                     {% endfor %}
                 </ul>
