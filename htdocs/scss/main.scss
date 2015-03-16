@@ -33,6 +33,7 @@ $margin-for-blocks: 0.5rem;
 // imports needing variables
 @import "article_theme";
 
+
 // mixins
 @mixin author-photo($diameter) {
 	width: $diameter;
