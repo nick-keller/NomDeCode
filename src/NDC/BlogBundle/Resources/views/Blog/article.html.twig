@@ -58,7 +58,7 @@
 <div class="article-author">
 	<div class="container">
 			<a class="author" href="{{ path('blog_search', {q: article.author.username}) }}" title="Rédacteur : {{ article.author.username }}">{{ article.author.username }}</a>
-			<a href="#author" href="{{ path('blog_search', {q: article.author.username}) }}" title="Rédacteur : {{ article.author.username }}">
+			<a href="author" href="{{ path('blog_search', {q: article.author.username}) }}" title="Rédacteur : {{ article.author.username }}">
 				<img src="{{ asset(article.author.webPath) }}" class="author-img">
 			</a>
 			{{ helper.author_link(article.author) }}
