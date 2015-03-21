@@ -149,3 +149,11 @@
 .language-php .hljs-variable {
     color: rgb(167, 131, 228);
 }
+
+.language-twig .hljs-template_tag {
+    color: #cfe1f4;
+}
+
+.language-twig .hljs-template_tag .hljs-keyword {
+    color: #f18f3c;
+}
