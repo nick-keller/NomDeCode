@@ -165,7 +165,26 @@ class BlogController extends Controller
     /**
      * @Template
      */
-    public function cguAction() { return array(); }
+    public function cguAction()
+    {
+        return array();
+    }
+
+    /**
+     * @Template
+     */
+    public function faqAction()
+    {
+        return array();
+    }
+
+    /**
+     * @Template
+     */
+    public function contactAction()
+    {
+        return array();
+    }
 
     private function isArticleReadable($article) {
         if($article->getState() != 'published' || $article->getCreatedAt() > new \DateTime()) {
