@@ -6,9 +6,11 @@ namespace NDC\BlogBundle\Controller;
 use NDC\BlogBundle\Entity\Article;
 use NDC\BlogBundle\Entity\Comment;
 use NDC\BlogBundle\Entity\CommentMonitoring;
+use NDC\BlogBundle\Entity\Contact;
 use NDC\BlogBundle\Entity\Demo;
 use NDC\BlogBundle\Form\CommentType;
 
+use NDC\BlogBundle\Form\ContactType;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Doctrine\ORM\EntityManager;
 use Knp\Component\Pager\Paginator;
@@ -183,7 +185,12 @@ class BlogController extends Controller
      */
     public function contactAction()
     {
-        return array();
+        $contact = new Contact;
+        $form = $this->createForm(new ContactType, $contact);
+
+        return array(
+            'form' => $form->createView(),
+        );
     }
 
     private function isArticleReadable($article) {
