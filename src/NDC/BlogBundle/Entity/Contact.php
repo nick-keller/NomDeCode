@@ -19,6 +19,13 @@ class Contact
      */
     private $message;
 
+    private $createdAt;
+
+    public function __construct()
+    {
+        $this->createdAt = new \DateTime;
+    }
+
     /**
      * @param mixed $from
      */
@@ -49,5 +56,13 @@ class Contact
     public function getMessage()
     {
         return $this->message;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getCreatedAt()
+    {
+        return $this->createdAt;
     }
 } 

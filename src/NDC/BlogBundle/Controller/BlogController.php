@@ -183,10 +183,36 @@ class BlogController extends Controller
     /**
      * @Template
      */
-    public function contactAction()
+    public function contactAction(Request $request)
     {
         $contact = new Contact;
         $form = $this->createForm(new ContactType, $contact);
+
+        if($request->isMethod('post')){
+            $form->handleRequest($request);
+
+            if($form->isValid()){
+                $to = $this->em->getRepository('NDCUserBundle:User')->findContacts();
+
+                $message = \Swift_Message::newInstance()
+                    ->setSubject('[NomDeCode] Nouveau message depuis le site web')
+                    ->setFrom(array('contact@nomdeco.de' => 'NomDeCode'))
+                    ->setTo($to)
+                    ->setBody(
+                        $this->renderView(
+                            'NDCBlogBundle:Blog:email.txt.twig',
+                            array(
+                                'contact' => $contact,
+                                'ip' => $_SERVER['REMOTE_ADDR'],
+                            )
+                        )
+                    )
+                ;
+                $this->get('mailer')->send($message);
+
+                // TODO : Afficher un message à l'utilisateur ----------------------------------------------------------
+            }
+        }
 
         return array(
             'form' => $form->createView(),
