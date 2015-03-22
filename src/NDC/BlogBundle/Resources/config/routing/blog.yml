@@ -29,10 +29,6 @@ blog_cgu:
     pattern: /conditions-generales-d-utilisation
     defaults: { _controller: NDCBlogBundle:Blog:cgu }
 
-blog_faq:
-    pattern: /faq
-    defaults: { _controller: NDCBlogBundle:Blog:faq }
-
 blog_ccontact:
     pattern: /nous-contacter
     defaults: { _controller: NDCBlogBundle:Blog:contact }

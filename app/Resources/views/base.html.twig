@@ -98,13 +98,12 @@
 
         <footer>
             <div>
-                <p><a href="{{ path('blog_cgu') }}">CGU</a></p>
-                <p><a href="{{ path('blog_faq') }}">FAQ</a></p>
-                <p class="muted">© {{ "now"|date("Y") }} Nomdecode</p>
-            </div>
-            <div>
                 <p><a href="{{ path('blog_ccontact') }}">Nous contacter</a></p>
                 <p><a href="{{ path('blog_authors') }}">Rédacteurs</a></p>
+            </div>
+            <div>
+                <p><a href="{{ path('blog_cgu') }}">CGU</a></p>
+                <p class="muted">© {{ "now"|date("Y") }} Nomdecode</p>
             </div>
             
             {% if 'localhost' not in app.request.httpHost and '127.0.0.1' not in app.request.httpHost and not app.user and noAnalitics|default(false) == false %}

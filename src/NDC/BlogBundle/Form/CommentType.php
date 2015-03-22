@@ -46,9 +46,7 @@ class CommentType extends AbstractType
                 ),
             ))
             ->add('Envoyer', 'submit', array(
-                'label' => false,
                 'attr' => array(
-                    'placeholder' => 'Message',
                     'class' => 'btn btn-bloc',
                     'data-type' => 'ajax',
                 ),

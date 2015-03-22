@@ -16,15 +16,21 @@ class ContactType extends AbstractType
     {
         $builder
             ->add('from', 'email', array(
-                'label' => 'Email',
-            ))
-            ->add('message', 'textarea', array(
-                'label' => 'Message',
-            ))
-            ->add('Envoyer', 'submit', array(
                 'label' => false,
                 'attr' => array(
-                    'placeholder' => 'Bite',
+                    'placeholder' => 'Adresse mail',
+                ),
+            ))
+            ->add('message', 'textarea', array(
+                'label' => false,
+                'attr' => array(
+                    'placeholder' => 'Message',
+                    'rows' => '8',
+                ),
+            ))
+            ->add('Envoyer', 'submit', array(
+                'attr' => array(
+                    'class' => 'btn btn-bloc',
                 ),
             ))
         ;
