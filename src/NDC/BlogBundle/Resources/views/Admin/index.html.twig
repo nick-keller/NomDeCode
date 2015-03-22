@@ -5,16 +5,12 @@
 {% block body %}
     <h1 class="page-header">Bonjour {{ app.user }}</h1>
 
-    <p>
-        <a class="btn btn-default" href="{{ path('blog_user_admin_edit', { 'id': app.user.id}) }}">Éditer son compte</a>
-    </p>
-
     <div class="row">
         <div class="col-sm-6">
             <div class="panel panel-default">
                 <div class="panel-heading">
                     <i class="glyphicon glyphicon-pencil"></i>
-                    Vos articles en cours de rédaction
+                    Mes articles en cours de rédaction
                 </div>
                 <ul class="list-group">
                     {% for article in wip %}
@@ -36,7 +32,7 @@
             <div class="panel panel-default">
                 <div class="panel-heading">
                     <i class="glyphicon glyphicon-time"></i>
-                    Vos articles bientôt publiés
+                    Mes articles bientôt publiés
                 </div>
                 <ul class="list-group">
                     {% for article in future %}
