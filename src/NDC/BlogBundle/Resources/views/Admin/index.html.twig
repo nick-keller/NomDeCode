@@ -4,6 +4,11 @@
 
 {% block body %}
     <h1 class="page-header">Bonjour {{ app.user }}</h1>
+
+    <p>
+        <a class="btn btn-default" href="{{ path('blog_user_admin_edit', { 'id': app.user.id}) }}">Éditer son compte</a>
+    </p>
+
     <div class="row">
         <div class="col-sm-6">
             <div class="panel panel-default">

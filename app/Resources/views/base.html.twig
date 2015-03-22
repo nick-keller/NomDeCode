@@ -72,13 +72,8 @@
                 </form>
 
                 {% if app.user %}
-                    {% if is_granted('ROLE_ADMIN') %}
-                        <a href="{{ path('ndc_admin_index') }}">Administration</a>
-                    {% else %}
-                        <a href="{{ path('ndc_admin_index') }}">Modération</a>
-                    {% endif %}
-
-                    <a href="{{ path('blog_user_admin_edit', { 'id': app.user.id}) }}">Éditer son compte</a>
+                    <a href="{{ path('ndc_admin_index') }}">Dashboard</a>
+                    <a href="{{ path('blog_article_admin_index') }}">Liste des articles</a>
 
                     {% if article is defined %}
                         {% if is_granted('ROLE_ADMIN') or article.author == app.user %}
