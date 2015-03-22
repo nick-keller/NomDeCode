@@ -210,7 +210,7 @@ class BlogController extends Controller
                 ;
                 $this->get('mailer')->send($message);
 
-                // TODO : Afficher un message à l'utilisateur ----------------------------------------------------------
+                return array();
             }
         }
 

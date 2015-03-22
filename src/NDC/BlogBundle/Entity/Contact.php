@@ -15,7 +15,10 @@ class Contact
 
     /**
      * @Assert\NotBlank()
-     * @Assert\Length(min=5)
+     * @Assert\Length(
+     *     min = "5",
+     *     minMessage = "Le message doit faire {{ limit }} caractères minimum.",
+     * )
      */
     private $message;
 

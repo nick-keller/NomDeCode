@@ -1,6 +1,5 @@
 @import "colors";
 
-
 // variables
 $height-header: 65vh;
 $height-input-text: 34px;
@@ -196,6 +195,11 @@ input[type=text], input[type=password], input[type=email], textarea {
 		&:hover {
 			background-color: transparentize($color-before-focus, 0.3);
 		}
+	}
+
+	ul {
+		list-style-type: none;
+		color: #EC7676;
 	}
 
 	input[type=text], input[type=password], input[type=email], textarea {
