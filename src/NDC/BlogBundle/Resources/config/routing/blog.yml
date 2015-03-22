@@ -29,7 +29,7 @@ blog_cgu:
     pattern: /conditions-generales-d-utilisation
     defaults: { _controller: NDCBlogBundle:Blog:cgu }
 
-blog_ccontact:
+blog_contact:
     pattern: /nous-contacter
     defaults: { _controller: NDCBlogBundle:Blog:contact }
 

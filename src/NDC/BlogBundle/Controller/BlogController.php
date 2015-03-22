@@ -210,7 +210,9 @@ class BlogController extends Controller
                 ;
                 $this->get('mailer')->send($message);
 
-                return array();
+                $this->addFlash('success', 'Le message a bien été envoyé, nous lirons ça sous peu !');
+
+                return $this->redirect($this->generateUrl('blog_contact'));
             }
         }
 
