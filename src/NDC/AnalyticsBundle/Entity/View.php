@@ -3,6 +3,7 @@
 namespace NDC\AnalyticsBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use NDC\BlogBundle\Entity\Article;
 
 /**
  * View
@@ -28,6 +29,13 @@ class View
      * @var \NDC\BlogBundle\Entity\Article
      */
     private $article;
+
+    public function __construct(Article $article)
+    {
+        $this->article = $article;
+        $this->createdAt = new \DateTime;
+        $this->sessionId = session_id();
+    }
 
     /**
      * Get id

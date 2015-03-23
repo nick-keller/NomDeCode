@@ -3,6 +3,7 @@
 
 namespace NDC\BlogBundle\Controller;
 
+use NDC\AnalyticsBundle\Entity\View;
 use NDC\BlogBundle\Entity\Article;
 use NDC\BlogBundle\Entity\Comment;
 use NDC\BlogBundle\Entity\CommentMonitoring;
@@ -66,7 +67,11 @@ class BlogController extends Controller
         // View counter
         if($this->getUser() === null){
             $article->setViews($article->getViews() +1);
+
+            $view = new View($article);
+
             $this->em->persist($article);
+            $this->em->persist($view);
             $this->em->flush();
         }
 
