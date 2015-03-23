@@ -14,10 +14,20 @@ use NDC\BlogBundle\Entity\Article;
  */
 class ViewRepository extends EntityRepository
 {
-    public function articleStats(Article $article)
+    /**
+     * @param Article $article
+     * @param string $groupBy MYSQL syntax for date format
+     * @return array
+     */
+    public function articleStats(Article $article, $groupBy = '%j%y')
     {
         return $this->createQueryBuilder('v')
-            ->groupBy('v.sessionId')
+            ->select('DATE_FORMAT(v.createdAt, :groupBy) HIDDEN groupByDate, COUNT(DISTINCT v.sessionId) total, v.createdAt')
+            ->setParameter('groupBy', $groupBy)
+            ->where('v.article = :article')
+            ->setParameter('article', $article)
+            ->groupBy('groupByDate')
+            ->orderBy('v.createdAt', 'ASC')
             ->getQuery()
             ->getResult(Query::HYDRATE_ARRAY);
     }
