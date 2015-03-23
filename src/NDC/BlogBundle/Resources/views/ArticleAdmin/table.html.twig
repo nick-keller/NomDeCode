@@ -59,10 +59,12 @@
                 </div>
             </td>
         </tr>
-        <tr style="display:none;">
-            <td colspan="7">
-                ANALYTICS
-            </td>
-        </tr>
+        {% if article.state != 'draft' %}
+            <tr style="display:none;">
+                <td colspan="7">
+                    ANALYTICS
+                </td>
+            </tr>
+        {% endif %}
     {% endfor %}
 </table>
