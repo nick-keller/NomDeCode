@@ -41,7 +41,7 @@ class BlogController extends Controller
         $articles = $this->paginator->paginate(
             $this->em->getRepository('NDCBlogBundle:Article')->queryAllPublished(),
             $page,
-            10
+            8
         );
 
         return array(
@@ -133,7 +133,7 @@ class BlogController extends Controller
         $articles = $this->paginator->paginate(
             $searchQuery,
             $request->query->get('page', 1),
-            10
+            8
         );
 
         return array(

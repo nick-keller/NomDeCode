@@ -48,15 +48,27 @@
             <td>{{ article.updatedAt|fullDate }}</td>
             <td>{{ article.comments|length }}</td>
             <td>
-                <div class="btn-group btn-group-xs">
+                <div class="btn-group btn-group-xs" style="display:inline-flex;">
                     <a class="btn btn-default" href="{{ path('blog_article_admin_edit', {id: article.id}) }}">
                         <i class="glyphicon glyphicon-pencil"></i>
                         Editer
                     </a>
-                    <a class="btn btn-danger">
+
+                    {% if article.state != 'draft' %}
+                        <a class="btn btn-default" data-p="analytics" >
+                            <i class="glyphicon glyphicon-stats"></i>
+                            Stats
+                        </a>
+                    {% endif %}
+                    {# <a class="btn btn-danger">
                         <i class="glyphicon glyphicon-remove"></i>
-                    </a>
+                    </a> #}
                 </div>
+            </td>
+        </tr>
+        <tr style="display:none;">
+            <td colspan="6">
+                ANALYTICS
             </td>
         </tr>
     {% endfor %}
