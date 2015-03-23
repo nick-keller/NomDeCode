@@ -17,6 +17,7 @@ use Doctrine\ORM\EntityManager;
 use Knp\Component\Pager\Paginator;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
 use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\HttpKernel\Exception\BadRequestHttpException;
 use Symfony\Component\HttpKernel\Exception\HttpException;
 use Symfony\Component\HttpFoundation\Response;
 
@@ -65,10 +66,9 @@ class BlogController extends Controller
             return $this->redirect($this->generateUrl('blog_article', array('id'=>$article->getId(), 'category' => $article->getCategory()->getSlug(), 'slug'=>$article->getSlug())), 301);
 
         // View counter
+        $view = new View($article);
         if($this->getUser() === null){
             $article->setViews($article->getViews() +1);
-
-            $view = new View($article);
 
             $this->em->persist($article);
             $this->em->persist($view);
@@ -114,6 +114,7 @@ class BlogController extends Controller
 
         return array(
             'form' => $form->createView(),
+            'view' => $view,
         );
     }
 
@@ -236,5 +237,17 @@ class BlogController extends Controller
         }
 
         return true;
+    }
+
+    public function setViewSessionIdAction(View $view)
+    {
+        if($view->getSessionId() != '')
+            throw new BadRequestHttpException;
+
+        $view->setSessionId(session_id());
+        $this->em->persist($view);
+        $this->em->flush();
+
+        return new Response('', 200);
     }
 } 
