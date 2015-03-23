@@ -34,6 +34,7 @@ class View
     {
         $this->article = $article;
         $this->createdAt = new \DateTime;
+        if(empty(session_id())) session_id(substr(md5(uniqid()), 0, 26));
         $this->sessionId = session_id();
     }
 
