@@ -95,7 +95,7 @@
     <script src="{{ asset('js/ajax-comment.js') }}"></script>
     <script src="{{ asset('js/highlight.pack.js') }}"></script>
     <script>hljs.initHighlightingOnLoad();</script>
-    {% if view.sessionId is empty %}
+    {% if not app.user and view.sessionId is empty %}
         <script type="text/javascript">
             $(function(){
                 $.get('{{ path('blog_set_view_session_id', {id:view.id}) }}');
