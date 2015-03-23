@@ -3,6 +3,8 @@
 namespace NDC\AnalyticsBundle\Repository;
 
 use Doctrine\ORM\EntityRepository;
+use Doctrine\ORM\Query;
+use NDC\BlogBundle\Entity\Article;
 
 /**
  * ViewRepository
@@ -12,4 +14,11 @@ use Doctrine\ORM\EntityRepository;
  */
 class ViewRepository extends EntityRepository
 {
+    public function articleStats(Article $article)
+    {
+        return $this->createQueryBuilder('v')
+            ->groupBy('v.sessionId')
+            ->getQuery()
+            ->getResult(Query::HYDRATE_ARRAY);
+    }
 }
