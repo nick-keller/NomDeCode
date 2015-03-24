@@ -46,12 +46,20 @@ class ViewRepository extends EntityRepository
 
     public function articleCumulativeStats(Article $article, \DateTime $from, \DateTime $to, $step = '+1 day', $format = 'Y, m -1, d')
     {
-        $total = intval($this->createQueryBuilder('v')
-            ->select('COUNT(DISTINCT v.sessionId) total')
+        $groupBy = '%j%y';
+
+        $allViews = $this->createQueryBuilder('v')
+            ->select('DATE_FORMAT(v.createdAt, :groupBy) HIDDEN groupByDate, COUNT(DISTINCT v.sessionId) total')
+            ->setParameter('groupBy', $groupBy)
             ->where('v.article = :article')
             ->setParameter('article', $article)
+            ->groupBy('groupByDate')
             ->getQuery()
-            ->getSingleScalarResult());
+            ->getResult(Query::HYDRATE_ARRAY);
+
+        $total = 0;
+        foreach($allViews as $v)
+            $total += $v['total'];
 
         $data = array();
         $i = new \DateTime($from->format('Y-m-d H:i:sP'));
