@@ -30,9 +30,9 @@ class ViewRepository extends EntityRepository
             ->setParameter('groupBy', $groupBy)
             ->where('v.article = :article')
             ->setParameter('article', $article)
-            ->andWhere('v.createdAt >= :from AND v.createdAt < :to')
+            ->andWhere('v.createdAt >= :from AND v.createdAt <= :to')
             ->setParameter('from', $from)
-            ->setParameter('to', $to->modify($step))
+            ->setParameter('to', $to->setTime(23, 59, 59))
             ->groupBy('groupByDate')
             ->orderBy('v.createdAt', 'ASC')
             ->getQuery()
@@ -94,9 +94,9 @@ class ViewRepository extends EntityRepository
         $result = $this->createQueryBuilder('v')
             ->select('DATE_FORMAT(v.createdAt, :groupBy) HIDDEN groupByDate, COUNT(DISTINCT v.sessionId) total, v.createdAt')
             ->setParameter('groupBy', $groupBy)
-            ->andWhere('v.createdAt >= :from AND v.createdAt < :to')
+            ->andWhere('v.createdAt >= :from AND v.createdAt <= :to')
             ->setParameter('from', $from)
-            ->setParameter('to', $to->modify($step))
+            ->setParameter('to', $to->setTime(23, 59, 59))
             ->groupBy('groupByDate')
             ->orderBy('v.createdAt', 'ASC')
             ->getQuery()
@@ -124,9 +124,9 @@ class ViewRepository extends EntityRepository
             ->join('v.article', 'a')
             ->where('a.author = :author')
             ->setParameter('author', $author)
-            ->andWhere('v.createdAt >= :from AND v.createdAt < :to')
+            ->andWhere('v.createdAt >= :from AND v.createdAt <= :to')
             ->setParameter('from', $from)
-            ->setParameter('to', $to->modify($step))
+            ->setParameter('to', $to->setTime(23, 59, 59))
             ->groupBy('groupByDate')
             ->orderBy('v.createdAt', 'ASC')
             ->getQuery()
@@ -136,5 +136,33 @@ class ViewRepository extends EntityRepository
             $data[$r['createdAt']->format($format)] = intval($r['total']);
 
         return $data;
+    }
+
+    public function articlesPerSessionStats(\DateTime $from, \DateTime $to, $step = '+1 day', $groupBy = '%j%y', $format = 'Y, m -1, d')
+    {
+        $data = array();
+        $i = new \DateTime($from->format('Y-m-d H:i:sP'));
+
+        while($i <= $to){
+            $data[$i->format($format)] = 0;
+            $i->modify($step);
+        }
+
+        $result = $this->createQueryBuilder('v')
+            ->select('DATE_FORMAT(v.createdAt, :groupBy) HIDDEN groupByDate, COUNT(DISTINCT IDENTITY(v.article)) total, v.createdAt')
+            ->setParameter('groupBy', $groupBy)
+            ->andWhere('v.createdAt >= :from AND v.createdAt <= :to')
+            ->setParameter('from', $from)
+            ->setParameter('to', $to->setTime(23, 59, 59))
+            ->groupBy('groupByDate')
+            ->orderBy('v.createdAt', 'ASC')
+            ->getQuery()
+            ->getResult(Query::HYDRATE_ARRAY);
+
+        foreach($result as $r)
+            $data[$r['createdAt']->format($format)] = intval($r['total']);
+
+        return $data;
+
     }
 }
