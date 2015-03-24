@@ -28,7 +28,7 @@
                 groupPadding: 0,
                 tooltip: {
                     dateTimeLabelFormats: {day:"%a %e %b"},
-                    pointFormat: '<b>{point.y:,.0f}</b>',
+                    pointFormat: '<b> {% if decimal is defined %}{point.y:,.1f}{% else %}{point.y:,.0f}{% endif %} </b>',
                     valueDecimals: 2
                 },
                 data: [{{ data|join(',') }}]

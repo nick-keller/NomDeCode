@@ -40,6 +40,7 @@ class AdminController extends Controller
         $stats = array(
             'readers' => $this->em->getRepository('NDCAnalyticsBundle:View')->readersStats($from, $now),
             'myreaders' => $this->em->getRepository('NDCAnalyticsBundle:View')->authorStats($this->getUser(), $from, $now),
+            'persession' => $this->em->getRepository('NDCAnalyticsBundle:View')->articlesPerSessionStats($from, $now),
         );
 
         return array(

@@ -13,8 +13,7 @@
             {% include 'NDCBlogBundle:Admin:_chart.html.twig' with {'selector': 'chart-myreaders', 'data': stats.myreaders, 'title': '<strong>Mes</strong> lecteurs'} %}
         </div>
         <div class="col-md-4 col-sm-6 col-xs-12">
-            <h4 class="text-center">Articles vus par visite</h4>
-            <div id="chart-pervisit" class="chart"></div>
+            {% include 'NDCBlogBundle:Admin:_chart.html.twig' with {'selector': 'chart-persession', 'data': stats.persession, 'title': 'Articles vus par visite', decimal: true} %}
         </div>
     </div>
 
