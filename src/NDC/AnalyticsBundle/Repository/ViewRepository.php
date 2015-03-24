@@ -15,7 +15,7 @@ use NDC\UserBundle\Entity\User;
  */
 class ViewRepository extends EntityRepository
 {
-    public function articleStats(Article $article, \DateTime $from, \DateTime $to, $step = '+1 day', $groupBy = '%j%y', $format = 'd-m-Y')
+    public function articleStats(Article $article, \DateTime $from, \DateTime $to, $step = '+1 day', $groupBy = '%j%y', $format = 'Y, m, d')
     {
         $data = array();
         $i = new \DateTime($from->format('Y-m-d H:i:sP'));
@@ -44,7 +44,7 @@ class ViewRepository extends EntityRepository
         return $data;
     }
 
-    public function readersStats(\DateTime $from, \DateTime $to, $step = '+1 day', $groupBy = '%j%y', $format = 'd-m-Y')
+    public function readersStats(\DateTime $from, \DateTime $to, $step = '+1 day', $groupBy = '%j%y', $format = 'Y, m, d')
     {
         $data = array();
         $i = new \DateTime($from->format('Y-m-d H:i:sP'));
@@ -71,7 +71,7 @@ class ViewRepository extends EntityRepository
         return $data;
     }
 
-    public function authorStats(User $author, \DateTime $from, \DateTime $to, $step = '+1 day', $groupBy = '%j%y', $format = 'd-m-Y')
+    public function authorStats(User $author, \DateTime $from, \DateTime $to, $step = '+1 day', $groupBy = '%j%y', $format = 'Y, m, d')
     {
         $data = array();
         $i = new \DateTime($from->format('Y-m-d H:i:sP'));
