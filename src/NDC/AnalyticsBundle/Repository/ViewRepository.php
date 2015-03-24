@@ -5,6 +5,7 @@ namespace NDC\AnalyticsBundle\Repository;
 use Doctrine\ORM\EntityRepository;
 use Doctrine\ORM\Query;
 use NDC\BlogBundle\Entity\Article;
+use NDC\UserBundle\Entity\User;
 
 /**
  * ViewRepository
@@ -56,6 +57,36 @@ class ViewRepository extends EntityRepository
         $result = $this->createQueryBuilder('v')
             ->select('DATE_FORMAT(v.createdAt, :groupBy) HIDDEN groupByDate, COUNT(DISTINCT v.sessionId) total, v.createdAt')
             ->setParameter('groupBy', $groupBy)
+            ->andWhere('v.createdAt >= :from AND v.createdAt < :to')
+            ->setParameter('from', $from)
+            ->setParameter('to', $to->modify($step))
+            ->groupBy('groupByDate')
+            ->orderBy('v.createdAt', 'ASC')
+            ->getQuery()
+            ->getResult(Query::HYDRATE_ARRAY);
+
+        foreach($result as $r)
+            $data[$r['createdAt']->format($format)] = intval($r['total']);
+
+        return $data;
+    }
+
+    public function authorStats(User $author, \DateTime $from, \DateTime $to, $step = '+1 day', $groupBy = '%j%y', $format = 'd-m-Y')
+    {
+        $data = array();
+        $i = new \DateTime($from->format('Y-m-d H:i:sP'));
+
+        while($i <= $to){
+            $data[$i->format($format)] = 0;
+            $i->modify($step);
+        }
+
+        $result = $this->createQueryBuilder('v')
+            ->select('DATE_FORMAT(v.createdAt, :groupBy) HIDDEN groupByDate, COUNT(DISTINCT v.sessionId) total, v.createdAt')
+            ->setParameter('groupBy', $groupBy)
+            ->join('v.article', 'a')
+            ->where('a.author = :author')
+            ->setParameter('author', $author)
             ->andWhere('v.createdAt >= :from AND v.createdAt < :to')
             ->setParameter('from', $from)
             ->setParameter('to', $to->modify($step))
