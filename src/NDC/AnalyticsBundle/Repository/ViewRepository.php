@@ -44,6 +44,35 @@ class ViewRepository extends EntityRepository
         return $data;
     }
 
+    public function articleCumulativeStats(Article $article, \DateTime $from, \DateTime $to, $step = '+1 day', $format = 'Y, m -1, d')
+    {
+        $total = intval($this->createQueryBuilder('v')
+            ->select('COUNT(DISTINCT v.sessionId) total')
+            ->where('v.article = :article')
+            ->setParameter('article', $article)
+            ->getQuery()
+            ->getSingleScalarResult());
+
+        $data = array();
+        $i = new \DateTime($from->format('Y-m-d H:i:sP'));
+        $last = null;
+
+        while($i <= $to){
+            $last = $i->format($format);
+            $data[$last] = 0;
+            $i->modify($step);
+        }
+
+        $views = $this->articleStats($article, $from, $to);
+
+        $data[$last] = $total;
+        $keys = array_keys($views);
+        for($i = count($views) -1; $i > 0; --$i)
+            $data[$keys[$i -1]] = $data[$keys[$i]] - $views[$keys[$i]];
+
+        return $data;
+    }
+
     public function readersStats(\DateTime $from, \DateTime $to, $step = '+1 day', $groupBy = '%j%y', $format = 'Y, m -1, d')
     {
         $data = array();

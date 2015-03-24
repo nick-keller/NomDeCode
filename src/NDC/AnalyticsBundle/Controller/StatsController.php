@@ -27,7 +27,7 @@ class StatsController extends Controller
         $from->modify('-20 days');
 
         return array(
-            'stats' => $this->em->getRepository('NDCAnalyticsBundle:View')->articleStats($article, $from, $now),
+            'stats' => $this->em->getRepository('NDCAnalyticsBundle:View')->articleCumulativeStats($article, $from, $now),
         );
     }
 }
