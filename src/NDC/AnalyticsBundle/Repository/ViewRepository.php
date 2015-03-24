@@ -141,26 +141,33 @@ class ViewRepository extends EntityRepository
     public function articlesPerSessionStats(\DateTime $from, \DateTime $to, $step = '+1 day', $groupBy = '%j%y', $format = 'Y, m -1, d')
     {
         $data = array();
+        $total = array();
         $i = new \DateTime($from->format('Y-m-d H:i:sP'));
 
         while($i <= $to){
             $data[$i->format($format)] = 0;
+            $total[$i->format($format)] = 0;
             $i->modify($step);
         }
 
         $result = $this->createQueryBuilder('v')
-            ->select('DATE_FORMAT(v.createdAt, :groupBy) HIDDEN groupByDate, COUNT(DISTINCT IDENTITY(v.article)) total, v.createdAt')
+            ->select('DATE_FORMAT(v.createdAt, :groupBy) HIDDEN groupByDate, COUNT(DISTINCT v.article) total, v.createdAt, v.sessionId')
             ->setParameter('groupBy', $groupBy)
             ->andWhere('v.createdAt >= :from AND v.createdAt <= :to')
             ->setParameter('from', $from)
             ->setParameter('to', $to->setTime(23, 59, 59))
-            ->groupBy('groupByDate')
+            ->groupBy('groupByDate, v.sessionId')
             ->orderBy('v.createdAt', 'ASC')
             ->getQuery()
             ->getResult(Query::HYDRATE_ARRAY);
 
-        foreach($result as $r)
-            $data[$r['createdAt']->format($format)] = intval($r['total']);
+        foreach($result as $r){
+            $data[$r['createdAt']->format($format)] += intval($r['total']);
+            $total[$r['createdAt']->format($format)] += 1;
+        }
+
+        foreach($data as $key => $val)
+            $data[$key] = $total[$key] === 0 ? 0 : $val / $total[$key];
 
         return $data;
 
