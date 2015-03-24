@@ -19,16 +19,32 @@ class ViewRepository extends EntityRepository
      * @param string $groupBy MYSQL syntax for date format
      * @return array
      */
-    public function articleStats(Article $article, $groupBy = '%j%y')
+    public function articleStats(Article $article, \DateTime $from, \DateTime $to, $step = '+1 day', $groupBy = '%j%y', $format = 'd-m-Y')
     {
-        return $this->createQueryBuilder('v')
+        $data = array();
+        $i = new \DateTime($from->format('Y-m-d H:i:sP'));
+
+        while($i <= $to){
+            $data[$i->format($format)] = 0;
+            $i->modify($step);
+        }
+
+        $result = $this->createQueryBuilder('v')
             ->select('DATE_FORMAT(v.createdAt, :groupBy) HIDDEN groupByDate, COUNT(DISTINCT v.sessionId) total, v.createdAt')
             ->setParameter('groupBy', $groupBy)
             ->where('v.article = :article')
             ->setParameter('article', $article)
+            ->andWhere('v.createdAt >= :from AND v.createdAt < :to')
+            ->setParameter('from', $from)
+            ->setParameter('to', $to->modify($step))
             ->groupBy('groupByDate')
             ->orderBy('v.createdAt', 'ASC')
             ->getQuery()
             ->getResult(Query::HYDRATE_ARRAY);
+
+        foreach($result as $r)
+            $data[$r['createdAt']->format($format)] = intval($r['total']);
+
+        return $data;
     }
 }

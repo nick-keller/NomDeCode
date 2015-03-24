@@ -19,8 +19,15 @@ class StatsController extends Controller
      */
     public function articleAction(Article $article)
     {
+        $now = new \DateTime;
+        $now->setTime(0,0);
+
+        $from = new \DateTime;
+        $from->setTime(0,0);
+        $from->modify('-20 days');
+
         return array(
-            'stats' => $this->em->getRepository('NDCAnalyticsBundle:View')->articleStats($article),
+            'stats' => $this->em->getRepository('NDCAnalyticsBundle:View')->articleStats($article, $from, $now),
         );
     }
 }
