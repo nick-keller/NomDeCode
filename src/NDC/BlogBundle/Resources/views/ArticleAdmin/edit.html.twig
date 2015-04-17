@@ -11,3 +11,12 @@
 
     {% include '@NDCBlog/ArticleAdmin/form.html.twig' %}
 {% endblock %}
+
+{% block javascripts %}
+    {{ parent() }}
+    <script>
+        $(window).on('beforeunload', function(e){
+            return "Voulez vous vraiment quitter la page ?";
+        });
+    </script>
+{% endblock %}

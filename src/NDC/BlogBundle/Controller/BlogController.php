@@ -68,9 +68,6 @@ class BlogController extends Controller
         // View counter
         $view = new View($article, $this->get('session')->getId());
         if($this->getUser() === null){
-            $article->setViews($article->getViews() +1);
-
-            $this->em->persist($article);
             $this->em->persist($view);
             $this->em->flush();
         }
