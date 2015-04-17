@@ -241,7 +241,7 @@ class BlogController extends Controller
         if($view->getSessionId() != '')
             throw new BadRequestHttpException;
 
-        $view->setSessionId(session_id());
+        $view->setSessionId($this->get('session')->getId());
         $this->em->persist($view);
         $this->em->flush();
 
